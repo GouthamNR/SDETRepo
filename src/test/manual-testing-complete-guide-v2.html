@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual Testing - Complete Guide | QA Academy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f7fa;
+        }
+
+        .container {
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .sidebar {
+            width: 320px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            overflow-y: auto;
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100vh;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .sidebar.closed {
+            transform: translateX(-320px);
+        }
+
+        .sidebar-header {
+            padding: 20px;
+            text-align: center;
+            border-bottom: 2px solid rgba(255,255,255,0.2);
+            position: sticky;
+            top: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .sidebar-header h2 {
+            font-size: 1.3em;
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+
+        .sidebar-nav {
+            padding: 15px 0;
+        }
+
+        .nav-main-item {
+            cursor: pointer;
+            margin: 3px 10px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            user-select: none;
+        }
+
+        .nav-main-header {
+            padding: 12px 15px;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-left: 4px solid transparent;
+        }
+
+        .nav-main-item:hover .nav-main-header {
+            background: rgba(255,255,255,0.1);
+            border-left-color: #ffd700;
+            padding-left: 20px;
+        }
+
+        .nav-main-item.active .nav-main-header {
+            background: rgba(255,255,255,0.2);
+            border-left-color: #ffd700;
+            font-weight: 700;
+        }
+
+        .nav-arrow {
+            transition: transform 0.3s;
+            font-size: 0.9em;
+        }
+
+        .nav-main-item.expanded .nav-arrow {
+            transform: rotate(180deg);
+        }
+
+        .nav-sub-items {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background: rgba(0,0,0,0.1);
+        }
+
+        .nav-main-item.expanded .nav-sub-items {
+            max-height: 500px;
+        }
+
+        .nav-sub-item {
+            padding: 8px 15px 8px 35px;
+            font-size: 0.9em;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-sub-item:hover {
+            background: rgba(255,255,255,0.1);
+            padding-left: 40px;
+        }
+
+        .nav-sub-item.active {
+            background: rgba(255,255,255,0.2);
+            font-weight: 600;
+            border-left: 2px solid #ffd700;
+        }
+
+        .main-content {
+            flex: 1;
+            margin-left: 320px;
+            overflow-y: auto;
+            transition: all 0.3s ease;
+            background: #f5f7fa;
+        }
+
+        .main-content.expanded {
+            margin-left: 0;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        header h1 {
+            font-size: 1.8em;
+            font-weight: 700;
+        }
+
+        .toggle-btn {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            font-size: 1.5em;
+            cursor: pointer;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+
+        .toggle-btn:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        .content {
+            padding: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-title {
+            font-size: 2em;
+            color: #667eea;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .subsection-title {
+            font-size: 1.4em;
+            color: #764ba2;
+            margin: 30px 0 15px 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #667eea;
+        }
+
+        .section-subtitle {
+            font-size: 0.95em;
+            color: #999;
+            margin-bottom: 25px;
+            font-style: italic;
+        }
+
+        .collapsible-section {
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            margin: 15px 0;
+            overflow: hidden;
+        }
+
+        .collapsible-header {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            padding: 15px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: #667eea;
+            transition: all 0.3s;
+            border-left: 4px solid #667eea;
+        }
+
+        .collapsible-header:hover {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.15), rgba(118, 75, 162, 0.15));
+        }
+
+        .collapsible-header.open {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-left-color: #ffd700;
+        }
+
+        .collapsible-content {
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .collapsible-content.open {
+            padding: 20px;
+            max-height: 5000px;
+            background: #f9f9f9;
+        }
+
+        .arrow {
+            transition: transform 0.3s;
+            font-size: 1.2em;
+        }
+
+        .arrow.open {
+            transform: rotate(180deg);
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .card {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.05), rgba(118, 75, 162, 0.05));
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            border-left: 4px solid #667eea;
+        }
+
+        .card:hover {
+            border-color: #667eea;
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.15);
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            color: #667eea;
+            margin-bottom: 12px;
+            font-size: 1.1em;
+        }
+
+        .card p {
+            color: #666;
+            line-height: 1.7;
+            font-size: 0.95em;
+        }
+
+        .example-box {
+            background: linear-gradient(135deg, rgba(76, 175, 80, 0.1), rgba(56, 142, 60, 0.1));
+            border-left: 4px solid #4CAF50;
+            padding: 15px 20px;
+            margin: 15px 0;
+            border-radius: 5px;
+            color: #2e7d32;
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, rgba(255, 152, 0, 0.1), rgba(245, 127, 23, 0.1));
+            border-left: 4px solid #FF9800;
+            padding: 15px 20px;
+            margin: 15px 0;
+            border-radius: 5px;
+            color: #e65100;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, rgba(33, 150, 243, 0.1), rgba(3, 155, 229, 0.1));
+            border-left: 4px solid #2196F3;
+            padding: 15px 20px;
+            margin: 15px 0;
+            border-radius: 5px;
+            color: #1565c0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.95em;
+        }
+
+        td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #e0e0e0;
+            font-size: 0.95em;
+        }
+
+        tr:hover {
+            background: #f9f9f9;
+        }
+
+        .checklist {
+            margin: 20px 0;
+        }
+
+        .checklist-item {
+            padding: 8px 0;
+            margin: 6px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 0.95em;
+        }
+
+        .checklist-item::before {
+            content: "✓";
+            color: #4CAF50;
+            font-weight: bold;
+            font-size: 1.1em;
+            min-width: 20px;
+            margin-top: 2px;
+        }
+
+        .question {
+            background: #f5f5f5;
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+
+        .question strong {
+            color: #667eea;
+            font-size: 1em;
+        }
+
+        .answer {
+            margin-top: 10px;
+            padding: 10px;
+            background: white;
+            border-radius: 3px;
+            color: #555;
+        }
+
+        .motivation-box {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            border-left: 4px solid #667eea;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+            font-style: italic;
+            color: #667eea;
+            font-weight: 500;
+        }
+
+        .row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin: 5px 5px 5px 0;
+        }
+
+        .badge-beginner {
+            background: #e3f2fd;
+            color: #1565c0;
+        }
+
+        .badge-intermediate {
+            background: #f3e5f5;
+            color: #6a1b9a;
+        }
+
+        .badge-advanced {
+            background: #ffe0b2;
+            color: #e65100;
+        }
+
+        .quick-note {
+            background: #fff9c4;
+            border-left: 4px solid #fbc02d;
+            padding: 12px 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+            font-size: 0.95em;
+        }
+
+        .interview-difficulty {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 0.8em;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+
+        .difficulty-easy { background: #c8e6c9; color: #2e7d32; }
+        .difficulty-medium { background: #ffe0b2; color: #e65100; }
+        .difficulty-hard { background: #ffcdd2; color: #c62828; }
+
+        .flow {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .flow-item {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-weight: 600;
+            white-space: nowrap;
+            font-size: 0.9em;
+        }
+
+        .flow-arrow {
+            color: #667eea;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar { transform: translateX(-320px); }
+            .sidebar.open { transform: translateX(0); }
+            .main-content { margin-left: 0; }
+            .content { padding: 20px; }
+            header h1 { font-size: 1.3em; }
+            .row { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h2>📚 QA Academy</h2>
+                <p>Manual Testing Complete Guide</p>
+            </div>
+            <div class="sidebar-nav" id="sidebarNav"></div>
+        </nav>
+
+        <!-- Main Content -->
+        <div class="main-content" id="mainContent">
+            <header>
+                <h1>🧪 Manual Testing - Complete Learning Guide</h1>
+                <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
+            </header>
+
+            <div class="content" id="contentArea">
+                <!-- Loading message -->
+                <div class="section">
+                    <p style="text-align: center; color: #999;">Loading content...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>🎓 Manual Testing - Complete Guide | QA Academy</p>
+        <p style="margin-top: 10px; font-size: 0.9em;">© 2025 QA Academy. Your one-stop solution for manual testing mastery.</p>
+    </footer>
+
+    <script>
+        // Navigation structure with subtopics
+        const navStructure = [
+            {
+                id: 'intro',
+                title: '🎯 Introduction',
+                icon: '📖',
+                subtopics: [
+                    { id: 'intro-overview', title: 'What is Manual Testing?' },
+                    { id: 'intro-importance', title: 'Why Manual Testing Matters' },
+                    { id: 'intro-principles', title: '7 Testing Principles' },
+                    { id: 'intro-qa-vs-testing', title: 'QA vs Testing' }
+                ]
+            },
+            {
+                id: 'basics',
+                title: '📖 Testing Basics',
+                icon: '🎓',
+                subtopics: [
+                    { id: 'basics-definitions', title: 'Key Definitions (Error, Defect, Bug, Failure)' },
+                    { id: 'basics-quality', title: 'Quality & Quality Metrics' },
+                    { id: 'basics-sdlc', title: 'SDLC Overview (Waterfall, Spiral, V-Model)' },
+                    { id: 'basics-roles', title: 'Testing Roles & Responsibilities' }
+                ]
+            },
+            {
+                id: 'types',
+                title: '🏷️ Testing Types & Techniques',
+                icon: '🔍',
+                subtopics: [
+                    { id: 'types-black-box', title: 'Black Box Testing' },
+                    { id: 'types-white-box', title: 'White Box Testing' },
+                    { id: 'types-gray-box', title: 'Gray Box Testing' },
+                    { id: 'types-functional', title: 'Functional vs Non-Functional' },
+                    { id: 'types-techniques', title: 'Testing Techniques' }
+                ]
+            },
+            {
+                id: 'stlc',
+                title: '🔄 STLC & Processes',
+                icon: '⚙️',
+                subtopics: [
+                    { id: 'stlc-phases', title: 'STLC Phases (10 Steps)' },
+                    { id: 'stlc-testplan', title: 'Test Planning' },
+                    { id: 'stlc-testcases', title: 'Test Case Design' },
+                    { id: 'stlc-execution', title: 'Test Execution' },
+                    { id: 'stlc-closure', title: 'Test Closure' }
+                ]
+            },
+            {
+                id: 'testcases',
+                title: '✍️ Test Cases & Scenarios',
+                icon: '📋',
+                subtopics: [
+                    { id: 'testcases-writing', title: 'How to Write Test Cases' },
+                    { id: 'testcases-template', title: 'Test Case Template & Examples' },
+                    { id: 'testcases-scenarios', title: 'Test Scenarios' },
+                    { id: 'testcases-traceability', title: 'Traceability Matrix (RTM)' }
+                ]
+            },
+            {
+                id: 'defects',
+                title: '🐛 Defect Management',
+                icon: '🔴',
+                subtopics: [
+                    { id: 'defects-reporting', title: 'Defect Reporting' },
+                    { id: 'defects-severity', title: 'Severity & Priority' },
+                    { id: 'defects-lifecycle', title: 'Defect Life Cycle' },
+                    { id: 'defects-management', title: 'Defect Management Process' }
+                ]
+            },
+            {
+                id: 'tools',
+                title: '🛠️ Testing Tools',
+                icon: '⚡',
+                subtopics: [
+                    { id: 'tools-management', title: 'Test Management Tools (Jira, TestLink)' },
+                    { id: 'tools-tracking', title: 'Bug Tracking Tools' },
+                    { id: 'tools-performance', title: 'Performance Testing Tools' },
+                    { id: 'tools-selection', title: 'Tool Selection Guide' }
+                ]
+            },
+            {
+                id: 'bestpractices',
+                title: '⭐ Best Practices',
+                icon: '✨',
+                subtopics: [
+                    { id: 'bp-golden-rules', title: 'Golden Rules of Testing' },
+                    { id: 'bp-strategies', title: 'Testing Strategies' },
+                    { id: 'bp-communication', title: 'Effective Communication' },
+                    { id: 'bp-career', title: 'Career Development' }
+                ]
+            },
+            {
+                id: 'interviews',
+                title: '🎤 Interview Questions',
+                icon: '❓',
+                subtopics: [
+                    { id: 'int-basics', title: 'Basic Level Questions' },
+                    { id: 'int-intermediate', title: 'Intermediate Level Questions' },
+                    { id: 'int-advanced', title: 'Advanced Level Questions' },
+                    { id: 'int-scenarios', title: 'Scenario-Based Questions' }
+                ]
+            },
+            {
+                id: 'istqb',
+                title: '🏆 ISTQB Certification',
+                icon: '📜',
+                subtopics: [
+                    { id: 'istqb-overview', title: 'ISTQB Overview & Levels' },
+                    { id: 'istqb-roadmap', title: 'Preparation Roadmap' },
+                    { id: 'istqb-syllabus', title: 'Syllabus & Key Topics' },
+                    { id: 'istqb-resources', title: 'Resources & Exam Tips' }
+                ]
+            },
+            {
+                id: 'quickrevision',
+                title: '⚡ Quick Revision Guide',
+                icon: '🚀',
+                subtopics: [
+                    { id: 'qr-concepts', title: 'Quick Concepts (30 mins)' },
+                    { id: 'qr-checklist', title: 'Interview Prep Checklist' },
+                    { id: 'qr-formulas', title: 'Key Formulas & Metrics' }
+                ]
+            }
+        ];
+
+        // Initialize navigation
+        function initNavigation() {
+            const sidebarNav = document.getElementById('sidebarNav');
+            sidebarNav.innerHTML = '';
+
+            navStructure.forEach((main, idx) => {
+                const mainItem = document.createElement('div');
+                mainItem.className = 'nav-main-item';
+                mainItem.id = `nav-${main.id}`;
+
+                const header = document.createElement('div');
+                header.className = 'nav-main-header';
+                header.innerHTML = `
+                    <span>${main.icon} ${main.title}</span>
+                    <span class="nav-arrow">▼</span>
+                `;
+
+                const subItems = document.createElement('div');
+                subItems.className = 'nav-sub-items';
+
+                main.subtopics.forEach(sub => {
+                    const subItem = document.createElement('div');
+                    subItem.className = 'nav-sub-item';
+                    subItem.innerHTML = `<span>${sub.title}</span>`;
+                    subItem.onclick = (e) => {
+                        e.stopPropagation();
+                        loadContent(main.id, sub.id);
+                    };
+                    subItems.appendChild(subItem);
+                });
+
+                mainItem.appendChild(header);
+                mainItem.appendChild(subItems);
+
+                header.onclick = () => {
+                    mainItem.classList.toggle('expanded');
+                };
+
+                mainItem.classList.add('expanded'); // Expanded by default
+                sidebarNav.appendChild(mainItem);
+            });
+        }
+
+        function loadContent(mainId, subId) {
+            const contentArea = document.getElementById('contentArea');
+            
+            // Update navigation
+            document.querySelectorAll('.nav-sub-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            document.querySelectorAll('.nav-main-item').forEach(item => {
+                item.classList.remove('active');
+            });
+
+            const subItem = document.querySelector(`[onclick*="${subId}"]`);
+            if (subItem) subItem.classList.add('active');
+
+            const mainItem = document.getElementById(`nav-${mainId}`);
+            if (mainItem) mainItem.classList.add('active');
+
+            // Load content based on section and subsection
+            const content = generateContent(mainId, subId);
+            contentArea.innerHTML = content;
+            window.scrollTo(0, 0);
+        }
+
+        function generateContent(mainId, subId) {
+            let html = '<div class="section">';
+
+            // Add content based on mainId and subId
+            if (mainId === 'intro' && subId === 'intro-overview') {
+                html += `
+                    <div class="section-title"><span>🎯</span> What is Manual Testing?</div>
+                    <div class="section-subtitle">Foundation of Software Quality Assurance</div>
+
+                    <p style="font-size: 1.05em; line-height: 1.8; margin-bottom: 20px;">
+                        <strong>Manual Testing</strong> is a testing technique where a human tester manually executes test cases without using automation tools. The tester uses the application like an end-user, checking if it works correctly according to requirements.
+                    </p>
+
+                    <div class="motivation-box">
+                        💡 <strong>Key Insight:</strong> Manual testing is the foundation of every successful software product. You are the end-user's advocate!
+                    </div>
+
+                    <div class="subsection-title">Core Definition</div>
+                    <div class="info-box">
+                        <strong>Manual Testing Definition:</strong><br>
+                        A process of testing software by manually running test cases without automation tools, where testers verify that the software works as expected and meets business requirements through hands-on interaction with the application.
+                    </div>
+
+                    <div class="subsection-title">When is Manual Testing Used?</div>
+                    <div class="checklist">
+                        <div class="checklist-item">New application development (first build must be tested manually)</div>
+                        <div class="checklist-item">GUI/UX testing (visual design and usability)</div>
+                        <div class="checklist-item">Ad-hoc and exploratory testing</div>
+                        <div class="checklist-item">User acceptance testing (UAT)</div>
+                        <div class="checklist-item">Load and stress testing in early stages</div>
+                        <div class="checklist-item">When requirements are unclear or changing</div>
+                        <div class="checklist-item">Mobile app testing on real devices</div>
+                        <div class="checklist-item">Accessibility and compatibility testing</div>
+                    </div>
+
+                    <div class="subsection-title">Manual vs Automation Testing</div>
+                    <table>
+                        <tr>
+                            <th>Aspect</th>
+                            <th>Manual Testing</th>
+                            <th>Automation Testing</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Execution</strong></td>
+                            <td>Done by human testers</td>
+                            <td>Done by automation scripts/tools</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Time</strong></td>
+                            <td>Slower, time-consuming</td>
+                            <td>Faster, more efficient</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Cost</strong></td>
+                            <td>Less expensive initially</td>
+                            <td>High initial setup, lower long-term</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Skills</strong></td>
+                            <td>No coding required</td>
+                            <td>Programming knowledge needed</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Best For</strong></td>
+                            <td>UI/UX, new features, exploratory</td>
+                            <td>Regression, repetitive tests</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Maintenance</strong></td>
+                            <td>Test cases reviewed regularly</td>
+                            <td>Scripts updated frequently</td>
+                        </tr>
+                    </table>
+
+                    <div class="example-box">
+                        <strong>Real Example:</strong><br>
+                        Testing a login feature: Manual tester enters username, password, clicks login button, verifies dashboard loads. They can observe user experience, check layout, notice color issues, test with various browsers - things automation might miss initially.
+                    </div>
+
+                    <div class="subsection-title">Key Statistics</div>
+                    <div class="row">
+                        <div class="card">
+                            <h3>📊 100%</h3>
+                            <p>of new applications need manual testing first</p>
+                        </div>
+                        <div class="card">
+                            <h3>📊 70%</h3>
+                            <p>of bugs are discovered during manual testing</p>
+                        </div>
+                        <div class="card">
+                            <h3>📊 60%</h3>
+                            <p>defects caught early are cheaper to fix</p>
+                        </div>
+                        <div class="card">
+                            <h3>📊 22B</h3>
+                            <p>dollars annual cost of software failures</p>
+                        </div>
+                    </div>
+                `;
+            }
+            else if (mainId === 'quickrevision' && subId === 'qr-concepts') {
+                html += `
+                    <div class="section-title"><span>⚡</span> Quick Revision - 30 Minute Crash Course</div>
+                    <div class="section-subtitle">For those with interviews coming and limited time</div>
+
+                    <div class="motivation-box">
+                        🚀 <strong>Speed Learning:</strong> Master key concepts in 30 minutes. Focus on what's asked in interviews!
+                    </div>
+
+                    <div class="subsection-title">1. Manual Testing Definition (2 mins)</div>
+                    <div class="quick-note">
+                        <strong>Definition:</strong> Testing software by manually executing test cases without automation tools, checking if it works as expected per requirements.
+                    </div>
+
+                    <div class="subsection-title">2. Key Terms (3 mins)</div>
+                    <table>
+                        <tr>
+                            <th>Term</th>
+                            <th>Definition</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Error</strong></td>
+                            <td>Human mistake in coding</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Defect</strong></td>
+                            <td>Mismatch between expected & actual</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Bug</strong></td>
+                            <td>Defect acknowledged by dev team</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Failure</strong></td>
+                            <td>Defect reaches customer</td>
+                        </tr>
+                    </table>
+
+                    <div class="subsection-title">3. Testing Types (3 mins)</div>
+                    <div class="quick-note">
+                        <strong>Black Box:</strong> No code knowledge, test functionality<br>
+                        <strong>White Box:</strong> Full code knowledge, test logic<br>
+                        <strong>Gray Box:</strong> Partial code knowledge, test interfaces
+                    </div>
+
+                    <div class="subsection-title">4. STLC Phases (5 mins)</div>
+                    <div class="flow">
+                        <div class="flow-item">1. Planning</div>
+                        <div class="flow-arrow">→</div>
+                        <div class="flow-item">2. Analysis</div>
+                        <div class="flow-arrow">→</div>
+                        <div class="flow-item">3. Design</div>
+                        <div class="flow-arrow">→</div>
+                        <div class="flow-item">4. Execution</div>
+                        <div class="flow-arrow">→</div>
+                        <div class="flow-item">5. Closure</div>
+                    </div>
+
+                    <div class="subsection-title">5. Severity vs Priority (3 mins)</div>
+                    <div class="quick-note">
+                        <strong>Severity (Impact):</strong> Critical > Major > Minor > Trivial<br>
+                        <strong>Priority (Urgency):</strong> High > Medium > Low (Fix order)
+                    </div>
+
+                    <div class="subsection-title">6. Defect Life Cycle (3 mins)</div>
+                    <div class="flow">
+                        <div class="flow-item">NEW</div>
+                        <div class="flow-arrow">→</div>
+                        <div class="flow-item">ASSIGNED</div>
+                        <div class="flow-arrow">→</div>
+                        <div class="flow-item">FIXED</div>
+                        <div class="flow-arrow">→</div>
+                        <div class="flow-item">VERIFIED</div>
+                        <div class="flow-arrow">→</div>
+                        <div class="flow-item">CLOSED</div>
+                    </div>
+
+                    <div class="subsection-title">7. Test Case Format (3 mins)</div>
+                    <table>
+                        <tr>
+                            <td><strong>Test Case ID</strong></td>
+                            <td>TC_001</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Title</strong></td>
+                            <td>Valid login test</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Precondition</strong></td>
+                            <td>At login page</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Steps</strong></td>
+                            <td>1. Enter email 2. Enter password 3. Click Login</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Expected</strong></td>
+                            <td>Dashboard displays</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Status</strong></td>
+                            <td>PASS/FAIL</td>
+                        </tr>
+                    </table>
+
+                    <div class="warning-box">
+                        ⚠️ <strong>Interview Tip:</strong> These 7 concepts are asked in 90% of interviews. Master them!
+                    </div>
+                `;
+            }
+            else if (mainId === 'interviews' && subId === 'int-basics') {
+                html += `
+                    <div class="section-title"><span>🎤</span> Interview Questions - Basic Level</div>
+                    <div class="section-subtitle">Most commonly asked questions for freshers and junior testers</div>
+
+                    <div class="question">
+                        <strong>Q1: What is manual testing?</strong>
+                        <span class="interview-difficulty difficulty-easy">Easy</span>
+                        <div class="answer">
+                            <strong>A:</strong> Manual testing is a process where human testers execute test cases without using automation tools. The tester manually navigates through the application to verify that it works according to requirements. It's the foundation of software testing where testers act as end-users.
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <strong>Q2: Difference between Error, Defect, Bug, and Failure?</strong>
+                        <span class="interview-difficulty difficulty-easy">Easy</span>
+                        <div class="answer">
+                            <strong>A:</strong><br>
+                            • <strong>Error:</strong> Human action that produces incorrect result (coding mistake)<br>
+                            • <strong>Defect:</strong> Mismatch between expected and actual behavior<br>
+                            • <strong>Bug:</strong> Defect acknowledged and assigned to developers<br>
+                            • <strong>Failure:</strong> Defect reaches production and impacts customers
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <strong>Q3: What is Black Box Testing?</strong>
+                        <span class="interview-difficulty difficulty-easy">Easy</span>
+                        <div class="answer">
+                            <strong>A:</strong> Black Box Testing is testing without knowledge of internal code structure. The tester only knows the inputs and expected outputs. Focus is on functionality, not how it's implemented. Example: Testing login button - does it work or not, not how the code validates it.
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <strong>Q4: What are the phases of STLC?</strong>
+                        <span class="interview-difficulty difficulty-easy">Easy</span>
+                        <div class="answer">
+                            <strong>A:</strong> The 5 main phases of Software Testing Life Cycle are:<br>
+                            1. <strong>Planning:</strong> Define testing strategy<br>
+                            2. <strong>Analysis:</strong> Review requirements and analyze<br>
+                            3. <strong>Design:</strong> Create test cases<br>
+                            4. <strong>Execution:</strong> Run test cases<br>
+                            5. <strong>Closure:</strong> Final report and lessons learned
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <strong>Q5: What is a Test Case?</strong>
+                        <span class="interview-difficulty difficulty-easy">Easy</span>
+                        <div class="answer">
+                            <strong>A:</strong> A test case is a document that contains step-by-step instructions to test a specific feature. It includes test case ID, title, preconditions, steps, expected result, actual result, and status (pass/fail).
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <strong>Q6: What is the difference between Verification and Validation?</strong>
+                        <span class="interview-difficulty difficulty-easy">Easy</span>
+                        <div class="answer">
+                            <strong>A:</strong><br>
+                            • <strong>Verification:</strong> Are we building the product right? (Checking design, code reviews)<br>
+                            • <strong>Validation:</strong> Are we building the right product? (Testing against requirements)
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <strong>Q7: What is Severity and Priority?</strong>
+                        <span class="interview-difficulty difficulty-easy">Easy</span>
+                        <div class="answer">
+                            <strong>A:</strong><br>
+                            • <strong>Severity:</strong> Impact of bug on system (Critical > Major > Minor > Trivial)<br>
+                            • <strong>Priority:</strong> Urgency to fix (High > Medium > Low). Decides fix order.
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <strong>Q8: What are the testing types you know?</strong>
+                        <span class="interview-difficulty difficulty-easy">Easy</span>
+                        <div class="answer">
+                            <strong>A:</strong><br>
+                            <strong>Functional:</strong> Does feature work?<br>
+                            <strong>Non-Functional:</strong> Performance, security, load<br>
+                            <strong>Black Box:</strong> No code knowledge<br>
+                            <strong>White Box:</strong> Code knowledge<br>
+                            <strong>Gray Box:</strong> Partial code knowledge
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <strong>Q9: Why is Manual Testing important?</strong>
+                        <span class="interview-difficulty difficulty-easy">Easy</span>
+                        <div class="answer">
+                            <strong>A:</strong><br>
+                            • First level of testing (new apps must be tested manually)<br>
+                            • Catches complex user interactions and edge cases<br>
+                            • GUI/UX testing<br>
+                            • Explores unexpected scenarios<br>
+                            • Cost-effective for small projects<br>
+                            • Can test on real devices and browsers
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <strong>Q10: What is Regression Testing?</strong>
+                        <span class="interview-difficulty difficulty-easy">Easy</span>
+                        <div class="answer">
+                            <strong>A:</strong> Regression testing is testing an application after changes (new features or bug fixes) to ensure that old features still work correctly. It verifies that fixes didn't break existing functionality.
+                        </div>
+                    </div>
+                `;
+            }
+            else if (mainId === 'istqb' && subId === 'istqb-overview') {
+                html += `
+                    <div class="section-title"><span>🏆</span> ISTQB Certification Overview</div>
+                    <div class="section-subtitle">International Software Testing Qualifications Board</div>
+
+                    <div class="info-box">
+                        <strong>What is ISTQB?</strong><br>
+                        ISTQB (International Software Testing Qualifications Board) is an independent organization that provides internationally recognized certifications in software testing. ISTQB certifications are valued globally and demonstrate your testing expertise.
+                    </div>
+
+                    <div class="subsection-title">Certification Levels</div>
+                    <div class="grid-2">
+                        <div class="card">
+                            <h3>🥉 Foundation Level (CTFL)</h3>
+                            <p><strong>Duration:</strong> 4-6 weeks of study<br>
+                            <strong>Exam:</strong> 40 questions, 60 minutes<br>
+                            <strong>Pass Score:</strong> 65%<br>
+                            <strong>For:</strong> Beginners, junior testers<br>
+                            <strong>Prerequisites:</strong> None</p>
+                        </div>
+                        <div class="card">
+                            <h3>🥈 Advanced Level</h3>
+                            <p><strong>Modules:</strong> Test Analyst, Test Manager<br>
+                            <strong>Duration:</strong> 2-3 months each<br>
+                            <strong>Exam:</strong> 50+ questions<br>
+                            <strong>For:</strong> Experienced testers<br>
+                            <strong>Prerequisites:</strong> CTFL certificate</p>
+                        </div>
+                        <div class="card">
+                            <h3>🥇 Expert Level</h3>
+                            <p><strong>For:</strong> Testing experts<br>
+                            <strong>Focus:</strong> Specialized domains<br>
+                            <strong>Duration:</strong> 3-6 months<br>
+                            <strong>Prerequisites:</strong> Advanced level certificate</p>
+                        </div>
+                    </div>
+
+                    <div class="subsection-title">Why Get ISTQB Certified?</div>
+                    <div class="checklist">
+                        <div class="checklist-item">Industry-recognized credential globally</div>
+                        <div class="checklist-item">Increases salary prospects by 15-25%</div>
+                        <div class="checklist-item">Demonstrates testing knowledge and commitment</div>
+                        <div class="checklist-item">Opens international job opportunities</div>
+                        <div class="checklist-item">Structured learning of testing concepts</div>
+                        <div class="checklist-item">Career advancement opportunities</div>
+                        <div class="checklist-item">Validation of practical experience</div>
+                    </div>
+
+                    <div class="subsection-title">CTFL Foundation Level Syllabus Overview</div>
+                    <table>
+                        <tr>
+                            <th>Chapter</th>
+                            <th>Topics</th>
+                            <th>Importance</th>
+                        </tr>
+                        <tr>
+                            <td><strong>1. Fundamentals</strong></td>
+                            <td>What is testing, why testing, quality</td>
+                            <td>Foundation</td>
+                        </tr>
+                        <tr>
+                            <td><strong>2. Testing Throughout SDLC</strong></td>
+                            <td>V-model, Agile, testing levels</td>
+                            <td>High</td>
+                        </tr>
+                        <tr>
+                            <td><strong>3. Static Testing</strong></td>
+                            <td>Reviews, walkthroughs, inspections</td>
+                            <td>High</td>
+                        </tr>
+                        <tr>
+                            <td><strong>4. Test Design Techniques</strong></td>
+                            <td>Equivalence, boundary, decision table</td>
+                            <td>Critical</td>
+                        </tr>
+                        <tr>
+                            <td><strong>5. Test Management</strong></td>
+                            <td>Planning, monitoring, control</td>
+                            <td>High</td>
+                        </tr>
+                        <tr>
+                            <td><strong>6. Tool Support</strong></td>
+                            <td>Test management, execution tools</td>
+                            <td>Medium</td>
+                        </tr>
+                    </table>
+
+                    <div class="warning-box">
+                        📝 <strong>Important Note:</strong> ISTQB Foundation is MCQ based with 40 questions in 60 minutes. You need 26+ correct answers to pass (65% score).
+                    </div>
+                `;
+            }
+            else {
+                html += `
+                    <div class="section-title"><span>📚</span> Section Under Development</div>
+                    <p>This section is being populated with comprehensive content covering all aspects from the attached PDFs.</p>
+                    <p>Main Section: <strong>${navStructure.find(m => m.id === mainId)?.title}</strong></p>
+                    <p>Subsection: ${mainId} - ${subId}</p>
+                `;
+            }
+
+            html += '</div>';
+            return html;
+        }
+
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const mainContent = document.getElementById('mainContent');
+            sidebar.classList.toggle('open');
+            mainContent.classList.toggle('expanded');
+        }
+
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', function() {
+            initNavigation();
+            // Load first section by default
+            loadContent('intro', 'intro-overview');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual Testing - Complete Guide v3 | QA Academy</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; background: #f5f7fa; }
+        .container { display: flex; height: 100vh; overflow: hidden; }
+        .sidebar { width: 300px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; overflow-y: auto; position: fixed; left: 0; top: 0; height: 100vh; z-index: 1000; box-shadow: 0 10px 30px rgba(0,0,0,0.3); transition: all 0.3s; }
+        .sidebar.closed { transform: translateX(-300px); }
+        .sidebar-header { padding: 15px; text-align: center; border-bottom: 2px solid rgba(255,255,255,0.2); position: sticky; top: 0; background: inherit; }
+        .nav-item { padding: 10px 12px; margin: 2px 5px; cursor: pointer; border-radius: 5px; transition: all 0.3s; border-left: 3px solid transparent; }
+        .nav-item:hover, .nav-item.active { background: rgba(255,255,255,0.15); border-left-color: #ffd700; padding-left: 15px; }
+        .nav-sub-item { padding: 6px 8px 6px 25px; font-size: 0.85em; cursor: pointer; margin: 1px 5px; border-radius: 3px; display: none; }
+        .nav-item.expanded ~ .nav-sub-items .nav-sub-item { display: block; }
+        .nav-sub-item:hover { background: rgba(255,255,255,0.1); }
+        .nav-sub-item.active { background: rgba(255,255,255,0.2); font-weight: 600; }
+        .main-content { flex: 1; margin-left: 300px; overflow-y: auto; transition: margin-left 0.3s; }
+        .main-content.expanded { margin-left: 0; }
+        header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px 30px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 5px 15px rgba(0,0,0,0.2); position: sticky; top: 0; z-index: 100; }
+        header h1 { font-size: 1.6em; }
+        .toggle-btn { background: rgba(255,255,255,0.2); border: none; color: white; font-size: 1.3em; cursor: pointer; padding: 8px 12px; border-radius: 5px; }
+        .content { padding: 30px; max-width: 1300px; margin: 0 auto; }
+        .section { background: white; border-radius: 10px; padding: 25px; margin-bottom: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.08); animation: slideIn 0.5s; }
+        @keyframes slideIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .section-title { font-size: 1.8em; color: #667eea; margin-bottom: 10px; display: flex; align-items: center; gap: 12px; }
+        .subsection-title { font-size: 1.3em; color: #764ba2; margin: 25px 0 12px; padding-bottom: 8px; border-bottom: 2px solid #667eea; }
+        .collapsible { border: 1px solid #e0e0e0; border-radius: 8px; margin: 12px 0; overflow: hidden; }
+        .collapsible-header { background: linear-gradient(135deg, rgba(102,126,234,0.1), rgba(118,75,162,0.1)); padding: 12px 15px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 600; color: #667eea; transition: all 0.3s; border-left: 4px solid #667eea; }
+        .collapsible-header:hover { background: linear-gradient(135deg, rgba(102,126,234,0.15), rgba(118,75,162,0.15)); }
+        .collapsible-header.open { background: linear-gradient(135deg, #667eea, #764ba2); color: white; border-left-color: #ffd700; }
+        .collapsible-content { max-height: 0; overflow: hidden; transition: max-height 0.3s; }
+        .collapsible-content.open { max-height: 2000px; padding: 15px; background: #f9f9f9; }
+        .arrow { transition: transform 0.3s; }
+        .arrow.open { transform: rotate(180deg); }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 0.9em; }
+        th { background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 10px; text-align: left; font-weight: 600; }
+        td { padding: 8px 10px; border-bottom: 1px solid #e0e0e0; }
+        tr:hover { background: #f5f5f5; }
+        .card { background: linear-gradient(135deg, rgba(102,126,234,0.05), rgba(118,75,162,0.05)); border: 2px solid #e0e0e0; border-left: 4px solid #667eea; border-radius: 8px; padding: 15px; margin: 12px 0; transition: all 0.3s; }
+        .card:hover { border-color: #667eea; box-shadow: 0 8px 20px rgba(102,126,234,0.15); transform: translateY(-3px); }
+        .example-box { background: rgba(76,175,80,0.1); border-left: 4px solid #4CAF50; padding: 12px; margin: 12px 0; border-radius: 5px; color: #2e7d32; font-size: 0.95em; }
+        .info-box { background: rgba(33,150,243,0.1); border-left: 4px solid #2196F3; padding: 12px; margin: 12px 0; border-radius: 5px; color: #1565c0; }
+        .warning-box { background: rgba(255,152,0,0.1); border-left: 4px solid #FF9800; padding: 12px; margin: 12px 0; border-radius: 5px; color: #e65100; }
+        .motivation-box { background: rgba(102,126,234,0.1); border-left: 4px solid #667eea; padding: 12px; margin: 15px 0; border-radius: 5px; font-style: italic; color: #667eea; font-weight: 500; }
+        .quick-note { background: #fff9c4; border-left: 4px solid #fbc02d; padding: 10px; margin: 10px 0; border-radius: 4px; font-size: 0.9em; }
+        .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px; margin: 15px 0; }
+        .flow { display: flex; align-items: center; gap: 10px; margin: 15px 0; flex-wrap: wrap; }
+        .flow-item { background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 8px 12px; border-radius: 5px; font-weight: 600; white-space: nowrap; font-size: 0.9em; }
+        .checklist { margin: 10px 0; }
+        .checklist-item { padding: 6px 0; display: flex; gap: 8px; align-items: flex-start; }
+        .checklist-item::before { content: "✓"; color: #4CAF50; font-weight: bold; min-width: 18px; }
+        .question { background: #f5f5f5; border-left: 4px solid #667eea; padding: 12px; margin: 10px 0; border-radius: 5px; }
+        .question strong { color: #667eea; }
+        .answer { margin-top: 8px; padding: 8px; background: white; border-radius: 3px; }
+        .difficulty-easy { background: #c8e6c9; color: #2e7d32; }
+        .difficulty-medium { background: #ffe0b2; color: #e65100; }
+        .difficulty-hard { background: #ffcdd2; color: #c62828; }
+        .badge { display: inline-block; padding: 3px 8px; border-radius: 3px; font-size: 0.75em; font-weight: 600; margin-left: 8px; }
+        .dropdown { margin: 10px 0; }
+        .dropdown-btn { background: #f0f0f0; border: 1px solid #ddd; padding: 10px; cursor: pointer; width: 100%; text-align: left; border-radius: 5px; font-weight: 600; color: #333; transition: all 0.3s; }
+        .dropdown-btn:hover { background: #e8e8e8; }
+        .dropdown-content { max-height: 0; overflow: hidden; transition: max-height 0.3s; background: #f9f9f9; }
+        .dropdown-content.show { max-height: 1000px; padding: 10px; }
+        footer { background: #2c3e50; color: white; text-align: center; padding: 20px; margin-top: 30px; }
+        @media (max-width: 768px) { .sidebar { transform: translateX(-300px); } .sidebar.open { transform: translateX(0); } .main-content { margin-left: 0; } .grid-2 { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h2 style="font-size: 1.2em;">📚 QA Academy</h2>
+                <p style="font-size: 0.85em;">Complete Manual Testing Guide</p>
+            </div>
+            <div id="navContainer"></div>
+        </nav>
+
+        <div class="main-content" id="mainContent">
+            <header>
+                <h1>🧪 Manual Testing - Complete Guide</h1>
+                <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
+            </header>
+            <div class="content" id="contentArea"></div>
+        </div>
+    </div>
+
+    <footer>
+        <p>🎓 Manual Testing - Complete Guide | QA Academy</p>
+        <p style="margin-top: 8px; font-size: 0.9em;">Your one-stop solution for manual testing mastery</p>
+    </footer>
+
+    <script>
+        const sections = {
+            intro: {
+                title: '🎯 Introduction',
+                subs: [
+                    { id: 'intro-overview', title: 'What is Manual Testing?' },
+                    { id: 'intro-importance', title: 'Why Manual Testing Matters' },
+                    { id: 'intro-principles', title: '7 Key Testing Principles' }
+                ]
+            },
+            basics: {
+                title: '📖 Testing Fundamentals',
+                subs: [
+                    { id: 'basics-terms', title: 'Key Terms (Error, Defect, Bug, Failure)' },
+                    { id: 'basics-quality', title: 'Quality & Quality Metrics' },
+                    { id: 'basics-sdlc', title: 'SDLC & Testing Models' },
+                    { id: 'basics-roles', title: 'Testing Roles & Responsibilities' }
+                ]
+            },
+            types: {
+                title: '🏷️ Testing Types',
+                subs: [
+                    { id: 'types-boxmodels', title: 'Black/White/Gray Box Testing' },
+                    { id: 'types-functional', title: 'Functional vs Non-Functional' },
+                    { id: 'types-techniques', title: 'Testing Techniques' },
+                    { id: 'types-detailed', title: '13 Testing Types Explained' }
+                ]
+            },
+            stlc: {
+                title: '🔄 STLC & Processes',
+                subs: [
+                    { id: 'stlc-phases', title: 'STLC Phases (10 Steps)' },
+                    { id: 'stlc-planning', title: 'Test Planning & Strategy' },
+                    { id: 'stlc-execution', title: 'Test Execution' },
+                    { id: 'stlc-closure', title: 'Test Closure & Metrics' }
+                ]
+            },
+            testcases: {
+                title: '✍️ Test Cases',
+                subs: [
+                    { id: 'tc-writing', title: 'How to Write Test Cases' },
+                    { id: 'tc-template', title: 'Test Case Template' },
+                    { id: 'tc-scenarios', title: 'Test Scenarios & RTM' },
+                    { id: 'tc-design', title: 'Test Design Techniques' }
+                ]
+            },
+            defects: {
+                title: '🐛 Defect Management',
+                subs: [
+                    { id: 'defects-reporting', title: 'Defect Reporting' },
+                    { id: 'defects-severity', title: 'Severity & Priority' },
+                    { id: 'defects-lifecycle', title: 'Defect Life Cycle' },
+                    { id: 'defects-metrics', title: 'Defect Metrics' }
+                ]
+            },
+            tools: {
+                title: '🛠️ Testing Tools',
+                subs: [
+                    { id: 'tools-jira', title: 'Jira & Test Management' },
+                    { id: 'tools-tracking', title: 'Bug Tracking Tools' },
+                    { id: 'tools-performance', title: 'Performance Tools' }
+                ]
+            },
+            regression: {
+                title: '🔁 Regression Testing',
+                subs: [
+                    { id: 'reg-intro', title: 'What is Regression Testing' },
+                    { id: 'reg-types', title: 'Types of Regression Testing' },
+                    { id: 'reg-strategy', title: 'Regression Strategy' }
+                ]
+            },
+            interviews: {
+                title: '🎤 Interview Questions',
+                subs: [
+                    { id: 'int-basic', title: 'Basic Level (30 Qs)' },
+                    { id: 'int-intermediate', title: 'Intermediate Level (35 Qs)' },
+                    { id: 'int-advanced', title: 'Advanced Level (25 Qs)' },
+                    { id: 'int-scenarios', title: 'Scenario-Based (20 Qs)' }
+                ]
+            },
+            istqb: {
+                title: '🏆 ISTQB Certification',
+                subs: [
+                    { id: 'istqb-overview', title: 'ISTQB Levels & Overview' },
+                    { id: 'istqb-roadmap', title: 'Preparation Roadmap' },
+                    { id: 'istqb-resources', title: 'Resources & Tips' }
+                ]
+            },
+            quickrevision: {
+                title: '⚡ Quick Revision',
+                subs: [
+                    { id: 'quick-30min', title: '30-Minute Crash Course' },
+                    { id: 'quick-checklist', title: 'Interview Prep Checklist' },
+                    { id: 'quick-formulas', title: 'Formulas & Metrics' }
+                ]
+            }
+        };
+
+        // Generate navigation
+        function generateNav() {
+            let html = '<div class="sidebar-nav">';
+            for (const [key, section] of Object.entries(sections)) {
+                html += `<div class="nav-item" data-section="${key}" onclick="toggleSection(this)">
+                    ${section.title}
+                    <span class="arrow">▼</span>
+                </div>`;
+                html += '<div class="nav-sub-items">';
+                for (const sub of section.subs) {
+                    html += `<div class="nav-sub-item" onclick="loadContent('${key}', '${sub.id}')">${sub.title}</div>`;
+                }
+                html += '</div>';
+            }
+            html += '</div>';
+            document.getElementById('navContainer').innerHTML = html;
+        }
+
+        function toggleSection(el) {
+            el.classList.toggle('expanded');
+            el.querySelector('.arrow').classList.toggle('open');
+        }
+
+        function loadContent(section, subsection) {
+            document.querySelectorAll('.nav-sub-item').forEach(el => el.classList.remove('active'));
+            event.target.classList.add('active');
+            const content = getContent(section, subsection);
+            document.getElementById('contentArea').innerHTML = content;
+            window.scrollTo(0, 0);
+        }
+
+        function getContent(s, sub) {
+            let html = '<div class="section">';
+
+            if (s === 'types' && sub === 'types-boxmodels') {
+                html += `
+                    <div class="section-title"><span>🏷️</span> Black Box, White Box & Gray Box Testing</div>
+                    <div class="motivation-box">💡 <strong>Key Concept:</strong> Understanding these three approaches is fundamental to all testing!</div>
+
+                    <div class="subsection-title">1. Black Box Testing</div>
+                    <div class="info-box"><strong>Definition:</strong> Testing without knowledge of internal code structure. Tester only knows inputs and expected outputs.</div>
+                    <table>
+                        <tr><th>Aspect</th><th>Details</th></tr>
+                        <tr><td><strong>Approach</strong></td><td>Based on requirements and functionality</td></tr>
+                        <tr><td><strong>Code Knowledge</strong></td><td>No knowledge of internal code</td></tr>
+                        <tr><td><strong>Focus</strong></td><td>What the system does (outputs)</td></tr>
+                        <tr><td><strong>Techniques</strong></td><td>Equivalence Partitioning, Boundary Analysis, Error Guessing</td></tr>
+                        <tr><td><strong>Done By</strong></td><td>QA Testers, Business Analysts</td></tr>
+                        <tr><td><strong>Example</strong></td><td>Testing login: Enter username → password → Click Login → Dashboard appears</td></tr>
+                    </table>
+
+                    <div class="subsection-title">2. White Box Testing</div>
+                    <div class="info-box"><strong>Definition:</strong> Testing with complete knowledge of internal code, logic, and structure.</div>
+                    <table>
+                        <tr><th>Aspect</th><th>Details</th></tr>
+                        <tr><td><strong>Approach</strong></td><td>Based on code structure and logic</td></tr>
+                        <tr><td><strong>Code Knowledge</strong></td><td>Full knowledge of code</td></tr>
+                        <tr><td><strong>Focus</strong></td><td>How the system works (logic)</td></tr>
+                        <tr><td><strong>Techniques</strong></td><td>Path Testing, Branch Testing, Condition Testing, Loop Testing</td></tr>
+                        <tr><td><strong>Done By</strong></td><td>Developers, Unit Test Engineers</td></tr>
+                        <tr><td><strong>Example</strong></td><td>Testing every line of code, every condition, every loop</td></tr>
+                    </table>
+
+                    <div class="subsection-title">3. Gray Box Testing</div>
+                    <div class="info-box"><strong>Definition:</strong> Combination of Black Box and White Box. Partial knowledge of code structure.</div>
+                    <table>
+                        <tr><th>Aspect</th><th>Details</th></tr>
+                        <tr><td><strong>Approach</strong></td><td>Tests interfaces and interactions</td></tr>
+                        <tr><td><strong>Code Knowledge</strong></td><td>Partial knowledge of code</td></tr>
+                        <tr><td><strong>Focus</strong></td><td>How modules interact with each other</td></tr>
+                        <tr><td><strong>Techniques</strong></td><td>Integration Testing, API Testing</td></tr>
+                        <tr><td><strong>Done By</strong></td><td>Integration Test Engineers</td></tr>
+                        <tr><td><strong>Example</strong></td><td>Testing if Login module interacts properly with Database module</td></tr>
+                    </table>
+
+                    <div class="grid-2">
+                        <div class="card">
+                            <h4 style="color: #667eea;">🎯 Best Use Cases</h4>
+                            <strong>Black Box:</strong> GUI, UX, User workflows<br><br>
+                            <strong>White Box:</strong> Code quality, logic flaws, performance<br><br>
+                            <strong>Gray Box:</strong> Integration points, module interactions
+                        </div>
+                        <div class="card">
+                            <h4 style="color: #667eea;">⏱️ Time to Execute</h4>
+                            <strong>Black Box:</strong> More time (extensive scenarios)<br><br>
+                            <strong>White Box:</strong> Less time (systematic coverage)<br><br>
+                            <strong>Gray Box:</strong> Medium time (focused areas)
+                        </div>
+                    </div>
+                `;
+            }
+
+            else if (s === 'defects' && sub === 'defects-lifecycle') {
+                html += `
+                    <div class="section-title"><span>🐛</span> Defect Life Cycle - Complete Journey</div>
+                    <div class="motivation-box">💡 <strong>Important:</strong> Understanding defect states helps you manage bugs effectively!</div>
+
+                    <div class="subsection-title">13-State Defect Life Cycle</div>
+                    <div class="flow">
+                        <div class="flow-item">1. NEW</div>
+                        <div class="flow-item">2. ASSIGNED</div>
+                        <div class="flow-item">3. IN PROGRESS</div>
+                        <div class="flow-item">4. FIXED</div>
+                        <div class="flow-item">5. VERIFIED</div>
+                        <div class="flow-item">6. CLOSED</div>
+                    </div>
+
+                    <table>
+                        <tr><th>State</th><th>Description</th><th>Who Acts</th><th>Next State</th></tr>
+                        <tr><td><strong>NEW</strong></td><td>Defect just found and logged</td><td>Tester</td><td>ASSIGNED</td></tr>
+                        <tr><td><strong>ASSIGNED</strong></td><td>Assigned to developer</td><td>Test Lead</td><td>IN PROGRESS</td></tr>
+                        <tr><td><strong>IN PROGRESS</strong></td><td>Developer working on fix</td><td>Developer</td><td>FIXED</td></tr>
+                        <tr><td><strong>FIXED</strong></td><td>Developer says bug is fixed</td><td>Developer</td><td>VERIFIED</td></tr>
+                        <tr><td><strong>VERIFIED</strong></td><td>Tester confirms fix works</td><td>Tester</td><td>CLOSED</td></tr>
+                        <tr><td><strong>CLOSED</strong></td><td>Bug officially closed</td><td>Manager</td><td>--</td></tr>
+                        <tr><td><strong>REJECTED</strong></td><td>Not a real bug</td><td>Manager</td><td>CLOSED</td></tr>
+                        <tr><td><strong>DEFERRED</strong></td><td>Fix in next version</td><td>Manager</td><td>CLOSED</td></tr>
+                    </table>
+
+                    <div class="subsection-title">Defect State Transitions</div>
+                    <div class="collapsible">
+                        <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                            <span>NEW → ASSIGNED → IN PROGRESS</span>
+                            <span class="arrow">▼</span>
+                        </div>
+                        <div class="collapsible-content">
+                            <div class="checklist">
+                                <div class="checklist-item"><strong>NEW:</strong> Tester logs defect with full details</div>
+                                <div class="checklist-item"><strong>Verification:</strong> QA Lead reviews if it's really a bug</div>
+                                <div class="checklist-item"><strong>ASSIGNED:</strong> If valid, assign to developer</div>
+                                <div class="checklist-item"><strong>IN PROGRESS:</strong> Developer starts fixing</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="collapsible">
+                        <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                            <span>FIXED → VERIFIED → CLOSED</span>
+                            <span class="arrow">▼</span>
+                        </div>
+                        <div class="collapsible-content">
+                            <div class="checklist">
+                                <div class="checklist-item"><strong>FIXED:</strong> Developer marks as fixed</div>
+                                <div class="checklist-item"><strong>Test Re-execution:</strong> Tester verifies fix works</div>
+                                <div class="checklist-item"><strong>VERIFIED:</strong> If fixed, mark verified</div>
+                                <div class="checklist-item"><strong>CLOSED:</strong> Manager closes the defect</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="example-box">
+                        <strong>Real Scenario:</strong><br>
+                        1. Tester finds login button doesn't work → NEW<br>
+                        2. QA Lead approves it's a bug → ASSIGNED to Dev<br>
+                        3. Developer fixes code → IN PROGRESS<br>
+                        4. Developer deploys fix → FIXED<br>
+                        5. Tester verifies button works → VERIFIED<br>
+                        6. Manager closes ticket → CLOSED
+                    </div>
+
+                    <div class="subsection-title">Alternative States</div>
+                    <table>
+                        <tr><th>State</th><th>Meaning</th><th>When Used</th></tr>
+                        <tr><td><strong>REJECTED</strong></td><td>Not a valid bug</td><td>QA thinks tester made mistake</td></tr>
+                        <tr><td><strong>VERIFICATION FAILED</strong></td><td>Bug still exists</td><td>Tester verifies fix didn't work</td></tr>
+                        <tr><td><strong>DEFERRED</strong></td><td>Fix in next version</td><td>Low priority, can wait</td></tr>
+                        <tr><td><strong>DUPLICATE</strong></td><td>Same bug already logged</td><td>Bug already reported</td></tr>
+                    </table>
+                `;
+            }
+
+            else if (s === 'interviews' && sub === 'int-basic') {
+                html += `
+                    <div class="section-title"><span>🎤</span> Interview Questions - Basic Level</div>
+                    <div class="motivation-box">💡 <strong>Tip:</strong> Basic questions test your fundamentals. Answer clearly and confidently!</div>
+
+                    <div class="grid-2">
+                        ${[
+                            { q: "What is manual testing?", a: "Testing software by manually executing test cases without automation tools. A person (tester) interacts with the application like an end-user to find defects." },
+                            { q: "Difference between Error, Defect, Bug, and Failure?", a: "<strong>Error:</strong> Human mistake in code<br><strong>Defect:</strong> Mismatch between expected and actual<br><strong>Bug:</strong> Defect acknowledged by dev team<br><strong>Failure:</strong> Bug reaches customer" },
+                            { q: "What is Black Box Testing?", a: "Testing without knowledge of code structure. Focus on inputs/outputs and functionality. Based on requirements, not code." },
+                            { q: "What is White Box Testing?", a: "Testing with full knowledge of code. Test internal logic, paths, conditions. Developers do unit testing." },
+                            { q: "Difference between Verification and Validation?", a: "<strong>Verification:</strong> Are we building the product right? (Design review)<br><strong>Validation:</strong> Are we building the right product? (Testing against requirements)" },
+                            { q: "What are 7 Principles of Testing?", a: "1. Testing shows defects, not proves correctness<br>2. Exhaustive testing impossible<br>3. Early testing saves cost<br>4. Defect clustering<br>5. Pesticide paradox<br>6. Testing context dependent<br>7. Absence of errors fallacy" },
+                        ].map((item, i) => `
+                            <div class="question">
+                                <strong>Q${i+1}: ${item.q}</strong> <span class="badge difficulty-easy">Easy</span>
+                                <div class="answer"><strong>A:</strong> ${item.a}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+
+                    <div class="subsection-title">More Basic Questions (10-20)</div>
+                    <div class="collapsible">
+                        <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                            <span>Click to expand 10 more basic questions</span>
+                            <span class="arrow">▼</span>
+                        </div>
+                        <div class="collapsible-content">
+                            <div class="grid-2">
+                                ${[
+                                    { q: "What is a Test Case?", a: "Document with step-by-step instructions to test a feature. Includes preconditions, steps, expected results." },
+                                    { q: "What is severity and priority?", a: "<strong>Severity:</strong> Impact (Critical > Major > Minor)<br><strong>Priority:</strong> Urgency/Fix order (High > Medium > Low)" },
+                                    { q: "What is regression testing?", a: "Testing after changes to ensure old features still work. Verifies new changes don't break existing functionality." },
+                                    { q: "What is STLC?", a: "Software Testing Life Cycle with phases: Planning → Analysis → Design → Execution → Closure" },
+                                    { q: "What is test plan?", a: "Document defining testing approach, scope, strategy, schedule, resources, and deliverables." },
+                                    { q: "Difference between Smoke and Sanity testing?", a: "<strong>Smoke:</strong> Basic functionality test after build<br><strong>Sanity:</strong> Quick regression test to ensure no major breakage" },
+                                    { q: "What is equivalence partitioning?", a: "Divide inputs into similar groups. Test one value from each to reduce test cases while maintaining coverage." },
+                                    { q: "What is boundary value analysis?", a: "Test values at boundaries (min, max, just inside, just outside). Most bugs exist at edges." },
+                                    { q: "What is Requirement Traceability Matrix (RTM)?", a: "Document ensuring every requirement has a test case. Maps requirements to test cases to ensure 100% coverage." },
+                                    { q: "What should a good test case contain?", a: "Test ID, Title, Preconditions, Steps, Expected Result, Actual Result, Status, Postconditions" }
+                                ].map((item, i) => `
+                                    <div class="question">
+                                        <strong>Q${i+1}: ${item.q}</strong> <span class="badge difficulty-easy">Easy</span>
+                                        <div class="answer"><strong>A:</strong> ${item.a}</div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            else if (s === 'stlc' && sub === 'stlc-phases') {
+                html += `
+                    <div class="section-title"><span>🔄</span> STLC - 10 Phases Explained</div>
+                    <div class="motivation-box">💡 <strong>Critical Knowledge:</strong> STLC is the backbone of testing. Master this for interviews!</div>
+
+                    <table>
+                        <tr><th>Phase</th><th>Activity</th><th>Output</th><th>Duration</th></tr>
+                        <tr><td><strong>1. Planning</strong></td><td>Define strategy, scope, resources</td><td>Test Plan</td><td>1-2 weeks</td></tr>
+                        <tr><td><strong>2. Analysis</strong></td><td>Review requirements, identify scenarios</td><td>Test Scenarios</td><td>1-2 weeks</td></tr>
+                        <tr><td><strong>3. Design</strong></td><td>Write test cases, RTM</td><td>Test Cases</td><td>2-4 weeks</td></tr>
+                        <tr><td><strong>4. Setup</strong></td><td>Configure test environment</td><td>Test Env Ready</td><td>1 week</td></tr>
+                        <tr><td><strong>5. Execution</strong></td><td>Run test cases, find bugs</td><td>Test Results</td><td>3-8 weeks</td></tr>
+                        <tr><td><strong>6. Reporting</strong></td><td>Log defects, send reports</td><td>Defect Log</td><td>Ongoing</td></tr>
+                        <tr><td><strong>7. Tracking</strong></td><td>Monitor bug fixes</td><td>Defect Status</td><td>Ongoing</td></tr>
+                        <tr><td><strong>8. Regression</strong></td><td>Retest fixed bugs</td><td>Regression Results</td><td>2-3 weeks</td></tr>
+                        <tr><td><strong>9. Closure</strong></td><td>Final report, lessons learned</td><td>Test Report</td><td>1 week</td></tr>
+                        <tr><td><strong>10. Retrospective</strong></td><td>Review process, document improvements</td><td>Retrospect Doc</td><td>1 day</td></tr>
+                    </table>
+
+                    <div class="subsection-title">Phase-by-Phase Details</div>
+                    ${[
+                        { num: 1, name: 'Planning', details: 'Define testing strategy, scope, schedule, resources, and approach. Prepare Test Plan.' },
+                        { num: 2, name: 'Analysis', details: 'Analyze requirements, identify test scenarios, understand application structure.' },
+                        { num: 3, name: 'Design', details: 'Create test cases using design techniques, build RTM, get approvals.' },
+                        { num: 4, name: 'Setup', details: 'Install app, configure environment, prepare test data, verify readiness.' },
+                        { num: 5, name: 'Execution', details: 'Execute planned test cases, document results, find and log defects.' },
+                        { num: 6, name: 'Reporting', details: 'Create defect reports, send daily/weekly status, track test metrics.' },
+                        { num: 7, name: 'Tracking', details: 'Monitor defect status, follow up with developers, request updates.' },
+                        { num: 8, name: 'Regression', details: 'Retest fixed defects, ensure no new bugs introduced, validate changes.' },
+                        { num: 9, name: 'Closure', details: 'Prepare final test report, calculate metrics, document test summary.' },
+                        { num: 10, name: 'Retrospective', details: 'Team meeting to discuss learnings, successes, and improvements.' }
+                    ].map(p => `
+                        <div class="collapsible">
+                            <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                                <span><strong>Phase ${p.num}:</strong> ${p.name}</span>
+                                <span class="arrow">▼</span>
+                            </div>
+                            <div class="collapsible-content">
+                                <p><strong>Activity:</strong> ${p.details}</p>
+                            </div>
+                        </div>
+                    `).join('')}
+                `;
+            }
+
+            else if (s === 'quickrevision' && sub === 'quick-30min') {
+                html += `
+                    <div class="section-title"><span>⚡</span> 30-Minute Crash Course</div>
+                    <div class="warning-box"><strong>⚠️ Interview in 30 minutes?</strong> Read this section for key concepts!</div>
+
+                    <div class="quick-note"><strong>Minute 1-2:</strong> Manual Testing = Testing software by manually running test cases without tools</div>
+                    <div class="quick-note"><strong>Minute 3-4:</strong> Key Terms: Error (mistake) → Defect (mismatch) → Bug (acknowledged) → Failure (in production)</div>
+                    <div class="quick-note"><strong>Minute 5-6:</strong> Three Box Models: Black (no code), White (full code), Gray (partial code)</div>
+                    <div class="quick-note"><strong>Minute 7-8:</strong> STLC: Planning → Analysis → Design → Setup → Execution → Reporting → Tracking → Regression → Closure</div>
+                    <div class="quick-note"><strong>Minute 9-10:</strong> Test Case = ID + Title + Precond + Steps + Expected + Actual + Status</div>
+                    <div class="quick-note"><strong>Minute 11-12:</strong> Severity = Impact (Critical/Major/Minor) | Priority = Urgency (High/Medium/Low)</div>
+                    <div class="quick-note"><strong>Minute 13-14:</strong> Defect States: NEW → ASSIGNED → IN PROGRESS → FIXED → VERIFIED → CLOSED</div>
+                    <div class="quick-note"><strong>Minute 15-16:</strong> RTM = Document mapping requirements to test cases (ensures 100% coverage)</div>
+                    <div class="quick-note"><strong>Minute 17-18:</strong> Testing Techniques: Equivalence Partitioning, Boundary Analysis, Error Guessing</div>
+                    <div class="quick-note"><strong>Minute 19-20:</strong> Regression = Testing after changes to ensure old features still work</div>
+                    <div class="quick-note"><strong>Minute 21-25:</strong> 7 Principles: 1) Shows defects not correctness 2) Exhaustive testing impossible 3) Early testing 4) Defect clustering 5) Pesticide paradox 6) Context dependent 7) Absence of errors fallacy</div>
+                    <div class="quick-note"><strong>Minute 26-30:</strong> Tools: Jira (bug tracking), TestLink (test management), LoadRunner (performance)</div>
+
+                    <div class="subsection-title">Quick Reference - Important Ratios</div>
+                    <div class="info-box">
+                        <strong>Test Case Productivity:</strong><br>
+                        • Write: 3-5 test cases/day<br>
+                        • Review: 3x writing speed<br>
+                        • Execute: 5x writing speed<br><br>
+                        <strong>Example:</strong> If you write 5/day, review 15/day, execute 25/day
+                    </div>
+                `;
+            }
+
+            else {
+                html += `
+                    <div class="section-title">📚 Content Loading...</div>
+                    <p>This section is being populated with comprehensive content. Check back soon!</p>
+                    <p><strong>Section:</strong> ${s} → ${sub}</p>
+                `;
+            }
+
+            html += '</div>';
+            return html;
+        }
+
+        function toggleCollapsible(el) {
+            el.classList.toggle('open');
+            el.querySelector('.arrow').classList.toggle('open');
+            el.nextElementSibling.classList.toggle('open');
+        }
+
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('open');
+            document.getElementById('mainContent').classList.toggle('expanded');
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            generateNav();
+            loadContent('intro', 'intro-overview');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,2294 @@
+
+<!-- DEFECT MANAGEMENT MAIN SECTION -->
+<div id="defectManagement" class="tab-content">
+    <!-- Header -->
+    <div class="section-header">
+        <h1>🐛 Complete Defect Management & Bug Lifecycle</h1>
+        <p class="subtitle">Master bug tracking, prioritization, and life cycle management</p>
+    </div>
+
+    <!-- Statistics Box -->
+    <div class="stats-container">
+        <div class="stat-box">
+            <div class="stat-number">40-60</div>
+            <div class="stat-label">Defects/1000 Lines</div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-number">3-5%</div>
+            <div class="stat-label">Defect Escape Rate</div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-number">60-90%</div>
+            <div class="stat-label">Fixed Rate</div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-number">10-14</div>
+            <div class="stat-label">Lifecycle States</div>
+        </div>
+    </div>
+
+    <!-- Main Navigation Tabs -->
+    <div class="dm-nav-tabs">
+        <button class="dm-nav-tab active" data-target="dmOverview">🎯 Overview & Basics</button>
+        <button class="dm-nav-tab" data-target="dmTerminology">📚 Terminology (Severity & Priority)</button>
+        <button class="dm-nav-tab" data-target="dmLifecycle">♻️ Defect Lifecycle</button>
+        <button class="dm-nav-tab" data-target="dmReport">📋 Defect Report</button>
+        <button class="dm-nav-tab" data-target="dmTracking">🔍 Tracking & Tools</button>
+        <button class="dm-nav-tab" data-target="dmStatuses">📊 Statuses & Actions</button>
+        <button class="dm-nav-tab" data-target="dmMetrics">📈 Metrics & Analysis</button>
+        <button class="dm-nav-tab" data-target="dmAdvanced">🎓 Advanced Topics</button>
+    </div>
+
+    <!-- ==================== OVERVIEW & BASICS ==================== -->
+    <div id="dmOverview" class="dm-content active">
+        <div class="content-header">
+            <h2>🎯 Defect Management Overview</h2>
+            <p>Understanding bugs and defects in software testing</p>
+        </div>
+
+        <!-- Definition -->
+        <div class="info-card gradient-blue">
+            <h3>🔧 What is a Defect?</h3>
+            <p><strong>Definition:</strong> A defect (or bug) is a deviation from expected behavior where the software does not meet its requirements.</p>
+            <p><strong>Examples:</strong></p>
+            <ul>
+                <li>✗ Login field accepts 12 characters (requirement: only 10)</li>
+                <li>✗ "Save" button doesn't save data</li>
+                <li>✗ Amount transfer allows transfer > account balance</li>
+                <li>✗ Error message is in wrong language</li>
+            </ul>
+        </div>
+
+        <!-- Why Defects Exist -->
+        <div class="causes-section">
+            <h3>❓ Why Do Software Defects Exist?</h3>
+            <div class="causes-grid">
+                <div class="cause-card">
+                    <h4>🗣️ Miscommunication</h4>
+                    <p>Unclear or missing requirements between customer and dev team</p>
+                </div>
+                <div class="cause-card">
+                    <h4>⚙️ Complexity</h4>
+                    <p>Complex logic makes it difficult to handle all edge cases</p>
+                </div>
+                <div class="cause-card">
+                    <h4>💻 Programming Errors</h4>
+                    <p>Developer mistakes, typos, wrong logic</p>
+                </div>
+                <div class="cause-card">
+                    <h4>📝 Changing Requirements</h4>
+                    <p>Requirements change mid-development, causing misalignment</p>
+                </div>
+                <div class="cause-card">
+                    <h4>⏰ Time Pressure</h4>
+                    <p>Rushing to meet deadlines causes shortcuts and bugs</p>
+                </div>
+                <div class="cause-card">
+                    <h4>🔧 Technical Debt</h4>
+                    <p>Using old libraries, unsupported technologies</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Software Quality & Defects -->
+        <div class="quality-principle">
+            <h3>💡 The Quality Principle</h3>
+            <div class="principle-box">
+                <strong>🎓 Fundamental Testing Principle:</strong>
+                <p><em>"There is NO product with zero defects!"</em></p>
+                <br>
+                <strong>Why?</strong>
+                <ul>
+                    <li>Software is infinitely complex</li>
+                    <li>Unlimited test scenarios possible</li>
+                    <li>Always some edge cases not covered</li>
+                    <li>New features may introduce new bugs</li>
+                </ul>
+                <br>
+                <strong>Implication:</strong>
+                <p>Goal is not 100% bug-free, but <strong>Acceptable Quality Level (AQL)</strong> - managing defects effectively</p>
+            </div>
+        </div>
+
+        <!-- Key Metrics -->
+        <div class="key-metrics">
+            <h3>📊 Key Defect Metrics</h3>
+            <table class="data-table">
+                <tr>
+                    <th>Metric</th>
+                    <th>Definition</th>
+                    <th>Benchmark</th>
+                </tr>
+                <tr>
+                    <td><strong>Defect Density</strong></td>
+                    <td>Defects per 1000 Lines of Code (KLOC)</td>
+                    <td>40-60 defects/KLOC (Industry avg)</td>
+                </tr>
+                <tr>
+                    <td><strong>Defect Detection Rate</strong></td>
+                    <td>Defects found during testing / Total defects</td>
+                    <td>95-98% (goal)</td>
+                </tr>
+                <tr>
+                    <td><strong>Defect Escape Rate</strong></td>
+                    <td>Defects found after release / Total defects</td>
+                    <td>2-5% (acceptable)</td>
+                </tr>
+                <tr>
+                    <td><strong>Fix Rate</strong></td>
+                    <td>Defects fixed / Defects reported</td>
+                    <td>60-90% (during testing cycle)</td>
+                </tr>
+                <tr>
+                    <td><strong>Bug Aging</strong></td>
+                    <td>Time from open to closed</td>
+                    <td>5-15 days (average)</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Who Manages Defects -->
+        <div class="roles-section">
+            <h3>👥 Roles in Defect Management</h3>
+            <div class="roles-grid">
+                <div class="role-card">
+                    <h4>👨‍💻 Test Engineer</h4>
+                    <ul>
+                        <li>Finds and reports defects</li>
+                        <li>Creates detailed defect reports</li>
+                        <li>Retests when fix is provided</li>
+                        <li>Closes defects after verification</li>
+                    </ul>
+                </div>
+                <div class="role-card">
+                    <h4>👨‍💼 Development Lead</h4>
+                    <ul>
+                        <li>Reviews defect reports</li>
+                        <li>Accepts or rejects defects</li>
+                        <li>Assigns to developers</li>
+                        <li>Manages defect resolution</li>
+                    </ul>
+                </div>
+                <div class="role-card">
+                    <h4>🔧 Developer</h4>
+                    <ul>
+                        <li>Fixes the reported defects</li>
+                        <li>Updates defect status</li>
+                        <li>Provides fix comments</li>
+                        <li>Tests own fixes before submission</li>
+                    </ul>
+                </div>
+                <div class="role-card">
+                    <h4>📋 Test Lead</h4>
+                    <ul>
+                        <li>Monitors defect trends</li>
+                        <li>Conducts bug review meetings</li>
+                        <li>Escalates critical issues</li>
+                        <li>Reports to management</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- When to Stop Testing -->
+        <div class="stop-testing">
+            <h3>⏹️ When Do We Stop Testing?</h3>
+            <table class="decision-table">
+                <tr>
+                    <th>Scenario</th>
+                    <th>When to Stop?</th>
+                    <th>Why?</th>
+                </tr>
+                <tr>
+                    <td><strong>Time Constraint</strong></td>
+                    <td>When time span is finished</td>
+                    <td>Budget/schedule limitations</td>
+                </tr>
+                <tr>
+                    <td><strong>Budget Exhausted</strong></td>
+                    <td>When money runs out</td>
+                    <td>Resource constraints</td>
+                </tr>
+                <tr>
+                    <td><strong>Stability Achieved</strong></td>
+                    <td>When no new defects found in 2-3 cycles</td>
+                    <td>Product is stable enough</td>
+                </tr>
+                <tr>
+                    <td><strong>Core Features Broken</strong></td>
+                    <td>When main features don't work</td>
+                    <td>Product not usable</td>
+                </tr>
+                <tr>
+                    <td><strong>Code Frozen</strong></td>
+                    <td>Last 2 days before release</td>
+                    <td>Defects fixed in next release</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- ==================== TERMINOLOGY ==================== -->
+    <div id="dmTerminology" class="dm-content">
+        <div class="content-header">
+            <h2>📚 Defect Terminology: Severity & Priority</h2>
+            <p>Understanding severity and priority (commonly confused)</p>
+        </div>
+
+        <!-- Key Difference -->
+        <div class="comparison-card">
+            <h3>🔀 Severity vs Priority</h3>
+            <table class="comparison-table">
+                <tr>
+                    <th style="width:30%"></th>
+                    <th style="width:35%">SEVERITY</th>
+                    <th style="width:35%">PRIORITY</th>
+                </tr>
+                <tr>
+                    <td><strong>Definition</strong></td>
+                    <td>Impact of bug on customer's business</td>
+                    <td>Urgency to fix the bug</td>
+                </tr>
+                <tr>
+                    <td><strong>Assigned By</strong></td>
+                    <td>Test Engineer / Test Lead</td>
+                    <td>Development Lead / Manager</td>
+                </tr>
+                <tr>
+                    <td><strong>Question</strong></td>
+                    <td>"How bad is the bug?"</td>
+                    <td>"How soon must it be fixed?"</td>
+                </tr>
+                <tr>
+                    <td><strong>Type</strong></td>
+                    <td>Technical assessment</td>
+                    <td>Business decision</td>
+                </tr>
+                <tr>
+                    <td><strong>Example</strong></td>
+                    <td>Button background color wrong = Minor</td>
+                    <td>Visible on homepage = High Priority</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- SEVERITY Levels -->
+        <div class="severity-section">
+            <h3>🔴 SEVERITY Levels (4 Types)</h3>
+
+            <div class="severity-card blocker-severity">
+                <div class="severity-level">🚫 BLOCKER / SHOWSTOPPER</div>
+                <div class="severity-content">
+                    <h4>Definition:</h4>
+                    <p>Testing cannot proceed. Major flow completely broken.</p>
+
+                    <h4>Examples:</h4>
+                    <ul>
+                        <li>Login doesn't work at all → Can't access app</li>
+                        <li>Database connection broken → No data retrieval</li>
+                        <li>Application crashes on startup</li>
+                        <li>Payment processing completely fails</li>
+                    </ul>
+
+                    <h4>Impact:</h4>
+                    <p><strong>🔴 CRITICAL - Must fix immediately</strong></p>
+                </div>
+            </div>
+
+            <div class="severity-card critical-severity">
+                <div class="severity-level">🔴 CRITICAL</div>
+                <div class="severity-content">
+                    <h4>Definition:</h4>
+                    <p>Large piece of functionality or major system component completely broken. Business affected significantly.</p>
+
+                    <h4>Examples:</h4>
+                    <ul>
+                        <li>Amount transfer allows transfer > balance</li>
+                        <li>Email sending doesn't work</li>
+                        <li>Report generation fails</li>
+                        <li>Core business transaction broken</li>
+                    </ul>
+
+                    <h4>Impact:</h4>
+                    <p><strong>Loss to customer = HIGH</strong></p>
+                </div>
+            </div>
+
+            <div class="severity-card major-severity">
+                <div class="severity-level">🟠 MAJOR</div>
+                <div class="severity-content">
+                    <h4>Definition:</h4>
+                    <p>Important feature not working properly. Workaround exists. Testing continues.</p>
+
+                    <h4>Examples:</h4>
+                    <ul>
+                        <li>UI elements misaligned</li>
+                        <li>Font color wrong</li>
+                        <li>Button in wrong position</li>
+                        <li>Sorting doesn't work (but data is viewable)</li>
+                    </ul>
+
+                    <h4>Impact:</h4>
+                    <p><strong>Look & feel affected, functionality works</strong></p>
+                </div>
+            </div>
+
+            <div class="severity-card minor-severity">
+                <div class="severity-level">🟡 MINOR</div>
+                <div class="severity-content">
+                    <h4>Definition:</h4>
+                    <p>Minor issue. Limited functionality loss. Acceptable workaround available. Testing proceeds normally.</p>
+
+                    <h4>Examples:</h4>
+                    <ul>
+                        <li>Typo in label or error message</li>
+                        <li>Help text is incorrect</li>
+                        <li>Tooltip missing</li>
+                        <li>Cosmetic appearance issue</li>
+                    </ul>
+
+                    <h4>Impact:</h4>
+                    <p><strong>Low - Minimal business impact</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Severity Decision Matrix -->
+        <div class="decision-matrix">
+            <h3>🎯 How to Assign Severity?</h3>
+            <table class="decision-table">
+                <tr>
+                    <th>Scenario</th>
+                    <th>Severity Assignment</th>
+                    <th>Reason</th>
+                </tr>
+                <tr>
+                    <td>Core feature (Login) broken</td>
+                    <td>🔴 CRITICAL</td>
+                    <td>Core features are critical</td>
+                </tr>
+                <tr>
+                    <td>Non-core feature (Help) broken</td>
+                    <td>🟡 MINOR</td>
+                    <td>Non-core features are minor</td>
+                </tr>
+                <tr>
+                    <td>Financial transaction fails</td>
+                    <td>🚫 BLOCKER</td>
+                    <td>Business revenue affected</td>
+                </tr>
+                <tr>
+                    <td>Cosmetic issue (color wrong)</td>
+                    <td>🟠 MAJOR</td>
+                    <td>Look & feel affected</td>
+                </tr>
+                <tr>
+                    <td>Spelling mistake in message</td>
+                    <td>🟡 MINOR</td>
+                    <td>Cosmetic only, no functionality loss</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- PRIORITY Levels -->
+        <div class="priority-section">
+            <h3>⏱️ PRIORITY Levels (4 Types)</h3>
+
+            <div class="priority-card p1-priority">
+                <div class="priority-level">P1 - HIGH PRIORITY</div>
+                <div class="priority-content">
+                    <p><strong>Definition:</strong> Must fix immediately. Major impact on customer.</p>
+                    <p><strong>When assigned:</strong> Severe functionality broken or business revenue affected</p>
+                    <p><strong>Fix deadline:</strong> Same day / Next build</p>
+                </div>
+            </div>
+
+            <div class="priority-card p2-priority">
+                <div class="priority-level">P2 - MEDIUM PRIORITY</div>
+                <div class="priority-content">
+                    <p><strong>Definition:</strong> Should fix before release. Moderate customer impact.</p>
+                    <p><strong>When assigned:</strong> Important feature not working properly</p>
+                    <p><strong>Fix deadline:</strong> Within 2-3 days</p>
+                </div>
+            </div>
+
+            <div class="priority-card p3-priority">
+                <div class="priority-level">P3 - LOW PRIORITY</div>
+                <div class="priority-content">
+                    <p><strong>Definition:</strong> Fix if time permits. Minor customer impact.</p>
+                    <p><strong>When assigned:</strong> Minor issues, cosmetic problems</p>
+                    <p><strong>Fix deadline:</strong> Future release (can defer)</p>
+                </div>
+            </div>
+
+            <div class="priority-card p4-priority">
+                <div class="priority-level">P4 - TRIVIAL</div>
+                <div class="priority-content">
+                    <p><strong>Definition:</strong> Minimal impact. Can be ignored.</p>
+                    <p><strong>When assigned:</strong> Very minor cosmetic issues</p>
+                    <p><strong>Fix deadline:</strong> No specific deadline, skip if necessary</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Real Examples -->
+        <div class="real-examples">
+            <h3>📚 Real Examples: Assigning Severity & Priority</h3>
+
+            <div class="example-scenario">
+                <h4>Scenario 1: Password Field Accepts 12 chars (Requirement: 10 chars)</h4>
+                <table class="example-table">
+                    <tr>
+                        <td><strong>Severity:</strong></td>
+                        <td>🔴 CRITICAL (Security vulnerability, data overflow risk)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Priority:</strong></td>
+                        <td>P1 - HIGH (Security issue, must fix immediately)</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="example-scenario">
+                <h4>Scenario 2: Dashboard Button Color Wrong (Blue instead of Green)</h4>
+                <table class="example-table">
+                    <tr>
+                        <td><strong>Severity:</strong></td>
+                        <td>🟠 MAJOR (Look & feel affected, but button works)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Priority:</strong></td>
+                        <td>P2 - MEDIUM (Visible on homepage, should fix before release)</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="example-scenario">
+                <h4>Scenario 3: Help Button Tooltip Has Typo ("Hlep" instead of "Help")</h4>
+                <table class="example-table">
+                    <tr>
+                        <td><strong>Severity:</strong></td>
+                        <td>🟡 MINOR (Cosmetic, no functionality impact)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Priority:</strong></td>
+                        <td>P3 - LOW (Fix if time permits, can defer)</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="example-scenario">
+                <h4>Scenario 4: Amount Transfer Allows Transfer > Balance</h4>
+                <table class="example-table">
+                    <tr>
+                        <td><strong>Severity:</strong></td>
+                        <td>🚫 BLOCKER (Core business logic broken, financial impact)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Priority:</strong></td>
+                        <td>P1 - HIGH (Revenue at risk, critical business function)</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- Important Notes -->
+        <div class="important-notes">
+            <h3>💡 Important Notes</h3>
+            <ul>
+                <li>✅ <strong>Severity is objective:</strong> Based on impact, facts</li>
+                <li>✅ <strong>Priority is subjective:</strong> Based on business decision</li>
+                <li>✅ <strong>Same bug can have different severity/priority:</strong>
+                    <ul>
+                        <li>Typo on internal tool = MINOR / P3</li>
+                        <li>Same typo on customer-facing website = MAJOR / P1</li>
+                    </ul>
+                </li>
+                <li>✅ <strong>Developer fixes by priority (not severity)</strong>
+                    <br>→ P1 defects fixed first, regardless of severity
+                </li>
+                <li>✅ <strong>Test team assigns severity</strong>, not developers</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ==================== LIFECYCLE ==================== -->
+    <div id="dmLifecycle" class="dm-content">
+        <div class="content-header">
+            <h2>♻️ Defect Lifecycle & State Transitions</h2>
+            <p>Complete journey of a defect from discovery to closure</p>
+        </div>
+
+        <!-- Lifecycle Overview -->
+        <div class="lifecycle-overview">
+            <h3>🔄 7-Step Defect Lifecycle</h3>
+
+            <div class="lifecycle-steps">
+                <div class="lc-step step-1">
+                    <div class="step-number">1</div>
+                    <div class="step-name">🔍 OPEN</div>
+                    <div class="step-desc">Defect found and reported</div>
+                </div>
+                <div class="lc-arrow">→</div>
+
+                <div class="lc-step step-2">
+                    <div class="step-number">2</div>
+                    <div class="step-name">✅ ASSIGNED</div>
+                    <div class="step-desc">Dev Lead assigns to developer</div>
+                </div>
+                <div class="lc-arrow">→</div>
+
+                <div class="lc-step step-3">
+                    <div class="step-number">3</div>
+                    <div class="step-name">🔧 FIXED</div>
+                    <div class="step-desc">Developer fixes the bug</div>
+                </div>
+                <div class="lc-arrow">→</div>
+
+                <div class="lc-step step-4">
+                    <div class="step-number">4</div>
+                    <div class="step-name">🧪 RETEST</div>
+                    <div class="step-desc">Tester verifies the fix</div>
+                </div>
+                <div class="lc-arrow">→</div>
+
+                <div class="lc-step step-5">
+                    <div class="step-number">5</div>
+                    <div class="step-name">✔️ CLOSED</div>
+                    <div class="step-desc">Defect resolved</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Detailed State Flow -->
+        <div class="state-flow">
+            <h3>📊 Complete State Flow with Alternatives</h3>
+            <div class="flow-diagram">
+                <div class="flow-box main-flow">
+                    <strong>MAIN FLOW (Happy Path)</strong>
+                    <br><br>
+                    1. OPEN (Tester finds bug)
+                    <br>↓
+                    <br>2. ASSIGNED (Dev Lead assigns)
+                    <br>↓
+                    <br>3. FIXED (Developer fixes)
+                    <br>↓
+                    <br>4. RETEST (Tester verifies)
+                    <br>↓
+                    <br>5. CLOSED (Bug is fixed)
+                </div>
+
+                <div class="flow-box alternate-flows">
+                    <strong>ALTERNATE PATHS (Exception Cases)</strong>
+                    <br><br>
+                    <strong>Reopen Path:</strong>
+                    RETEST → Bug still exists → RE-OPEN → ASSIGNED
+                    <br><br>
+                    <strong>Reject Path:</strong>
+                    OPEN → Invalid defect → REJECT
+                    <br><br>
+                    <strong>Duplicate Path:</strong>
+                    OPEN → Same bug already reported → DUPLICATE
+                    <br><br>
+                    <strong>Postpone Path:</strong>
+                    ASSIGNED → Cannot fix now → POSTPONED
+                </div>
+            </div>
+        </div>
+
+        <!-- All Possible States -->
+        <div class="all-states">
+            <h3>📋 All 14 Defect States</h3>
+
+            <div class="states-grid">
+                <div class="state-card open-state">
+                    <h4>1. OPEN 🔍</h4>
+                    <p>Tester finds bug and reports it</p>
+                    <p class="action"><strong>Action:</strong> Dev Lead reviews</p>
+                </div>
+
+                <div class="state-card assigned-state">
+                    <h4>2. ASSIGNED ✅</h4>
+                    <p>Dev Lead accepts and assigns to developer</p>
+                    <p class="action"><strong>Action:</strong> Developer starts fixing</p>
+                </div>
+
+                <div class="state-card fixed-state">
+                    <h4>3. FIXED 🔧</h4>
+                    <p>Developer fixes the bug</p>
+                    <p class="action"><strong>Action:</strong> Tester retests</p>
+                </div>
+
+                <div class="state-card closed-state">
+                    <h4>4. CLOSED ✔️</h4>
+                    <p>Tester verifies fix is successful</p>
+                    <p class="action"><strong>Final State</strong></p>
+                </div>
+
+                <div class="state-card reopen-state">
+                    <h4>5. RE-OPEN 🔄</h4>
+                    <p>Tester finds bug still exists after fix attempt</p>
+                    <p class="action"><strong>Action:</strong> Reassign to developer</p>
+                </div>
+
+                <div class="state-card reject-state">
+                    <h4>6. REJECT ❌</h4>
+                    <p>Dev Lead rejects as invalid defect</p>
+                    <p class="action"><strong>Reasons:</strong> Not a bug, requirements misunderstood, installation error</p>
+                </div>
+
+                <div class="state-card duplicate-state">
+                    <h4>7. DUPLICATE 🔁</h4>
+                    <p>Same bug already reported earlier</p>
+                    <p class="action"><strong>Action:</strong> Linked to original bug</p>
+                </div>
+
+                <div class="state-card postponed-state">
+                    <h4>8. POSTPONED ⏸️</h4>
+                    <p>Bug will be fixed in next release</p>
+                    <p class="action"><strong>Reason:</strong> Time/cost constraints, low priority</p>
+                </div>
+
+                <div class="state-card notreproducible-state">
+                    <h4>9. NOT REPRODUCIBLE 🔍❌</h4>
+                    <p>Tester cannot reproduce the bug consistently</p>
+                    <p class="action"><strong>Action:</strong> More details needed from tester</p>
+                </div>
+
+                <div class="state-card cannotfix-state">
+                    <h4>10. CANNOT BE FIXED 🚫</h4>
+                    <p>Technology limitation prevents fixing</p>
+                    <p class="action"><strong>Example:</strong> Programming language doesn't support it</p>
+                </div>
+
+                <div class="state-card rfe-state">
+                    <h4>11. RFE (Request For Enhancement) 💡</h4>
+                    <p>Not a bug, but feature request</p>
+                    <p class="action"><strong>Example:</strong> Add Clear button (not in requirements)</p>
+                </div>
+
+                <div class="state-card wontfix-state">
+                    <h4>12. WON'T FIX 🙅</h4>
+                    <p>Bug acknowledged but won't be fixed</p>
+                    <p class="action"><strong>Reason:</strong> Low priority or no business value</p>
+                </div>
+
+                <div class="state-card deferred-state">
+                    <h4>13. DEFERRED 📅</h4>
+                    <p>Bug fix deferred to specific future release</p>
+                    <p class="action"><strong>Example:</strong> "Fix in v2.5"</p>
+                </div>
+
+                <div class="state-card notabug-state">
+                    <h4>14. NOT A BUG 🆗</h4>
+                    <p>Behavior is as designed per requirements</p>
+                    <p class="action"><strong>Action:</strong> Close without fixing</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Lifecycle Diagram -->
+        <div class="lifecycle-diagram">
+            <h3>🔀 Defect State Transition Diagram</h3>
+            <div class="diagram-text">
+                <p><strong>Key Transitions:</strong></p>
+                <ul>
+                    <li>OPEN → ASSIGNED (Valid defect)</li>
+                    <li>OPEN → REJECT (Invalid defect)</li>
+                    <li>ASSIGNED → FIXED (Fix completed)</li>
+                    <li>ASSIGNED → POSTPONED (Defer to later)</li>
+                    <li>FIXED → CLOSED (Fix verified)</li>
+                    <li>FIXED → RE-OPEN (Fix didn't work)</li>
+                    <li>RE-OPEN → ASSIGNED (Try again)</li>
+                    <li>Any state → DUPLICATE (Same bug found)</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Email Communication Pattern -->
+        <div class="email-pattern">
+            <h3>📧 Email Communication Pattern in Lifecycle</h3>
+            <div class="email-flow">
+                <div class="email-step">
+                    <strong>Step 1: Tester Reports</strong>
+                    <br>To: Development Lead
+                    <br>Subject: "Bug OPEN - [Bug ID]"
+                    <br>Status: OPEN
+                </div>
+                <div class="arrow-down">↓</div>
+
+                <div class="email-step">
+                    <strong>Step 2: Dev Lead Assigns</strong>
+                    <br>To: Developer (CC: Tester, Dev Lead)
+                    <br>Subject: "Bug ASSIGNED - [Bug ID]"
+                    <br>Status: ASSIGNED
+                </div>
+                <div class="arrow-down">↓</div>
+
+                <div class="email-step">
+                    <strong>Step 3: Developer Fixes</strong>
+                    <br>To: Tester (CC: Dev Lead, Developer)
+                    <br>Subject: "Bug FIXED - [Bug ID]"
+                    <br>Status: FIXED
+                </div>
+                <div class="arrow-down">↓</div>
+
+                <div class="email-step">
+                    <strong>Step 4a: Tester Closes (If Fixed)</strong>
+                    <br>To: Developer (CC: Dev Lead, Tester)
+                    <br>Subject: "Bug CLOSED - [Bug ID]"
+                    <br>Status: CLOSED
+                </div>
+
+                <div class="or-divider">OR</div>
+
+                <div class="email-step">
+                    <strong>Step 4b: Tester Reopens (If Not Fixed)</strong>
+                    <br>To: Developer (CC: Dev Lead, Tester)
+                    <br>Subject: "Bug RE-OPEN - [Bug ID]"
+                    <br>Status: RE-OPEN → Back to ASSIGNED
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== DEFECT REPORT ==================== -->
+    <div id="dmReport" class="dm-content">
+        <div class="content-header">
+            <h2>📋 Defect Report Structure & Template</h2>
+            <p>Creating comprehensive and effective defect reports</p>
+        </div>
+
+        <!-- What to Include -->
+        <div class="info-card gradient-purple">
+            <h3>📝 Mandatory Defect Report Attributes</h3>
+            <p>Every defect report must include these 15 fields (varies by company):</p>
+        </div>
+
+        <!-- Template Fields -->
+        <div class="report-fields">
+            <div class="field-section">
+                <h4>🆔 IDENTIFICATION FIELDS</h4>
+
+                <div class="field-item">
+                    <strong>1. Defect ID</strong>
+                    <p>Unique identifier (auto-generated)</p>
+                    <p class="example">Example: BUG-1578, DEFECT-2025-001</p>
+                    <p class="note">✓ Used for tracking and reference</p>
+                </div>
+
+                <div class="field-item">
+                    <strong>2. Release Name</strong>
+                    <p>Which release/version does this bug exist in?</p>
+                    <p class="example">Example: Tiger, v3.2, Build 102</p>
+                </div>
+
+                <div class="field-item">
+                    <strong>3. Build ID</strong>
+                    <p>Specific build where bug was found</p>
+                    <p class="example">Example: B03, Build_20251205</p>
+                </div>
+
+                <div class="field-item">
+                    <strong>4. Module Name</strong>
+                    <p>Which feature/component has the bug?</p>
+                    <p class="example">Example: "Sent Items", "Amount Transfer", "User Login"</p>
+                </div>
+
+                <div class="field-item">
+                    <strong>5. Test Case Name</strong>
+                    <p>Which test case found this bug?</p>
+                    <p class="example">Example: "TC-001: Verify login with valid credentials"</p>
+                    <p class="note">✓ Links defect to test case for traceability</p>
+                </div>
+            </div>
+
+            <div class="field-section">
+                <h4>📊 DESCRIPTION FIELDS</h4>
+
+                <div class="field-item">
+                    <strong>6. Brief Description</strong>
+                    <p>One-line summary of the bug</p>
+                    <p class="example">Example: "Login field accepts more than 10 characters"</p>
+                    <p class="good-example">✅ GOOD: "Password field not accepting special characters"</p>
+                    <p class="bad-example">❌ BAD: "There is a problem with password"</p>
+                </div>
+
+                <div class="field-item">
+                    <strong>7. Detailed Description</strong>
+                    <p>Complete explanation with steps to reproduce</p>
+                    <p class="format"><strong>Format:</strong>
+                        <br>1. Open application in Mozilla Firefox
+                        <br>2. Login using valid username (abc123) and password (xyz123)
+                        <br>3. Click on Sent Items link
+                        <br>4. Expected: List of sent emails displays
+                        <br>5. Actual: Blank page displays
+                    </p>
+                </div>
+
+                <div class="field-item">
+                    <strong>8. Expected Result</strong>
+                    <p>What should happen per requirements?</p>
+                    <p class="example">Example: "Sent mail should be listed in Sent Items page"</p>
+                </div>
+
+                <div class="field-item">
+                    <strong>9. Actual Result</strong>
+                    <p>What actually happens?</p>
+                    <p class="example">Example: "Sent mail is not there in Sent Items page; shows blank"</p>
+                </div>
+            </div>
+
+            <div class="field-section">
+                <h4>⚙️ TECHNICAL FIELDS</h4>
+
+                <div class="field-item">
+                    <strong>10. Test Environment</strong>
+                    <p>Where was the bug found?</p>
+                    <p class="example">Example: "Windows XP, Internet Explorer 7.0, Oracle DB"</p>
+                </div>
+
+                <div class="field-item">
+                    <strong>11. Test Data</strong>
+                    <p>Data used to reproduce the bug</p>
+                    <p class="example">Example: "Username: abc123, Password: xyz123, From Account: 10001"</p>
+                </div>
+
+                <div class="field-item">
+                    <strong>12. Severity</strong>
+                    <p>Impact on business (Blocker/Critical/Major/Minor)</p>
+                    <p class="assigned-by">Assigned by: Test Engineer / Test Lead</p>
+                </div>
+
+                <div class="field-item">
+                    <strong>13. Priority</strong>
+                    <p>Urgency to fix (P1/P2/P3/P4)</p>
+                    <p class="assigned-by">Assigned by: Development Lead / Manager</p>
+                </div>
+            </div>
+
+            <div class="field-section">
+                <h4>📌 TRACKING FIELDS</h4>
+
+                <div class="field-item">
+                    <strong>14. Status</strong>
+                    <p>Current state (Open, Assigned, Fixed, Closed, etc.)</p>
+                </div>
+
+                <div class="field-item">
+                    <strong>15. Found By</strong>
+                    <p>Who discovered the bug?</p>
+                    <p class="example">Example: "Rajesh Kumar" (Test Engineer name)</p>
+                </div>
+
+                <div class="field-item">
+                    <strong>Additional: Assigned To</strong>
+                    <p>Which developer will fix it? (filled by Dev Lead)</p>
+                </div>
+
+                <div class="field-item">
+                    <strong>Additional: Fixed By</strong>
+                    <p>Which developer fixed it?</p>
+                </div>
+
+                <div class="field-item">
+                    <strong>Additional: Comments</strong>
+                    <p>Developer fix notes or tester observations</p>
+                    <p class="example">Example: "Fixed in commit #12345. Issue was in password validation logic."</p>
+                </div>
+
+                <div class="field-item">
+                    <strong>Additional: Screenshot</strong>
+                    <p>Visual evidence of the bug (circle defect in RED)</p>
+                    <p class="note">✓ Attach screenshot showing the bug</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Real Defect Report Example -->
+        <div class="real-defect-report">
+            <h3>📄 Complete Real Defect Report Example</h3>
+            <div class="report-card">
+                <table class="report-table">
+                    <tr>
+                        <td class="field-label">Defect ID</td>
+                        <td>BUG-1578</td>
+                    </tr>
+                    <tr>
+                        <td class="field-label">Release Name</td>
+                        <td>Tiger v3.0</td>
+                    </tr>
+                    <tr>
+                        <td class="field-label">Build ID</td>
+                        <td>B03</td>
+                    </tr>
+                    <tr>
+                        <td class="field-label">Module Name</td>
+                        <td>Sent Items</td>
+                    </tr>
+                    <tr>
+                        <td class="field-label">Test Case Name</td>
+                        <td>TC-EMAIL-005: Verify mail composition and sending</td>
+                    </tr>
+                    <tr>
+                        <td class="field-label">Brief Description</td>
+                        <td>Sent mails are not displaying in Sent Items page</td>
+                    </tr>
+                    <tr>
+                        <td class="field-label">Detailed Description</td>
+                        <td>
+                            <strong>Steps to Reproduce:</strong>
+                            <br>1. Open browser and navigate to www.email.com
+                            <br>2. Login with valid username (rajesh@email.com) and password (pass123)
+                            <br>3. Click on Compose link
+                            <br>4. Enter recipient email and message body
+                            <br>5. Click on Submit button
+                            <br>6. Click on Sent Items link
+                            <br>
+                            <strong>Expected Result:</strong> Sent mail should be listed in Sent Items page
+                            <br><strong>Actual Result:</strong> Sent Items page shows blank; no mails displayed
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="field-label">Expected Result</td>
+                        <td>Sent mail should be listed in "Sent Items" folder with timestamp and recipient details</td>
+                    </tr>
+                    <tr>
+                        <td class="field-label">Actual Result</td>
+                        <td>The "Sent Items" page displays completely blank. No sent mails are visible.</td>
+                    </tr>
+                    <tr>
+                        <td class="field-label">Test Environment</td>
+                        <td>
+                            <strong>OS:</strong> Windows XP Professional
+                            <br><strong>Browser:</strong> Internet Explorer 7.0
+                            <br><strong>Database:</strong> Oracle 10g
+                            <br><strong>Application Server:</strong> Tomcat 5.5
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="field-label">Test Data</td>
+                        <td>
+                            <strong>Username:</strong> rajesh@email.com
+                            <br><strong>Password:</strong> pass123
+                            <br><strong>Recipient:</strong> customer@example.com
+                            <br><strong>Subject:</strong> Test Email
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="field-label">Severity</td>
+                        <td>🔴 CRITICAL (Core feature completely broken)</td>
+                    </tr>
+                    <tr>
+                        <td class="field-label">Priority</td>
+                        <td>P1 - HIGH (Must fix before release)</td>
+                    </tr>
+                    <tr>
+                        <td class="field-label">Status</td>
+                        <td>OPEN</td>
+                    </tr>
+                    <tr>
+                        <td class="field-label">Found By</td>
+                        <td>Rajesh Kumar (Test Engineer)</td>
+                    </tr>
+                    <tr>
+                        <td class="field-label">Comments</td>
+                        <td>Bug is reproducible consistently. Affects core email functionality.</td>
+                    </tr>
+                    <tr>
+                        <td class="field-label">Attachment</td>
+                        <td>Screenshot_BUG_1578.png (bug circled in red)</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- Best Practices -->
+        <div class="best-practices">
+            <h3>✅ Defect Report Best Practices</h3>
+            <ul>
+                <li>✓ <strong>Be specific:</strong> Not "Bug in login" but "Login accepts 15 chars (requirement: 10)"</li>
+                <li>✓ <strong>Include reproducible steps:</strong> Developers must be able to reproduce</li>
+                <li>✓ <strong>Attach screenshots:</strong> Circle the defect in RED for clarity</li>
+                <li>✓ <strong>Include test environment:</strong> Bug might be OS/browser specific</li>
+                <li>✓ <strong>Use actual test data:</strong> Not dummy data, real reproducible values</li>
+                <li>✓ <strong>Keep it concise:</strong> One page per defect (no novels)</li>
+                <li>✓ <strong>Don't assume the fix:</strong> Describe what's wrong, not how to fix it</li>
+                <li>✓ <strong>Check for duplicates:</strong> Before submitting, search existing defects</li>
+                <li>✓ <strong>Use professional language:</strong> Not "This sucks" but "Feature doesn't meet requirement"</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ==================== TRACKING ==================== -->
+    <div id="dmTracking" class="dm-content">
+        <div class="content-header">
+            <h2>🔍 Defect Tracking & Management Tools</h2>
+            <p>Tools and processes for tracking defects through lifecycle</p>
+        </div>
+
+        <!-- Manual vs Automated -->
+        <div class="tracking-methods">
+            <h3>🛠️ Tracking Methods</h3>
+
+            <div class="method-card">
+                <h4>📝 Manual Tracking Process</h4>
+                <div class="process-steps">
+                    <div class="step-item">1. Find defect</div>
+                    <div class="step-item">2. Check for duplicates in Defect Repository</div>
+                    <div class="step-item">3. Prepare defect report</div>
+                    <div class="step-item">4. Store in repository</div>
+                    <div class="step-item">5. Send to development team</div>
+                    <div class="step-item">6. Manage lifecycle (update status)</div>
+                </div>
+                <p class="note">✗ Time consuming, prone to errors, difficult to track</p>
+            </div>
+
+            <div class="method-card">
+                <h4>💻 Automated Tool-Based Tracking</h4>
+                <div class="process-steps">
+                    <div class="step-item">1. Log defect in tool</div>
+                    <div class="step-item">2. Auto-generated Bug ID</div>
+                    <div class="step-item">3. Auto stores in database</div>
+                    <div class="step-item">4. Auto sends emails to stakeholders</div>
+                    <div class="step-item">5. Real-time status tracking</div>
+                    <div class="step-item">6. Reports and metrics generated</div>
+                </div>
+                <p class="note">✓ Efficient, automated, accurate, provides visibility</p>
+            </div>
+        </div>
+
+        <!-- Defect Tracking Tools -->
+        <div class="tools-list">
+            <h3>🛠️ Popular Defect Tracking Tools</h3>
+            <table class="tools-table">
+                <tr>
+                    <th>Tool</th>
+                    <th>Type</th>
+                    <th>Features</th>
+                    <th>Best For</th>
+                </tr>
+                <tr>
+                    <td><strong>Bugzilla</strong></td>
+                    <td>Open Source</td>
+                    <td>Free, Web-based, Email integration</td>
+                    <td>Open source projects, startups</td>
+                </tr>
+                <tr>
+                    <td><strong>Mantis</strong></td>
+                    <td>Open Source</td>
+                    <td>Simple, Lightweight, Web-based</td>
+                    <td>Small to medium teams</td>
+                </tr>
+                <tr>
+                    <td><strong>QC (Quality Center)</strong></td>
+                    <td>Enterprise</td>
+                    <td>Test management + Defect tracking, Comprehensive</td>
+                    <td>Large enterprises</td>
+                </tr>
+                <tr>
+                    <td><strong>Rational ClearQuest</strong></td>
+                    <td>Enterprise</td>
+                    <td>Complex workflows, Customizable</td>
+                    <td>Complex projects, Fortune 500</td>
+                </tr>
+                <tr>
+                    <td><strong>Jira + Xray</strong></td>
+                    <td>Cloud/Enterprise</td>
+                    <td>Agile-friendly, Automation integration</td>
+                    <td>Agile teams, DevOps</td>
+                </tr>
+                <tr>
+                    <td><strong>Azure DevOps</strong></td>
+                    <td>Cloud</td>
+                    <td>Work items, Boards, CI/CD pipeline</td>
+                    <td>Microsoft ecosystem, Agile</td>
+                </tr>
+                <tr>
+                    <td><strong>TestRail</strong></td>
+                    <td>Cloud</td>
+                    <td>User-friendly, Reporting dashboards</td>
+                    <td>Modern testing teams</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Automated Tool Workflow -->
+        <div class="tool-workflow">
+            <h3>⚙️ How Automated Tool Works (QC/Jira Example)</h3>
+
+            <div class="workflow-step">
+                <h4>Step 1: Tester Logs Defect</h4>
+                <ul>
+                    <li>Clicks "Log a Defect" link in tool</li>
+                    <li>Fills in all required fields</li>
+                    <li>Clicks Submit button</li>
+                </ul>
+            </div>
+
+            <div class="workflow-arrow">↓</div>
+
+            <div class="workflow-step">
+                <h4>Step 2: Auto Processing</h4>
+                <ul>
+                    <li>Tool generates unique Bug ID (e.g., BUG-1578)</li>
+                    <li>Data stored in database</li>
+                    <li>Auto-sends email to Development Lead with bug details</li>
+                    <li>Copy sent to Tester and stakeholders</li>
+                </ul>
+            </div>
+
+            <div class="workflow-arrow">↓</div>
+
+            <div class="workflow-step">
+                <h4>Step 3: Dev Lead Reviews</h4>
+                <ul>
+                    <li>Opens email with Bug ID link</li>
+                    <li>Logs into tool with credentials</li>
+                    <li>Searches for bug using Bug ID</li>
+                    <li>Views defect report details</li>
+                    <li>Determines: Valid? → ASSIGN | Invalid? → REJECT</li>
+                </ul>
+            </div>
+
+            <div class="workflow-arrow">↓</div>
+
+            <div class="workflow-step">
+                <h4>Step 4: Dev Lead Assigns</h4>
+                <ul>
+                    <li>Identifies which developer should fix it</li>
+                    <li>Changes status to "ASSIGNED"</li>
+                    <li>Enters developer email in "Assigned To" field</li>
+                    <li>Clicks Submit</li>
+                </ul>
+            </div>
+
+            <div class="workflow-arrow">↓</div>
+
+            <div class="workflow-step">
+                <h4>Step 5: Auto Notification</h4>
+                <ul>
+                    <li>Tool generates new email: "Bug ASSIGNED"</li>
+                    <li>Sent to: Developer, Dev Lead, Tester</li>
+                    <li>Developer can now start working</li>
+                </ul>
+            </div>
+
+            <div class="workflow-arrow">↓</div>
+
+            <div class="workflow-step">
+                <h4>Step 6: Developer Fixes</h4>
+                <ul>
+                    <li>Developer logs into tool</li>
+                    <li>Views bug details</li>
+                    <li>Fixes the bug in code</li>
+                    <li>Changes status to "FIXED"</li>
+                    <li>Adds comment with fix details</li>
+                </ul>
+            </div>
+
+            <div class="workflow-arrow">↓</div>
+
+            <div class="workflow-step">
+                <h4>Step 7: Email to Tester</h4>
+                <ul>
+                    <li>Auto-email: "Bug FIXED - Ready for retest"</li>
+                    <li>Sent to Tester (CC: Dev Lead, Developer)</li>
+                    <li>Tester gets new build with fix</li>
+                </ul>
+            </div>
+
+            <div class="workflow-arrow">↓</div>
+
+            <div class="workflow-step">
+                <h4>Step 8a: Tester Verifies (If Fixed) ✅</h4>
+                <ul>
+                    <li>Tester retests the bug with new build</li>
+                    <li>Bug is really fixed ✓</li>
+                    <li>Changes status to "CLOSED"</li>
+                    <li>Sends email: "Bug CLOSED"</li>
+                </ul>
+            </div>
+
+            <div class="or-text">OR</div>
+
+            <div class="workflow-step">
+                <h4>Step 8b: Tester Reopens (If Still Broken) ❌</h4>
+                <ul>
+                    <li>Tester retests the bug</li>
+                    <li>Bug still exists ✗</li>
+                    <li>Changes status to "RE-OPEN"</li>
+                    <li>Sends email: "Bug RE-OPEN - Still broken"</li>
+                    <li>Back to Step 3 (Dev Lead reviews again)</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Duplicate Detection -->
+        <div class="duplicate-section">
+            <h3>🔁 Avoiding Duplicate Bug Reports</h3>
+
+            <div class="duplicate-problem">
+                <h4>❓ Why Duplicates Happen?</h4>
+                <ul>
+                    <li>Multiple testers testing same feature</li>
+                    <li>Same bug in different modules (common features)</li>
+                    <li>Testers don't search existing defects</li>
+                </ul>
+            </div>
+
+            <div class="duplicate-solution">
+                <h4>✅ How to Avoid Duplicates?</h4>
+                <p><strong>BEFORE reporting:</strong></p>
+                <ol>
+                    <li>Click "Advanced Search" in tool</li>
+                    <li>Enter keywords (e.g., "password", "login")</li>
+                    <li>Search the defect repository</li>
+                    <li>Review existing bugs with similar keywords</li>
+                    <li>Read details carefully - might be different bug!</li>
+                    <li>If NOT a duplicate → Report new bug</li>
+                    <li>If YES duplicate → Link to original bug</li>
+                </ol>
+            </div>
+
+            <div class="duplicate-example">
+                <h4>📚 Example: Duplicate Bug Detection</h4>
+                <p><strong>Scenario:</strong> Two testers find similar bugs</p>
+                <br>
+                <p><strong>Tester A Finds:</strong> "Password field accepts 15 characters (requirement: 10)"
+                    <br>→ Reports: BUG-1234
+                </p>
+                <br>
+                <p><strong>Tester B Finds:</strong> "Password field accepts special characters (requirement: alphanumeric only)"
+                    <br>→ Searches for "password" → Finds BUG-1234
+                    <br>→ Reads BUG-1234 details → DIFFERENT BUG!
+                    <br>→ Reports: BUG-1235 (separate bug)
+                </p>
+                <br>
+                <p><strong>Why different?</strong>
+                    <br>BUG-1234: Character count validation issue
+                    <br>BUG-1235: Character type validation issue
+                    <br>Both are bugs, but different root causes
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== STATUSES & ACTIONS ==================== -->
+    <div id="dmStatuses" class="dm-content">
+        <div class="content-header">
+            <h2>📊 Defect Statuses & Actions</h2>
+            <p>Understanding why defects are rejected or postponed</p>
+        </div>
+
+        <!-- Rejection Reasons -->
+        <div class="rejection-section">
+            <h3>❌ REJECT: Why Defects Are Rejected</h3>
+
+            <div class="rejection-card">
+                <h4>1️⃣ Misunderstanding of Requirements</h4>
+                <p><strong>Situation:</strong> Tester thought behavior was wrong, but it's actually as per requirements</p>
+                <div class="example-box">
+                    <p><strong>Example:</strong></p>
+                    <p>Tester reports: "Search field only accepts 10 characters"
+                        <br>Dev Lead: "That's correct per requirement v2.3 - max 10 chars"
+                        <br>→ REJECTED: Not a bug, expected behavior</p>
+                </div>
+                <p class="solution"><strong>Resolution:</strong> Tester should review updated requirements</p>
+            </div>
+
+            <div class="rejection-card">
+                <h4>2️⃣ Wrong Installation/Configuration</h4>
+                <p><strong>Situation:</strong> Tester installed or configured product incorrectly</p>
+                <div class="example-box">
+                    <p><strong>Example:</strong></p>
+                    <p>Tester reports: "Database connection fails"
+                        <br>Dev Lead checks: "Database credentials wrong in your config file"
+                        <br>→ REJECTED: User error, not a bug</p>
+                </div>
+                <p class="solution"><strong>Resolution:</strong> Reconfigure and verify settings</p>
+            </div>
+
+            <div class="rejection-card">
+                <h4>3️⃣ Referring to Old Requirements</h4>
+                <p><strong>Situation:</strong> Requirements changed, but tester is using old version</p>
+                <div class="example-box">
+                    <p><strong>Example:</strong></p>
+                    <p>Old Requirement (v1.0): "Show Sales link on homepage"
+                        <br>New Requirement (v2.0): "Remove Sales link (customer requested)"
+                        <br>Tester using v1.0 reports: "Sales link is missing!"
+                        <br>→ REJECTED: Refer to updated requirements v2.0</p>
+                </div>
+                <p class="solution"><strong>Resolution:</strong> Use latest requirements document</p>
+            </div>
+
+            <div class="rejection-card">
+                <h4>4️⃣ Extra Feature (Not in Scope)</h4>
+                <p><strong>Situation:</strong> Developer added extra feature, not in requirements</p>
+                <div class="example-box">
+                    <p><strong>Example:</strong></p>
+                    <p>Tester reports: "No CLEAR button on form (inconvenient)"
+                        <br>Dev Lead: "CLEAR button not in requirements"
+                        <br>→ REJECTED: Not a bug, it's a feature enhancement request (RFE)</p>
+                </div>
+                <p class="solution"><strong>Resolution:</strong> Converted to RFE (Request for Enhancement)</p>
+            </div>
+        </div>
+
+        <!-- Not Reproducible Defects -->
+        <div class="not-reproducible-section">
+            <h3>🔍 NOT REPRODUCIBLE: Inconsistent Bugs</h3>
+
+            <div class="nr-explanation">
+                <p><strong>Situation:</strong> Developer cannot reproduce the bug, but tester reports it happening consistently</p>
+            </div>
+
+            <div class="nr-card">
+                <h4>Reason 1: Incomplete Steps</h4>
+                <div class="example-box">
+                    <p><strong>Tester Reports:</strong> "Sent mails not appearing in Sent Items"
+                        <br><strong>Steps:</strong> "Open app and check Sent Items"</p>
+                    <p><strong>Problem:</strong> Missing crucial steps!</p>
+                    <p><strong>Complete Steps:</strong>
+                        <br>1. Login to specific mailbox with 100+ existing mails
+                        <br>2. Compose and send new mail
+                        <br>3. Immediately check Sent Items
+                        <br>→ New mail not visible (bug occurs)</p>
+                    <p><strong>Solution:</strong> Provide step-by-step reproduction including delays/wait times</p>
+                </div>
+            </div>
+
+            <div class="nr-card">
+                <h4>Reason 2: Build Mismatch</h4>
+                <div class="example-box">
+                    <p><strong>Scenario:</strong> Tester reports bug from Build 1, but developer is testing Build 2</p>
+                    <p><strong>Build 1:</strong> Has bugs X and Y</p>
+                    <p><strong>Build 2:</strong> Bug X fixed, Bug Y still exists</p>
+                    <p><strong>Problem:</strong> Developer testing Build 2 cannot find Bug X</p>
+                    <p><strong>Solution:</strong> Specify exact build number in defect report</p>
+                </div>
+            </div>
+
+            <div class="nr-card">
+                <h4>Reason 3: Inconsistent/Intermittent Bug</h4>
+                <div class="example-box">
+                    <p><strong>Scenario:</strong> Bug happens sometimes, not always (race condition)</p>
+                    <p><strong>Tester's Experience:</strong>
+                        <br>1st attempt: Compose mail → Send → Mail appears in Sent Items ✓
+                        <br>2nd attempt: Compose mail → Send → Mail NOT in Sent Items ✗
+                        <br>3rd attempt: Works ✓
+                    </p>
+                    <p><strong>Problem:</strong> Inconsistent behavior, hard to reproduce</p>
+                    <p><strong>Solution:</strong> Mention "intermittent" in report, provide timing details</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cannot Be Fixed -->
+        <div class="cannotfix-section">
+            <h3>🚫 CANNOT BE FIXED: Technology Limitations</h3>
+
+            <div class="cfx-card">
+                <h4>Definition:</h4>
+                <p>Technology being used doesn't support fixing the issue</p>
+            </div>
+
+            <div class="cfx-card">
+                <h4>Examples:</h4>
+                <ul>
+                    <li>❌ Using Java - JavaScript functionality not available</li>
+                    <li>❌ Database limitations prevent certain operations</li>
+                    <li>❌ Browser doesn't support required feature</li>
+                    <li>❌ Operating system constraint prevents implementation</li>
+                </ul>
+            </div>
+
+            <div class="cfx-card">
+                <h4>Developer Response:</h4>
+                <p>"Cannot be fixed due to technology limitations. Recommend upgrade to [newer technology]"</p>
+            </div>
+        </div>
+
+        <!-- Postponement & Deferral -->
+        <div class="postpone-section">
+            <h3>⏸️ POSTPONED & DEFERRED: Fixing in Future Release</h3>
+
+            <div class="postpone-card">
+                <h4>POSTPONED (In Current Release)</h4>
+                <p><strong>When:</strong> Bug found near end of release (last 2-3 days)</p>
+                <p><strong>Why:</strong> No time to fix and retest before release date</p>
+                <p><strong>Decision:</strong> Fix in next release instead</p>
+                <p><strong>Status:</strong> POSTPONED (open, not fixed)</p>
+            </div>
+
+            <div class="postpone-card">
+                <h4>DEFERRED (To Specific Future Release)</h4>
+                <p><strong>When:</strong> Bug is known and acknowledged but low priority</p>
+                <p><strong>Why:</strong> Business decided not worth fixing now</p>
+                <p><strong>Decision:</strong> Fix in v2.5 or future release</p>
+                <p><strong>Status:</strong> DEFERRED (scheduled for future)</p>
+            </div>
+
+            <div class="postpone-card">
+                <h4>WON'T FIX</h4>
+                <p><strong>When:</strong> Bug acknowledged but won't be fixed</p>
+                <p><strong>Why:</strong> Very low priority, no business value, edge case</p>
+                <p><strong>Decision:</strong> Permanent decision not to fix</p>
+                <p><strong>Status:</strong> WON'T FIX (closed without fixing)</p>
+            </div>
+        </div>
+
+        <!-- Request For Enhancement -->
+        <div class="rfe-section">
+            <h3>💡 RFE: Request For Enhancement</h3>
+
+            <div class="rfe-explanation">
+                <p><strong>Definition:</strong> Not a bug, but a feature request. Developers acknowledge it's good to have but not in original requirements.</p>
+            </div>
+
+            <div class="rfe-example">
+                <h4>Example Scenario:</h4>
+                <div class="step">
+                    <p><strong>1. Tester Reports:</strong> "No CLEAR button on form"</p>
+                    <p>User has to manually delete each field to clear form</p>
+                </div>
+                <div class="step">
+                    <p><strong>2. Developer Sees:</strong> "CLEAR button not in requirements"</p>
+                </div>
+                <div class="step">
+                    <p><strong>3. Developer Decision:</strong> "It's a good idea, but not originally specified"</p>
+                </div>
+                <div class="step">
+                    <p><strong>4. Status Changed to:</strong> RFE (Request For Enhancement)</p>
+                </div>
+                <div class="step">
+                    <p><strong>5. Business Impact:</strong> Can charge customer for this feature!</p>
+                </div>
+            </div>
+
+            <div class="rfe-note">
+                <p><strong>💰 Why RFE matters?</strong></p>
+                <p>RFE = Extra work → Can bill customer</p>
+                <p>Bug = Expected behavior → No extra charge</p>
+            </div>
+        </div>
+
+        <!-- Tester's Responsibility -->
+        <div class="tester-responsibility">
+            <h3>👨‍💻 Tester's Responsibility When Defect is Rejected</h3>
+
+            <div class="responsibility-list">
+                <p><strong>When Dev Lead rejects a defect:</strong></p>
+                <ul>
+                    <li>✓ Read the rejection reason carefully</li>
+                    <li>✓ Understand why it was rejected</li>
+                    <li>✓ If you believe rejection is wrong → Provide justification</li>
+                    <li>✓ Re-open with proper explanation (not just arguments)</li>
+                    <li>✓ Sometimes accept and learn for future reference</li>
+                </ul>
+            </div>
+
+            <div class="escalation">
+                <p><strong>If disagreement persists:</strong></p>
+                <p>→ Escalate to Test Lead and Development Lead for discussion</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== METRICS & ANALYSIS ==================== -->
+    <div id="dmMetrics" class="dm-content">
+        <div class="content-header">
+            <h2>📈 Defect Metrics & Analysis</h2>
+            <p>Tracking, measuring, and visualizing defect trends</p>
+        </div>
+
+        <!-- Key Metrics -->
+        <div class="metrics-definitions">
+            <h3>📊 Key Defect Metrics</h3>
+
+            <div class="metric-card">
+                <h4>1. Defect Density</h4>
+                <p><strong>Formula:</strong> Total Defects / 1000 Lines of Code (KLOC)</p>
+                <p><strong>Industry Benchmark:</strong> 40-60 defects per KLOC</p>
+                <p><strong>Interpretation:</strong> How many bugs per 1000 lines?</p>
+            </div>
+
+            <div class="metric-card">
+                <h4>2. Defect Detection Rate (DDR)</h4>
+                <p><strong>Formula:</strong> (Defects found during testing / Total defects) × 100</p>
+                <p><strong>Goal:</strong> 95-98%</p>
+                <p><strong>Interpretation:</strong> How effective is testing at finding bugs?</p>
+            </div>
+
+            <div class="metric-card">
+                <h4>3. Defect Escape Rate</h4>
+                <p><strong>Formula:</strong> (Defects found after release / Total defects) × 100</p>
+                <p><strong>Acceptable:</strong> 2-5%</p>
+                <p><strong>Interpretation:</strong> How many bugs escape to production?</p>
+            </div>
+
+            <div class="metric-card">
+                <h4>4. Fix Rate</h4>
+                <p><strong>Formula:</strong> (Defects fixed / Defects reported) × 100</p>
+                <p><strong>Target:</strong> 60-90% during testing cycle</p>
+                <p><strong>Interpretation:</strong> What percentage of reported bugs get fixed?</p>
+            </div>
+
+            <div class="metric-card">
+                <h4>5. Bug Aging</h4>
+                <p><strong>Calculation:</strong> Time from OPEN to CLOSED</p>
+                <p><strong>Average:</strong> 5-15 days</p>
+                <p><strong>Interpretation:</strong> How long does a bug take to resolve?</p>
+            </div>
+
+            <div class="metric-card">
+                <h4>6. Pass Rate</h4>
+                <p><strong>Formula:</strong> (Executed test cases PASSED / Total executed) × 100</p>
+                <p><strong>Benchmark:</strong> 85%+ for release quality</p>
+                <p><strong>Interpretation:</strong> What percentage of tests pass?</p>
+            </div>
+        </div>
+
+        <!-- Sample Metrics Data -->
+        <div class="metrics-example">
+            <h3>📋 Sample Defect Metrics Report</h3>
+            <table class="metrics-data-table">
+                <tr>
+                    <th>Module</th>
+                    <th>Critical</th>
+                    <th>Major</th>
+                    <th>Minor</th>
+                    <th>Total Found</th>
+                    <th>Fixed</th>
+                    <th>Fix Rate</th>
+                </tr>
+                <tr>
+                    <td><strong>Login</strong></td>
+                    <td>5</td>
+                    <td>12</td>
+                    <td>8</td>
+                    <td>25</td>
+                    <td>23</td>
+                    <td>92%</td>
+                </tr>
+                <tr>
+                    <td><strong>Dashboard</strong></td>
+                    <td>3</td>
+                    <td>18</td>
+                    <td>15</td>
+                    <td>36</td>
+                    <td>30</td>
+                    <td>83%</td>
+                </tr>
+                <tr>
+                    <td><strong>Amount Transfer</strong></td>
+                    <td>8</td>
+                    <td>22</td>
+                    <td>12</td>
+                    <td>42</td>
+                    <td>35</td>
+                    <td>83%</td>
+                </tr>
+                <tr>
+                    <td><strong>Reports</strong></td>
+                    <td>2</td>
+                    <td>10</td>
+                    <td>8</td>
+                    <td>20</td>
+                    <td>18</td>
+                    <td>90%</td>
+                </tr>
+                <tr class="total-row">
+                    <td><strong>TOTAL</strong></td>
+                    <td><strong>18</strong></td>
+                    <td><strong>62</strong></td>
+                    <td><strong>43</strong></td>
+                    <td><strong>123</strong></td>
+                    <td><strong>106</strong></td>
+                    <td><strong>86%</strong></td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Defect Graphs -->
+        <div class="graphs-section">
+            <h3>📊 Defect Analysis Graphs</h3>
+
+            <div class="graph-card">
+                <h4>Graph 1: Module-wise Defect Distribution</h4>
+                <p>Shows how many bugs found and fixed in each module</p>
+                <div class="graph-description">
+                    <p>X-axis: Module Name | Y-axis: Number of Defects</p>
+                    <p><strong>Blue bars:</strong> Found | <strong>Green bars:</strong> Fixed</p>
+                </div>
+            </div>
+
+            <div class="graph-card">
+                <h4>Graph 2: Severity-wise Defect Breakdown</h4>
+                <p>Pie chart showing percentage of Critical, Major, Minor bugs</p>
+                <div class="graph-description">
+                    <p>Critical: 15% (18 bugs)</p>
+                    <p>Major: 50% (62 bugs)</p>
+                    <p>Minor: 35% (43 bugs)</p>
+                </div>
+            </div>
+
+            <div class="graph-card">
+                <h4>Graph 3: Build-wise Trend</h4>
+                <p>How many bugs found and fixed in each build</p>
+                <div class="graph-description">
+                    <p>Build 1: 45 found, 35 fixed</p>
+                    <p>Build 2: 38 found, 45 fixed (fixing catches up)</p>
+                    <p>Build 3: 20 found, 26 fixed (stabilizing)</p>
+                </div>
+            </div>
+
+            <div class="graph-card">
+                <h4>Graph 4: Defect Trend Analysis (Most Important!)</h4>
+                <p>Shows if defect trend is improving or worsening over time</p>
+                <div class="graph-description">
+                    <p><strong>Goal:</strong> Downward trend (fewer new bugs found)</p>
+                    <p><strong>Prepared by:</strong> Test Lead (for management)</p>
+                    <p><strong>Prepared monthly:</strong> Forecast and planning</p>
+                </div>
+            </div>
+
+            <div class="graph-card">
+                <h4>Graph 5: Defect Estimation Gap</h4>
+                <p>Planned defects vs Actual defects (for future estimation)</p>
+                <div class="graph-description">
+                    <p><strong>X-axis:</strong> Release version</p>
+                    <p><strong>Blue line:</strong> Estimated defects</p>
+                    <p><strong>Red line:</strong> Actual defects found</p>
+                    <p><strong>Use:</strong> Better estimation in future projects</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Test Engineer Performance -->
+        <div class="te-performance">
+            <h3>👨‍💻 Test Engineer Performance Metrics</h3>
+            <p>Track how many bugs each tester finds</p>
+
+            <table class="te-metrics-table">
+                <tr>
+                    <th>Test Engineer</th>
+                    <th>Critical</th>
+                    <th>Major</th>
+                    <th>Minor</th>
+                    <th>Total Found</th>
+                    <th>Total Fixed</th>
+                    <th>Efficiency</th>
+                </tr>
+                <tr>
+                    <td>Bipin Kumar</td>
+                    <td>5</td>
+                    <td>12</td>
+                    <td>8</td>
+                    <td>25</td>
+                    <td>23</td>
+                    <td>92%</td>
+                </tr>
+                <tr>
+                    <td>Rajesh Singh</td>
+                    <td>6</td>
+                    <td>18</td>
+                    <td>12</td>
+                    <td>36</td>
+                    <td>32</td>
+                    <td>89%</td>
+                </tr>
+                <tr>
+                    <td>Amitha Sharma</td>
+                    <td>4</td>
+                    <td>20</td>
+                    <td>15</td>
+                    <td>39</td>
+                    <td>35</td>
+                    <td>90%</td>
+                </tr>
+                <tr>
+                    <td>Priya Verma</td>
+                    <td>3</td>
+                    <td>12</td>
+                    <td>8</td>
+                    <td>23</td>
+                    <td>16</td>
+                    <td>70%</td>
+                </tr>
+            </table>
+
+            <div class="te-insights">
+                <p><strong>🔍 Insights:</strong></p>
+                <ul>
+                    <li>Amitha: Highest bug finder → Complex features?</li>
+                    <li>Priya: Lower fix rate → Needs retraining?</li>
+                    <li>Bipin: High quality findings (more Critical/Major)</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Bug Review Meeting -->
+        <div class="bug-meeting">
+            <h3>🤝 Bug Review Meeting (Bug Counseling)</h3>
+
+            <div class="meeting-details">
+                <h4>What is it?</h4>
+                <p>Weekly meeting to discuss pending bugs and defect trends</p>
+
+                <h4>When:</h4>
+                <p>Usually Friday evening (after a week of bug reporting)</p>
+
+                <h4>Who Attends?</h4>
+                <ul>
+                    <li>🧑‍⚖️ Defect Evaluation Team (DET)</li>
+                    <li>👨‍💼 Development Lead</li>
+                    <li>👨‍💻 Senior Developers</li>
+                    <li>🧪 Test Lead</li>
+                </ul>
+
+                <h4>Agenda:</h4>
+                <ul>
+                    <li>1. Review pending defects (not yet assigned)</li>
+                    <li>2. Decide: Accept or Reject</li>
+                    <li>3. Discuss duplicate bugs</li>
+                    <li>4. Review defect trends</li>
+                    <li>5. Plan fixes for next week</li>
+                </ul>
+
+                <h4>Outcome:</h4>
+                <p>All pending bugs get status (no pending left)</p>
+                <p>Clear action items for next week</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== ADVANCED TOPICS ==================== -->
+    <div id="dmAdvanced" class="dm-content">
+        <div class="content-header">
+            <h2>🎓 Advanced Defect Management Topics</h2>
+            <p>Professional-level strategies and practices</p>
+        </div>
+
+        <!-- Advanced Topic 1 -->
+        <div class="advanced-card">
+            <h3>🔗 Defect Traceability Matrix (DTM)</h3>
+
+            <p>Link Requirements → Test Cases → Defects</p>
+
+            <table class="traceability-table">
+                <tr>
+                    <th>Req ID</th>
+                    <th>Requirement</th>
+                    <th>Test Case</th>
+                    <th>Defects Found</th>
+                    <th>Status</th>
+                </tr>
+                <tr>
+                    <td>70.3.1</td>
+                    <td>Accept 10-digit account</td>
+                    <td>TC-001</td>
+                    <td>BUG-1245, BUG-1260</td>
+                    <td>Closed</td>
+                </tr>
+                <tr>
+                    <td>70.3.2</td>
+                    <td>Reject transfer > balance</td>
+                    <td>TC-005</td>
+                    <td>BUG-1270</td>
+                    <td>Postponed</td>
+                </tr>
+            </table>
+
+            <p><strong>Benefit:</strong> Know which requirements have most defects</p>
+        </div>
+
+        <!-- Advanced Topic 2 -->
+        <div class="advanced-card">
+            <h3>📊 Defect Root Cause Analysis</h3>
+
+            <p>Find WHY bugs occur, not just WHAT is wrong</p>
+
+            <div class="rca-steps">
+                <p><strong>5 Why Analysis:</strong></p>
+                <ul>
+                    <li>1. Why? → "Payment processing fails"</li>
+                    <li>2. Why? → "Database connection times out"</li>
+                    <li>3. Why? → "Connection pool exhausted"</li>
+                    <li>4. Why? → "Connections not being released"</li>
+                    <li>5. Why? → "Developer forgot close() in finally block"</li>
+                    <li>→ <strong>Root Cause:</strong> Poor coding practice</li>
+                </ul>
+            </div>
+
+            <p><strong>Action:</strong> Code review process to prevent similar bugs</p>
+        </div>
+
+        <!-- Advanced Topic 3 -->
+        <div class="advanced-card">
+            <h3>🎯 Risk-Based Defect Management</h3>
+
+            <p>Prioritize defect fixing based on risk (not just severity)</p>
+
+            <table class="risk-priority-table">
+                <tr>
+                    <th>Bug</th>
+                    <th>Severity</th>
+                    <th>Likelihood</th>
+                    <th>Business Impact</th>
+                    <th>Risk Score</th>
+                    <th>Priority</th>
+                </tr>
+                <tr>
+                    <td>Payment fails randomly</td>
+                    <td>Critical</td>
+                    <td>20%</td>
+                    <td>$50,000</td>
+                    <td>10,000</td>
+                    <td>P1</td>
+                </tr>
+                <tr>
+                    <td>Button color wrong</td>
+                    <td>Major</td>
+                    <td>100%</td>
+                    <td>$1,000</td>
+                    <td>1,000</td>
+                    <td>P2</td>
+                </tr>
+            </table>
+
+            <p><strong>Formula:</strong> Risk = Severity × Likelihood × Business Impact</p>
+        </div>
+
+        <!-- Advanced Topic 4 -->
+        <div class="advanced-card">
+            <h3>🔄 Defect Prevention vs Detection</h3>
+
+            <p><strong>Detection:</strong> Find bugs during testing (current approach)</p>
+            <p><strong>Prevention:</strong> Avoid bugs in first place (better!)</p>
+
+            <div class="prevention-strategies">
+                <h4>Prevention Strategies:</h4>
+                <ul>
+                    <li>✓ Better requirements gathering</li>
+                    <li>✓ Code reviews before testing</li>
+                    <li>✓ Unit testing by developers</li>
+                    <li>✓ Design reviews</li>
+                    <li>✓ Static code analysis tools</li>
+                    <li>✓ Pair programming</li>
+                </ul>
+            </div>
+
+            <p><strong>Goal:</strong> Shift left - find bugs earlier in SDLC</p>
+        </div>
+
+        <!-- Advanced Topic 5 -->
+        <div class="advanced-card">
+            <h3>📱 Mobile & Cross-Platform Defects</h3>
+
+            <p>Same bug, different manifestations on different devices</p>
+
+            <div class="multi-device-example">
+                <p><strong>Example:</strong> Amount field formatting bug</p>
+                <ul>
+                    <li>iPhone SE: Keyboard covers input field</li>
+                    <li>iPhone 14 Pro: Works fine (larger screen)</li>
+                    <li>Samsung S22: Touch detection fails</li>
+                    <li>Pixel 7: Autocomplete causes overflow</li>
+                </ul>
+            </div>
+
+            <p><strong>Challenge:</strong> Test on multiple devices, not just one</p>
+        </div>
+
+        <!-- Advanced Topic 6 -->
+        <div class="advanced-card">
+            <h3>🤖 AI/ML in Defect Management</h3>
+
+            <p>Using AI to predict, detect, and manage defects smarter</p>
+
+            <div class="ai-applications">
+                <p><strong>Applications:</strong></p>
+                <ul>
+                    <li>🔮 <strong>Predict:</strong> ML models predict where bugs likely exist</li>
+                    <li>🔍 <strong>Auto-detect:</strong> AI finds anomalies in code</li>
+                    <li>📊 <strong>Duplicate detection:</strong> NLP finds similar bug reports</li>
+                    <li>👥 <strong>Auto-assignment:</strong> ML assigns defects to right developer</li>
+                    <li>⏱️ <strong>ETA prediction:</strong> Predict fix time based on history</li>
+                </ul>
+            </div>
+
+            <p><strong>Future:</strong> Intelligent defect management systems</p>
+        </div>
+
+        <!-- Key Takeaways -->
+        <div class="takeaways-box">
+            <h3>🎯 Key Takeaways: Defect Management Mastery</h3>
+            <ul>
+                <li>✅ <strong>Defects are inevitable</strong> - Goal is effective management</li>
+                <li>✅ <strong>Severity ≠ Priority</strong> - Test assigns severity, Dev assigns priority</li>
+                <li>✅ <strong>Lifecycle matters</strong> - OPEN→ASSIGNED→FIXED→CLOSED</li>
+                <li>✅ <strong>Detailed reports</strong> - Include steps to reproduce, environment, test data</li>
+                <li>✅ <strong>Tools are essential</strong> - Manual tracking is inefficient</li>
+                <li>✅ <strong>Metrics drive improvements</strong> - Track trends, use for forecasting</li>
+                <li>✅ <strong>Prevention > Detection</strong> - Fix process before testing</li>
+                <li>✅ <strong>Communication is key</strong> - Clear reports, timely updates</li>
+                <li>✅ <strong>Tester responsibility</strong> - Ensure defects are valid, not duplicate</li>
+                <li>✅ <strong>Success metric:</strong> High fix rate (80%+) + Low escape rate (2-5%)</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Embedded CSS for Defect Management -->
+<style>
+.dm-nav-tabs {
+    display: flex;
+    gap: 10px;
+    margin: 20px 0;
+    flex-wrap: wrap;
+}
+
+.dm-nav-tab {
+    padding: 10px 15px;
+    background: #f0f0f0;
+    border: 2px solid #ddd;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: 500;
+}
+
+.dm-nav-tab.active {
+    background: linear-gradient(135deg, #f5576c 0%, #fd0e4e 100%);
+    color: white;
+    border-color: #f5576c;
+}
+
+.dm-nav-tab:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.dm-content {
+    display: none;
+    animation: fadeIn 0.5s;
+}
+
+.dm-content.active {
+    display: block;
+}
+
+.causes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin: 15px 0;
+}
+
+.cause-card {
+    background: linear-gradient(135deg, #f5576c15 0%, #fd0e4e15 100%);
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 4px solid #f5576c;
+}
+
+.principle-box {
+    background: #ffe0e0;
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 5px solid #f5576c;
+    margin: 15px 0;
+}
+
+.severity-card {
+    background: white;
+    border-radius: 8px;
+    margin: 15px 0;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.severity-level {
+    padding: 15px;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.blocker-severity .severity-level {
+    background: #8B0000;
+}
+
+.critical-severity .severity-level {
+    background: #DC143C;
+}
+
+.major-severity .severity-level {
+    background: #FF8C00;
+}
+
+.minor-severity .severity-level {
+    background: #FFB90F;
+    color: #333;
+}
+
+.severity-content {
+    padding: 15px;
+}
+
+.severity-content h4 {
+    margin-top: 0;
+    color: #333;
+}
+
+.priority-card {
+    background: white;
+    border-radius: 8px;
+    margin: 15px 0;
+    overflow: hidden;
+    padding: 15px;
+    border-left: 5px solid #667eea;
+}
+
+.p1-priority {
+    border-left-color: #DC143C;
+    background: #ffe0e0;
+}
+
+.p2-priority {
+    border-left-color: #FF8C00;
+    background: #fff3cd;
+}
+
+.p3-priority {
+    border-left-color: #FFB90F;
+    background: #e7f5ff;
+}
+
+.p4-priority {
+    border-left-color: #90ee90;
+    background: #e0ffe0;
+}
+
+.priority-level {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.priority-content {
+    font-size: 14px;
+}
+
+.lifecycle-steps {
+    display: flex;
+    gap: 15px;
+    margin: 20px 0;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.lc-step {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    min-width: 100px;
+}
+
+.lc-arrow {
+    font-size: 24px;
+    color: #667eea;
+}
+
+.state-card {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 10px 0;
+    border-left: 4px solid #667eea;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.open-state {
+    border-left-color: #FFB90F;
+    background: #fffacd;
+}
+
+.assigned-state {
+    border-left-color: #4169E1;
+    background: #e0e0ff;
+}
+
+.fixed-state {
+    border-left-color: #FF8C00;
+    background: #ffe8cc;
+}
+
+.closed-state {
+    border-left-color: #51cf66;
+    background: #e0ffe0;
+}
+
+.reopen-state {
+    border-left-color: #ff6b6b;
+    background: #ffe0e0;
+}
+
+.reject-state {
+    border-left-color: #8B0000;
+    background: #ffcccc;
+}
+
+.duplicate-state {
+    border-left-color: #FF8C00;
+    background: #ffe8cc;
+}
+
+.postponed-state {
+    border-left-color: #4169E1;
+    background: #e0e0ff;
+}
+
+.flow-box {
+    background: #f0f7ff;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 15px 0;
+    border-left: 5px solid #667eea;
+}
+
+.main-flow {
+    background: #e0f4ff;
+}
+
+.alternate-flows {
+    background: #fff3cd;
+}
+
+.email-flow {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.email-step {
+    background: #f0f7ff;
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 4px solid #667eea;
+}
+
+.arrow-down {
+    text-align: center;
+    font-size: 24px;
+    color: #667eea;
+}
+
+.or-divider {
+    text-align: center;
+    font-weight: bold;
+    color: #666;
+    margin: 10px 0;
+}
+
+.rejection-card {
+    background: #ffe0e0;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 15px 0;
+    border-left: 4px solid #f5576c;
+}
+
+.example-box {
+    background: white;
+    padding: 10px;
+    border-radius: 4px;
+    margin: 8px 0;
+}
+
+.metrics-data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+}
+
+.metrics-data-table th {
+    background: #667eea;
+    color: white;
+}
+
+.metrics-data-table td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.total-row {
+    background: #e0e0e0;
+    font-weight: bold;
+}
+
+.advanced-card {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 15px 0;
+    border-left: 5px solid #667eea;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.takeaways-box {
+    background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 5px solid #667eea;
+    margin: 20px 0;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .dm-nav-tabs {
+        flex-direction: column;
+    }
+
+    .lifecycle-steps {
+        flex-direction: column;
+    }
+}
+</style>
+
+<!-- JavaScript for Defect Management interactions -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // DM Nav Tabs
+    const dmNavTabs = document.querySelectorAll('.dm-nav-tab');
+    dmNavTabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+            const target = this.getAttribute('data-target');
+            showDMContent(target);
+
+            dmNavTabs.forEach(t => t.classList.remove('active'));
+            this.classList.add('active');
+        });
+    });
+
+    function showDMContent(id) {
+        const contents = document.querySelectorAll('.dm-content');
+        contents.forEach(c => c.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+    }
+});
+</script>

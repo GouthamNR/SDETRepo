@@ -1,0 +1,2036 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual Testing Academy - Complete Learning Platform</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --primary: #667eea;
+            --secondary: #764ba2;
+            --success: #4CAF50;
+            --danger: #f44336;
+            --warning: #ff9800;
+            --info: #2196F3;
+        }
+
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            line-height: 1.6; 
+            color: #333; 
+            background: #f5f7fa;
+        }
+        .container { display: flex; height: 100vh; overflow: hidden; }
+        .sidebar { 
+            width: 300px; 
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); 
+            color: white; 
+            overflow-y: auto; 
+            position: fixed; 
+            left: 0; 
+            top: 0; 
+            height: 100vh; 
+            z-index: 1000; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3); 
+            transition: all 0.3s;
+        }
+        .sidebar.closed { transform: translateX(-300px); }
+        .sidebar-header { 
+            padding: 15px; 
+            text-align: center; 
+            border-bottom: 2px solid rgba(255,255,255,0.2); 
+            position: sticky; 
+            top: 0; 
+            background: inherit;
+        }
+        .nav-item { 
+            padding: 10px 12px; 
+            margin: 2px 5px; 
+            cursor: pointer; 
+            border-radius: 5px; 
+            transition: all 0.3s; 
+            border-left: 3px solid transparent;
+        }
+        .nav-item:hover, .nav-item.active { 
+            background: rgba(255,255,255,0.15); 
+            border-left-color: #ffd700; 
+            padding-left: 15px;
+        }
+        .nav-sub-item { 
+            padding: 6px 8px 6px 25px; 
+            font-size: 0.85em; 
+            cursor: pointer; 
+            margin: 1px 5px; 
+            border-radius: 3px; 
+            display: none;
+        }
+        .nav-item.expanded ~ .nav-sub-items .nav-sub-item { display: block; }
+        .nav-sub-item:hover { background: rgba(255,255,255,0.1); }
+        .nav-sub-item.active { background: rgba(255,255,255,0.2); font-weight: 600; }
+        .main-content { flex: 1; margin-left: 300px; overflow-y: auto; transition: margin-left 0.3s; }
+        .main-content.expanded { margin-left: 0; }
+        header { 
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); 
+            color: white; 
+            padding: 20px 30px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2); 
+            position: sticky; 
+            top: 0; 
+            z-index: 100;
+        }
+        header h1 { font-size: 1.6em; }
+        .toggle-btn { 
+            background: rgba(255,255,255,0.2); 
+            border: none; 
+            color: white; 
+            font-size: 1.3em; 
+            cursor: pointer; 
+            padding: 8px 12px; 
+            border-radius: 5px;
+        }
+        .content { 
+            padding: 30px; 
+            max-width: 1300px; 
+            margin: 0 auto;
+        }
+        .section { 
+            background: white; 
+            border-radius: 10px; 
+            padding: 25px; 
+            margin-bottom: 20px; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08); 
+            animation: slideIn 0.5s;
+        }
+        @keyframes slideIn { 
+            from { opacity: 0; transform: translateY(20px); } 
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .section-title { 
+            font-size: 1.8em; 
+            color: var(--primary); 
+            margin-bottom: 10px; 
+            display: flex; 
+            align-items: center; 
+            gap: 12px;
+        }
+        .subsection-title { 
+            font-size: 1.3em; 
+            color: var(--secondary); 
+            margin: 25px 0 12px; 
+            padding-bottom: 8px; 
+            border-bottom: 2px solid var(--primary);
+        }
+        .collapsible { 
+            border: 1px solid #e0e0e0; 
+            border-radius: 8px; 
+            margin: 12px 0; 
+            overflow: hidden;
+        }
+        .collapsible-header { 
+            background: linear-gradient(135deg, rgba(102,126,234,0.1), rgba(118,75,162,0.1)); 
+            padding: 12px 15px; 
+            cursor: pointer; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            font-weight: 600; 
+            color: var(--primary); 
+            transition: all 0.3s; 
+            border-left: 4px solid var(--primary);
+        }
+        .collapsible-header:hover { background: linear-gradient(135deg, rgba(102,126,234,0.15), rgba(118,75,162,0.15)); }
+        .collapsible-header.open { background: var(--primary); color: white; border-left-color: #ffd700; }
+        .collapsible-content { 
+            max-height: 0; 
+            overflow: hidden; 
+            transition: max-height 0.3s;
+        }
+        .collapsible-content.open { 
+            max-height: 2000px; 
+            padding: 15px; 
+            background: #f9f9f9;
+        }
+        .arrow { transition: transform 0.3s; }
+        .arrow.open { transform: rotate(180deg); }
+        
+        table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            margin: 15px 0; 
+            font-size: 0.9em;
+        }
+        th { 
+            background: linear-gradient(135deg, var(--primary), var(--secondary)); 
+            color: white; 
+            padding: 10px; 
+            text-align: left; 
+            font-weight: 600;
+        }
+        td { 
+            padding: 8px 10px; 
+            border-bottom: 1px solid #e0e0e0;
+        }
+        tr:hover { background: #f5f5f5; }
+
+        .card { 
+            background: linear-gradient(135deg, rgba(102,126,234,0.05), rgba(118,75,162,0.05)); 
+            border: 2px solid #e0e0e0; 
+            border-left: 4px solid var(--primary); 
+            border-radius: 8px; 
+            padding: 15px; 
+            margin: 12px 0; 
+            transition: all 0.3s;
+        }
+        .card:hover { 
+            border-color: var(--primary); 
+            box-shadow: 0 8px 20px rgba(102,126,234,0.15); 
+            transform: translateY(-3px);
+        }
+        
+        .example-box { 
+            background: rgba(76,175,80,0.1); 
+            border-left: 4px solid var(--success); 
+            padding: 12px; 
+            margin: 12px 0; 
+            border-radius: 5px; 
+            color: #2e7d32;
+        }
+        .info-box { 
+            background: rgba(33,150,243,0.1); 
+            border-left: 4px solid #2196F3; 
+            padding: 12px; 
+            margin: 12px 0; 
+            border-radius: 5px; 
+            color: #1565c0;
+        }
+        .warning-box { 
+            background: rgba(255,152,0,0.1); 
+            border-left: 4px solid var(--warning); 
+            padding: 12px; 
+            margin: 12px 0; 
+            border-radius: 5px; 
+            color: #e65100;
+        }
+        
+        .grid-2 { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 15px; 
+            margin: 15px 0;
+        }
+        
+        .flow { 
+            display: flex; 
+            align-items: center; 
+            gap: 10px; 
+            margin: 15px 0; 
+            flex-wrap: wrap;
+        }
+        .flow-item { 
+            background: linear-gradient(135deg, var(--primary), var(--secondary)); 
+            color: white; 
+            padding: 8px 12px; 
+            border-radius: 5px; 
+            font-weight: 600; 
+            white-space: nowrap; 
+            font-size: 0.9em;
+        }
+        
+        .checklist { margin: 10px 0; }
+        .checklist-item { 
+            padding: 6px 0; 
+            display: flex; 
+            gap: 8px; 
+            align-items: flex-start;
+        }
+        .checklist-item::before { 
+            content: "✓"; 
+            color: var(--success); 
+            font-weight: bold; 
+            min-width: 18px;
+        }
+        
+        .stats-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); 
+            gap: 20px; 
+            margin: 30px 0;
+        }
+        .stat-card { 
+            background: linear-gradient(135deg, rgba(102,126,234,0.1), rgba(118,75,162,0.1)); 
+            padding: 20px; 
+            border-radius: 12px; 
+            text-align: center; 
+            border: 2px solid #e0e0e0; 
+            transition: all 0.3s;
+        }
+        .stat-card:hover { 
+            border-color: var(--primary); 
+            background: linear-gradient(135deg, rgba(102,126,234,0.2), rgba(118,75,162,0.2));
+        }
+        .stat-number { 
+            font-size: 2.5em; 
+            font-weight: 700; 
+            color: var(--primary); 
+            margin-bottom: 10px;
+        }
+        .stat-label { 
+            font-size: 0.9em; 
+            color: #666;
+        }
+        
+        .comparison { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 20px; 
+            margin: 20px 0;
+        }
+        .comparison-box { 
+            padding: 25px; 
+            border-radius: 12px;
+        }
+        .comparison-box.left { 
+            background: rgba(76,175,80,0.1); 
+            border-left: 5px solid var(--success);
+        }
+        .comparison-box.right { 
+            background: rgba(244,67,54,0.1); 
+            border-left: 5px solid var(--danger);
+        }
+        .comparison-box h3 { 
+            margin-bottom: 15px; 
+            color: #333; 
+            font-size: 1.3em;
+        }
+        
+        .chart-container { 
+            position: relative; 
+            height: 300px; 
+            margin: 30px 0;
+        }
+        
+        .timeline { 
+            position: relative; 
+            padding: 20px 0;
+        }
+        .timeline::before { 
+            content: ''; 
+            position: absolute; 
+            left: 50%; 
+            transform: translateX(-50%); 
+            width: 3px; 
+            height: 100%; 
+            background: linear-gradient(180deg, var(--primary), var(--secondary));
+        }
+        .timeline-item { 
+            margin-bottom: 40px; 
+            width: 45%; 
+            position: relative;
+        }
+        .timeline-item:nth-child(odd) { 
+            margin-left: 0; 
+            text-align: right; 
+            padding-right: 60px;
+        }
+        .timeline-item:nth-child(even) { 
+            margin-left: 55%; 
+            padding-left: 60px;
+        }
+        .timeline-item::before { 
+            content: ''; 
+            position: absolute; 
+            width: 20px; 
+            height: 20px; 
+            background: white; 
+            border: 3px solid var(--primary); 
+            border-radius: 50%; 
+            top: 0;
+        }
+        .timeline-item:nth-child(odd)::before { 
+            right: 0; 
+            transform: translateX(50%);
+        }
+        .timeline-item:nth-child(even)::before { 
+            left: 0; 
+            transform: translateX(-50%);
+        }
+        .timeline-content { 
+            background: white; 
+            padding: 20px; 
+            border-radius: 10px; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .badge { 
+            display: inline-block; 
+            padding: 5px 12px; 
+            border-radius: 20px; 
+            font-size: 0.8em; 
+            font-weight: 600; 
+            margin-right: 8px;
+        }
+        .badge-easy { background: rgba(76,175,80,0.2); color: var(--success); }
+        .badge-medium { background: rgba(255,152,0,0.2); color: var(--warning); }
+        .badge-hard { background: rgba(244,67,54,0.2); color: var(--danger); }
+        
+        footer { 
+            background: #2c3e50; 
+            color: white; 
+            text-align: center; 
+            padding: 20px; 
+            margin-top: 30px;
+        }
+        
+        @media (max-width: 768px) {
+            .sidebar { transform: translateX(-300px); }
+            .sidebar.open { transform: translateX(0); }
+            .main-content { margin-left: 0; }
+            .comparison, .timeline::before { display: block; }
+            .timeline-item { width: 100%; padding-left: 70px !important; }
+            .timeline-item:nth-child(odd) { text-align: left; padding-right: 0; }
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .tab-btn {
+            background: white;
+            border: 2px solid #ddd;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            color: var(--primary);
+        }
+        .tab-btn:hover {
+            border-color: var(--primary);
+            background: rgba(102,126,234,0.05);
+        }
+        .tab-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        .tab-content {
+            display: none;
+            background: #f9f9f9;
+            padding: 30px;
+            border-radius: 12px;
+            border-left: 4px solid var(--primary);
+        }
+        .tab-content.active {
+            display: block;
+            animation: slideIn 0.5s;
+        }
+
+        .highlight {
+            background: #fff9c4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- SIDEBAR -->
+        <nav class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h2 style="font-size: 1.2em;">📚 QA Academy</h2>
+                <p style="font-size: 0.85em;">Complete Manual Testing</p>
+            </div>
+            <div id="navContainer"></div>
+        </nav>
+
+        <!-- MAIN CONTENT -->
+        <div class="main-content" id="mainContent">
+            <header>
+                <h1>🧪 Manual Testing Academy</h1>
+                <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
+            </header>
+
+            <div class="content" id="contentArea"></div>
+
+            <footer>
+                <p>🎓 Manual Testing - Complete Learning Platform | QA Academy</p>
+                <p style="margin-top: 8px; font-size: 0.9em;">Master Testing. Advance Your Career. 🚀</p>
+            </footer>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
+    <script>
+        const sections = {
+            intro: {
+                title: '🎯 Introduction',
+                subs: [
+                    { id: 'intro-what', title: 'What is Manual Testing?' },
+                    { id: 'intro-principles', title: '7 Testing Principles' },
+                    { id: 'intro-why', title: 'Why Manual Testing Matters' },
+                    { id: 'intro-career', title: 'Career Benefits' }
+                ]
+            },
+            basics: {
+                title: '📖 Testing Fundamentals',
+                subs: [
+                    { id: 'basics-terms', title: 'Key Terminology' },
+                    { id: 'basics-quality', title: 'Quality & QA vs QC' },
+                    { id: 'basics-sdlc', title: 'SDLC & Testing' },
+                    { id: 'basics-advanced', title: 'Advanced Concepts' }
+                ]
+            },
+            types: {
+                title: '🏷️ Testing Types',
+                subs: [
+                    { id: 'types-boxmodels', title: 'Black/White/Gray Box' },
+                    { id: 'types-techniques', title: 'Testing Techniques' }
+                ]
+            },
+            advanced: {
+                title: '⭐ Advanced Topics',
+                subs: [
+                    { id: 'adv-istqb', title: 'ISTQB Certification' },
+                    { id: 'adv-tools', title: 'Testing Tools' }
+                ]
+            }
+        };
+
+        // Generate Navigation
+        function generateNav() {
+            let html = '<div class="sidebar-nav">';
+            for (const [key, section] of Object.entries(sections)) {
+                html += `<div class="nav-item" data-section="${key}" onclick="toggleSection(this)">
+                    ${section.title}
+                    <span class="arrow">▼</span>
+                </div>`;
+                html += '<div class="nav-sub-items">';
+                for (const sub of section.subs) {
+                    html += `<div class="nav-sub-item" onclick="loadContent('${key}', '${sub.id}')">${sub.title}</div>`;
+                }
+                html += '</div>';
+            }
+            html += '</div>';
+            document.getElementById('navContainer').innerHTML = html;
+        }
+
+        function toggleSection(el) {
+            el.classList.toggle('expanded');
+            el.querySelector('.arrow').classList.toggle('open');
+        }
+
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('open');
+            document.getElementById('mainContent').classList.toggle('expanded');
+        }
+
+        function loadContent(section, subsection) {
+            document.querySelectorAll('.nav-sub-item').forEach(el => el.classList.remove('active'));
+            event.target.classList.add('active');
+            const content = getContent(section, subsection);
+            document.getElementById('contentArea').innerHTML = content;
+            
+            // Initialize charts after content loads
+            setTimeout(() => {
+                initCharts();
+            }, 100);
+            
+            window.scrollTo(0, 0);
+        }
+
+        function toggleCollapsible(el) {
+            el.classList.toggle('open');
+            el.querySelector('.arrow').classList.toggle('open');
+            el.nextElementSibling.classList.toggle('open');
+        }
+
+        function switchTab(event, tabId) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        function getContent(s, sub) {
+            let html = '<div class="section">';
+
+            // INTRODUCTION SECTION
+            if (s === 'intro' && sub === 'intro-what') {
+                html += `
+                    <div class="section-title"><span>🎯</span> What is Manual Testing?</div>
+                    
+                    <div class="info-box">
+                        <strong>Definition:</strong> Manual testing is the process of testing software applications by manually executing test cases without using any automation tools. A human tester interacts with the application as an end-user would, verifying that features work as expected.
+                    </div>
+
+                    <div class="subsection-title">📋 Key Characteristics</div>
+                    <div class="grid-2">
+                        <div class="card">
+                            <h3 style="color: var(--success);">✅ Advantages</h3>
+                            <div class="checklist">
+                                <div class="checklist-item">Human judgment involved</div>
+                                <div class="checklist-item">No automation tools needed</div>
+                                <div class="checklist-item">User perspective testing</div>
+                                <div class="checklist-item">Flexible & adaptive</div>
+                                <div class="checklist-item">Detects UI/UX issues</div>
+                                <div class="checklist-item">Cost-effective for small projects</div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <h3 style="color: var(--danger);">⚠️ Limitations</h3>
+                            <div class="checklist">
+                                <div class="checklist-item">Slower than automation</div>
+                                <div class="checklist-item">Higher cost for large suites</div>
+                                <div class="checklist-item">Human error possible</div>
+                                <div class="checklist-item">Not repetition-friendly</div>
+                                <div class="checklist-item">Hard to scale</div>
+                                <div class="checklist-item">Can't do load testing</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="subsection-title">⚙️ Testing Process Flow</div>
+                    <div class="flow">
+                        <div class="flow-item">📋 Requirements</div>
+                        <div style="font-size: 1.5em;">→</div>
+                        <div class="flow-item">📝 Test Plan</div>
+                        <div style="font-size: 1.5em;">→</div>
+                        <div class="flow-item">✍️ Test Cases</div>
+                        <div style="font-size: 1.5em;">→</div>
+                        <div class="flow-item">🔍 Execution</div>
+                        <div style="font-size: 1.5em;">→</div>
+                        <div class="flow-item">🐛 Defects</div>
+                        <div style="font-size: 1.5em;">→</div>
+                        <div class="flow-item">📊 Report</div>
+                    </div>
+
+                    <table>
+                        <tr>
+                            <th>Phase</th>
+                            <th>Activity</th>
+                            <th>Duration</th>
+                            <th>Deliverable</th>
+                        </tr>
+                        <tr>
+                            <td><strong>1. Planning</strong></td>
+                            <td>Define testing strategy & scope</td>
+                            <td>1-2 weeks</td>
+                            <td>Test Plan</td>
+                        </tr>
+                        <tr>
+                            <td><strong>2. Analysis</strong></td>
+                            <td>Review requirements & scenarios</td>
+                            <td>1-2 weeks</td>
+                            <td>Test Scenarios</td>
+                        </tr>
+                        <tr>
+                            <td><strong>3. Design</strong></td>
+                            <td>Create test cases & RTM</td>
+                            <td>2-4 weeks</td>
+                            <td>Test Cases</td>
+                        </tr>
+                        <tr>
+                            <td><strong>4. Execution</strong></td>
+                            <td>Run tests & find bugs</td>
+                            <td>3-8 weeks</td>
+                            <td>Test Results</td>
+                        </tr>
+                        <tr>
+                            <td><strong>5. Closure</strong></td>
+                            <td>Document & report findings</td>
+                            <td>1 week</td>
+                            <td>Final Report</td>
+                        </tr>
+                    </table>
+
+                    <div class="subsection-title">📊 Market Statistics (2024-2025)</div>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-number">70%</div>
+                            <div class="stat-label">Companies use manual testing</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">89%</div>
+                            <div class="stat-label">Manual testing catches critical bugs</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">$45K+</div>
+                            <div class="stat-label">Average QA salary (USA)</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">3.2x</div>
+                            <div class="stat-label">ROI improvement via QA</div>
+                        </div>
+                    </div>
+
+                    <div class="subsection-title">💡 When to Use Manual Testing</div>
+                    <div class="comparison">
+                        <div class="comparison-box left">
+                            <h3>✅ Use Manual Testing For:</h3>
+                            <div class="checklist">
+                                <div class="checklist-item">Small projects (&lt;50 screens)</div>
+                                <div class="checklist-item">Exploratory testing</div>
+                                <div class="checklist-item">UI/UX validation</div>
+                                <div class="checklist-item">One-time tests</div>
+                                <div class="checklist-item">User acceptance testing</div>
+                                <div class="checklist-item">Ad-hoc scenarios</div>
+                            </div>
+                        </div>
+                        <div class="comparison-box right">
+                            <h3>❌ Don't Use For:</h3>
+                            <div class="checklist">
+                                <div class="checklist-item">Large projects (&gt;300 screens)</div>
+                                <div class="checklist-item">Repetitive regression tests</div>
+                                <div class="checklist-item">Load/stress testing</div>
+                                <div class="checklist-item">Frequent test cycles</div>
+                                <div class="checklist-item">24/7 monitoring needed</div>
+                                <div class="checklist-item">Complex calculations</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="subsection-title">💰 Cost to Fix Bugs at Different Stages</div>
+                    <div class="chart-container">
+                        <canvas id="costChart"></canvas>
+                    </div>
+
+                    <div class="example-box">
+                        <strong>💡 Real-World Example:</strong><br>
+                        A manual tester testing an e-commerce website notices:<br>
+                        • Add to cart button too small for mobile users<br>
+                        • Font color makes text hard to read<br>
+                        • Checkout process feels confusing<br>
+                        • Loading spinner disappears before page loads<br><br>
+                        These UX issues would be HARD to catch with automation!
+                    </div>
+                `;
+            }
+
+            else if (s === 'intro' && sub === 'intro-principles') {
+                html += `
+                    <div class="section-title"><span>⭐</span> The 7 Fundamental Testing Principles (ISTQB)</div>
+                    <p style="margin-bottom: 20px; color: #666;">
+                        These principles form the foundation of modern software testing. Understanding them is crucial for any QA professional.
+                    </p>
+
+                    <div class="collapsible">
+                        <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                            <span>📌 Principle 1: Testing Shows Presence of Defects, Not Absence</span>
+                            <span class="arrow">▼</span>
+                        </div>
+                        <div class="collapsible-content">
+                            <h4 style="color: var(--primary); margin-bottom: 15px;">What This Means:</h4>
+                            <p>Testing can prove bugs exist, but cannot prove they don't exist. Even after thorough testing, 100% defect-free product is impossible.</p>
+                            
+                            <div class="example-box">
+                                <strong>💭 Real Example:</strong><br>
+                                You test a login feature with 100 test cases and find 0 bugs.<br>
+                                Does this mean the feature is perfect? <strong>NO!</strong><br><br>
+                                There could be bugs in:<br>
+                                • Other browser combinations<br>
+                                • Different operating systems<br>
+                                • Edge cases you didn't think of<br>
+                                • Performance scenarios<br>
+                                • Security vulnerabilities
+                            </div>
+
+                            <p style="margin-top: 15px;"><strong>⚡ Impact:</strong> Testing reduces undiscovered defects but never guarantees zero bugs. Always use risk-based approach!</p>
+                        </div>
+                    </div>
+
+                    <div class="collapsible">
+                        <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                            <span>📌 Principle 2: Exhaustive Testing is Impossible</span>
+                            <span class="arrow">▼</span>
+                        </div>
+                        <div class="collapsible-content">
+                            <h4 style="color: var(--primary); margin-bottom: 15px;">What This Means:</h4>
+                            <p>Cannot test every combination of inputs and conditions. Must use risk and priorities to focus efforts.</p>
+                            
+                            <div class="example-box">
+                                <strong>🔢 The Math Problem:</strong><br>
+                                Login screen with 15 input fields, each with 5 possible values<br>
+                                <span class="highlight">5^15 = 30,517,578,125</span> possible combinations!<br>
+                                Testing all would take 1,000 years (working 24/7).
+                            </div>
+
+                            <p style="margin-top: 15px;"><strong>✅ Solution:</strong> Use <strong>risk-based testing</strong> - test high-risk areas first!</p>
+                        </div>
+                    </div>
+
+                    <div class="collapsible">
+                        <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                            <span>📌 Principle 3: Early Testing Saves Cost</span>
+                            <span class="arrow">▼</span>
+                        </div>
+                        <div class="collapsible-content">
+                            <h4 style="color: var(--primary); margin-bottom: 15px;">What This Means:</h4>
+                            <p>Start testing from requirements phase, not after coding. Earlier you find bugs, the cheaper to fix.</p>
+
+                            <table>
+                                <tr>
+                                    <th>SDLC Phase</th>
+                                    <th>Cost to Fix</th>
+                                    <th>Multiplier</th>
+                                </tr>
+                                <tr>
+                                    <td><strong>Requirements</strong></td>
+                                    <td>$100</td>
+                                    <td>1x</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Design</strong></td>
+                                    <td>$500</td>
+                                    <td>5x</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Coding</strong></td>
+                                    <td>$1,000</td>
+                                    <td>10x</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Testing</strong></td>
+                                    <td>$5,000</td>
+                                    <td>50x</td>
+                                </tr>
+                                <tr>
+                                    <td><strong style="color: var(--danger);">Production</strong></td>
+                                    <td><strong style="color: var(--danger);">$50,000</strong></td>
+                                    <td><strong style="color: var(--danger);">500x</strong></td>
+                                </tr>
+                            </table>
+
+                            <p style="margin-top: 20px; color: var(--danger); font-weight: bold;">
+                                🚨 A $100 bug found in requirements costs $50,000 to fix in production!
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="collapsible">
+                        <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                            <span>📌 Principle 4: Defect Clustering (The 80/20 Rule)</span>
+                            <span class="arrow">▼</span>
+                        </div>
+                        <div class="collapsible-content">
+                            <h4 style="color: var(--primary); margin-bottom: 15px;">What This Means:</h4>
+                            <p>A small number of modules contain most of the bugs (80% bugs in 20% of code). <strong>Focus testing there!</strong></p>
+
+                            <div class="example-box">
+                                <strong>📊 Real Project Data:</strong><br>
+                                Module A: 150 bugs in 5,000 lines (HIGH RISK) ← Test most!<br>
+                                Module B: 30 bugs in 15,000 lines (MEDIUM)<br>
+                                Module C: 20 bugs in 25,000 lines (LOW RISK)
+                            </div>
+
+                            <div class="chart-container">
+                                <canvas id="defectChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="collapsible">
+                        <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                            <span>📌 Principle 5: Pesticide Paradox</span>
+                            <span class="arrow">▼</span>
+                        </div>
+                        <div class="collapsible-content">
+                            <h4 style="color: var(--primary); margin-bottom: 15px;">What This Means:</h4>
+                            <p>Repeating the same tests won't find new bugs. Must regularly update and rotate test cases.</p>
+
+                            <div class="example-box">
+                                <strong>🚜 The Pesticide Analogy:</strong><br>
+                                Farmers use same pesticide → Insects develop immunity → Pesticide becomes useless<br><br>
+                                Similarly:<br>
+                                Run same tests → Bugs get fixed → Those test cases stop finding new bugs
+                            </div>
+
+                            <div class="info-box">
+                                <strong>✅ Solution:</strong>
+                                <div class="checklist">
+                                    <div class="checklist-item">Review test cases regularly</div>
+                                    <div class="checklist-item">Write new test cases frequently</div>
+                                    <div class="checklist-item">Add edge cases & boundary tests</div>
+                                    <div class="checklist-item">Vary testing techniques</div>
+                                    <div class="checklist-item">Test different parts of application</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="collapsible">
+                        <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                            <span>📌 Principle 6: Testing is Context Dependent</span>
+                            <span class="arrow">▼</span>
+                        </div>
+                        <div class="collapsible-content">
+                            <h4 style="color: var(--primary); margin-bottom: 15px;">What This Means:</h4>
+                            <p>Different applications need different testing approaches. Medical software ≠ e-commerce ≠ social media.</p>
+
+                            <table>
+                                <tr>
+                                    <th>Application Type</th>
+                                    <th>Testing Focus</th>
+                                    <th>Risk Level</th>
+                                </tr>
+                                <tr>
+                                    <td>Medical Software</td>
+                                    <td>Safety, accuracy, reliability</td>
+                                    <td><strong style="color: var(--danger);">🔴 CRITICAL (lives!)</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>Banking System</td>
+                                    <td>Security, data integrity</td>
+                                    <td><strong style="color: var(--danger);">🔴 CRITICAL (money!)</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>E-Commerce</td>
+                                    <td>Performance, UX, transactions</td>
+                                    <td><strong style="color: var(--warning);">🟠 HIGH (revenue!)</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>Social Media</td>
+                                    <td>Usability, features, scalability</td>
+                                    <td><strong style="color: var(--warning);">🟡 MEDIUM (satisfaction!)</strong></td>
+                                </tr>
+                            </table>
+
+                            <p style="margin-top: 20px;"><strong>💡 Key Point:</strong> Tailor testing strategy to application domain and risk profile!</p>
+                        </div>
+                    </div>
+
+                    <div class="collapsible">
+                        <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                            <span>📌 Principle 7: Absence of Errors Fallacy</span>
+                            <span class="arrow">▼</span>
+                        </div>
+                        <div class="collapsible-content">
+                            <h4 style="color: var(--primary); margin-bottom: 15px;">What This Means:</h4>
+                            <p>Finding zero bugs doesn't mean product is good. If system doesn't meet user needs, testing is useless.</p>
+
+                            <div class="example-box">
+                                <strong>🎯 Paradoxical Scenario:</strong><br>
+                                Product has ZERO bugs but:<br>
+                                ❌ Nobody understands how to use it<br>
+                                ❌ Doesn't meet business requirements<br>
+                                ❌ Too slow for users<br>
+                                ❌ Doesn't solve user problems<br><br>
+                                <strong>Result: Product fails despite being bug-free!</strong>
+                            </div>
+
+                            <p style="margin-top: 15px;"><strong>💡 Key Insight:</strong><br>
+                                Quality = <span class="highlight">Meeting customer expectations</span> + <span class="highlight">No bugs</span><br><br>
+                                Testing must verify BOTH requirements compliance AND quality!
+                            </p>
+                        </div>
+                    </div>
+                `;
+            }
+
+            else if (s === 'intro' && sub === 'intro-why') {
+                html += `
+                    <div class="section-title"><span>💎</span> Why Manual Testing Still Dominates in 2025</div>
+                    
+                    <div class="grid-2">
+                        <div class="card">
+                            <h3>🧠 Human Intelligence</h3>
+                            <p>Testers can think critically, understand context, and make intuitive decisions that algorithms can't replicate.</p>
+                        </div>
+
+                        <div class="card">
+                            <h3>👁️ Visual Testing</h3>
+                            <p>Catch UI/UX issues: layouts, colors, fonts, responsiveness that automation tools often miss.</p>
+                        </div>
+
+                        <div class="card">
+                            <h3>🎯 Adaptability</h3>
+                            <p>Easily adjust testing approach based on findings without maintaining or updating scripts.</p>
+                        </div>
+
+                        <div class="card">
+                            <h3>🔍 Exploratory Testing</h3>
+                            <p>Creatively explore application, think outside the box, find unexpected bugs in untested paths.</p>
+                        </div>
+
+                        <div class="card">
+                            <h3>🚀 Speed (in Right Context)</h3>
+                            <p>For small projects or one-time tests, faster to execute manually than building automation.</p>
+                        </div>
+
+                        <div class="card">
+                            <h3>💰 Cost-Effective</h3>
+                            <p>Lower initial investment for small teams. No tool licensing or script maintenance overhead.</p>
+                        </div>
+                    </div>
+
+                    <div class="subsection-title">🏢 Real-World Success Stories</div>
+
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-content">
+                                <h4 style="color: var(--primary);">💻 Microsoft Testing Team</h4>
+                                <p>Combines manual + automation for Windows. Manual testers find 40% more UX issues than automation alone.</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-content">
+                                <h4 style="color: var(--primary);">🍎 Apple QA Process</h4>
+                                <p>Heavily uses manual exploratory testing for iOS. Result: Industry-leading bug-free releases.</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-content">
+                                <h4 style="color: var(--primary);">🔍 Google Testing Strategy</h4>
+                                <p>Uses 70% automation + 30% manual. Manual testers catch edge cases automation misses.</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-content">
+                                <h4 style="color: var(--primary);">⚡ Tesla Quality Assurance</h4>
+                                <p>Extensive manual testing for critical systems. Life-critical features require human verification.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="subsection-title">📊 Manual vs Automation Testing</div>
+                    <div class="comparison">
+                        <div class="comparison-box left">
+                            <h3>✅ Manual Testing Best For:</h3>
+                            <div class="checklist">
+                                <div class="checklist-item">UI/UX testing</div>
+                                <div class="checklist-item">Exploratory testing</div>
+                                <div class="checklist-item">Ad-hoc scenarios</div>
+                                <div class="checklist-item">User acceptance testing</div>
+                                <div class="checklist-item">Small projects</div>
+                                <div class="checklist-item">One-time tests</div>
+                            </div>
+                        </div>
+                        <div class="comparison-box right">
+                            <h3>⚙️ Automation Best For:</h3>
+                            <div class="checklist">
+                                <div class="checklist-item">Repetitive tests</div>
+                                <div class="checklist-item">Regression testing</div>
+                                <div class="checklist-item">Performance testing</div>
+                                <div class="checklist-item">Load testing</div>
+                                <div class="checklist-item">Large projects</div>
+                                <div class="checklist-item">Frequent cycles</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chart-container">
+                        <canvas id="usageChart"></canvas>
+                    </div>
+                `;
+            }
+
+            else if (s === 'intro' && sub === 'intro-career') {
+                html += `
+                    <div class="section-title"><span>🚀</span> Career Benefits & Growth Path</div>
+                    
+                    <div class="subsection-title">💼 Why You Should Master Manual Testing in 2025</div>
+                    
+                    <div class="comparison">
+                        <div class="comparison-box left">
+                            <h3>💼 Career Benefits</h3>
+                            <div class="checklist">
+                                <div class="checklist-item">High demand globally</div>
+                                <div class="checklist-item">Multiple career paths</div>
+                                <div class="checklist-item">Better job security</div>
+                                <div class="checklist-item">Remote work opportunities</div>
+                                <div class="checklist-item">Competitive salary growth</div>
+                                <div class="checklist-item">Quick to learn</div>
+                            </div>
+                        </div>
+                        <div class="comparison-box right">
+                            <h3>🎓 Learning Advantages</h3>
+                            <div class="checklist">
+                                <div class="checklist-item">No coding required initially</div>
+                                <div class="checklist-item">Immediate productivity</div>
+                                <div class="checklist-item">Foundation for advanced skills</div>
+                                <div class="checklist-item">Apply knowledge immediately</div>
+                                <div class="checklist-item">ISTQB certifications available</div>
+                                <div class="checklist-item">Transferable skills</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="subsection-title">📈 Career Growth Path</div>
+                    
+                    <div class="flow" style="flex-direction: column; align-items: stretch;">
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <div class="flow-item" style="flex: 1;">👶 Junior QA / Associate QA (0-1 year)</div>
+                            <div style="font-size: 1.5em;">↓</div>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <div class="flow-item" style="flex: 1;">🧑‍💼 QA Engineer / Senior QA (2-3 years)</div>
+                            <div style="font-size: 1.5em;">↓</div>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <div class="flow-item" style="flex: 1;">👨‍💼 Test Lead / SDET (4-5 years)</div>
+                            <div style="font-size: 1.5em;">↓</div>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <div class="flow-item" style="flex: 1;">👔 QA Manager / Director (6+ years)</div>
+                        </div>
+                    </div>
+
+                    <div class="subsection-title">💰 Salary Growth Trajectory</div>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-number">$40K</div>
+                            <div class="stat-label">Junior QA (Year 1)</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">$60K</div>
+                            <div class="stat-label">Senior QA (Year 3)</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">$85K</div>
+                            <div class="stat-label">Test Lead (Year 5)</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">$120K+</div>
+                            <div class="stat-label">QA Manager (Year 7+)</div>
+                        </div>
+                    </div>
+
+                    <div class="subsection-title">🌍 Global Job Market</div>
+                    
+                    <table>
+                        <tr>
+                            <th>Region</th>
+                            <th>Average Salary</th>
+                            <th>Job Demand</th>
+                            <th>Growth Rate</th>
+                        </tr>
+                        <tr>
+                            <td><strong>United States</strong></td>
+                            <td>$65,000 - $120,000</td>
+                            <td>Very High</td>
+                            <td>📈 +12% per year</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Europe</strong></td>
+                            <td>€45,000 - €90,000</td>
+                            <td>Very High</td>
+                            <td>📈 +10% per year</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Asia-Pacific</strong></td>
+                            <td>₹25,00,000 - ₹60,00,000</td>
+                            <td>Extremely High</td>
+                            <td>📈 +15% per year</td>
+                        </tr>
+                        <tr>
+                            <td><strong>India</strong></td>
+                            <td>₹20,00,000 - ₹50,00,000</td>
+                            <td>Extremely High</td>
+                            <td>📈 +18% per year</td>
+                        </tr>
+                    </table>
+
+                    <div class="info-box">
+                        <strong>📊 Key Statistics (2024-2025):</strong><br>
+                        • 68% of companies still use manual testing<br>
+                        • 89% of manual testing catches critical bugs<br>
+                        • Average QA job opening-to-application ratio: 1:2 (very favorable)<br>
+                        • Remote QA jobs: 60% of all openings<br>
+                        • ISTQB certified testers earn 20-30% more on average
+                    </div>
+
+                    <div class="subsection-title">🎯 Skills That Increase Salary</div>
+                    
+                    <div class="grid-2">
+                        <div class="card">
+                            <h3>🏆 High-Paying Skills</h3>
+                            <div class="checklist">
+                                <div class="checklist-item">ISTQB Certification +10-15%</div>
+                                <div class="checklist-item">Test Automation +25-40%</div>
+                                <div class="checklist-item">API Testing +20-30%</div>
+                                <div class="checklist-item">Performance Testing +20-35%</div>
+                                <div class="checklist-item">Leadership Skills +30-50%</div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <h3>📚 In-Demand Tools</h3>
+                            <div class="checklist">
+                                <div class="checklist-item">Jira / Azure DevOps</div>
+                                <div class="checklist-item">Selenium / Cypress</div>
+                                <div class="checklist-item">Postman / REST API tools</div>
+                                <div class="checklist-item">LoadRunner / JMeter</div>
+                                <div class="checklist-item">SQL / Database testing</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="example-box">
+                        <strong>💡 Real Career Story:</strong><br>
+                        <strong>2019:</strong> Junior QA Engineer @ startup - $38K<br>
+                        <strong>2021:</strong> Senior QA Engineer (after ISTQB) - $58K<br>
+                        <strong>2023:</strong> Test Lead (added automation skills) - $82K<br>
+                        <strong>2025:</strong> QA Manager (10 years experience) - $125K + benefits<br><br>
+                        <strong>Total Growth: 3.3x salary in 6 years!</strong>
+                    </div>
+                `;
+            }
+
+            // TESTING FUNDAMENTALS SECTION
+            else if (s === 'basics' && sub === 'basics-terms') {
+                html += `
+                    <div class="section-title"><span>📌</span> Key Terminology in Testing</div>
+                    <p style="margin-bottom: 20px; color: #666;">Understanding core testing concepts is essential for every QA professional. Let's explore the fundamental definitions:</p>
+
+                    <div class="subsection-title">🔍 Error vs Defect vs Bug vs Failure</div>
+                    <p style="margin-bottom: 20px;">These terms are often confused but have distinct meanings in software testing:</p>
+
+                    <table>
+                        <tr>
+                            <th>Term</th>
+                            <th>Definition</th>
+                            <th>Who Creates It?</th>
+                            <th>Example</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Error</strong></td>
+                            <td>A human mistake/action that produces incorrect result</td>
+                            <td>Developer</td>
+                            <td>Writing wrong logic: if (age > 18) instead of if (age >= 18)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Defect</strong></td>
+                            <td>Mismatch between expected and actual result</td>
+                            <td>Tester discovers it</td>
+                            <td>Login button not working when expected to work</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Bug</strong></td>
+                            <td>Defect once developer accepts it</td>
+                            <td>Developer acknowledges</td>
+                            <td>Developer confirms the login issue is real</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Failure</strong></td>
+                            <td>Bug reaches customer/end user</td>
+                            <td>Customer encounters it</td>
+                            <td>Customer reports login not working in production</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Fault</strong></td>
+                            <td>System works unexpectedly after deployment</td>
+                            <td>Production issue</td>
+                            <td>App crashes after 30 days of operation</td>
+                        </tr>
+                    </table>
+
+                    <div class="example-box">
+                        <strong>📖 Real-World Scenario:</strong><br>
+                        <strong>Error:</strong> Developer writes <code>if (balance < amount)</code> instead of <code>if (amount > balance)</code><br>
+                        <strong>Defect:</strong> Tester finds that money transfer happens even when balance is insufficient<br>
+                        <strong>Bug:</strong> Developer reviews and confirms it's a bug<br>
+                        <strong>Failure:</strong> Customer withdraws more money than they have<br>
+                        <strong>Fault:</strong> After 6 months, similar errors occur under specific conditions
+                    </div>
+
+                    <div class="subsection-title">📊 Severity vs Priority</div>
+                    <p style="margin-bottom: 20px;">Two critical attributes for bug classification:</p>
+
+                    <div class="grid-2">
+                        <div class="card">
+                            <h3 style="color: var(--danger);">🔴 SEVERITY</h3>
+                            <p><strong>What:</strong> Impact on system functionality<br>
+                            <strong>Who defines:</strong> QA Team<br>
+                            <strong>Focus:</strong> How badly feature is broken</p>
+                            
+                            <div style="margin-top: 15px;">
+                                <div class="checklist">
+                                    <div class="checklist-item"><strong>Critical:</strong> System crash or data loss</div>
+                                    <div class="checklist-item"><strong>Major:</strong> Feature completely broken</div>
+                                    <div class="checklist-item"><strong>Medium:</strong> Feature partially works</div>
+                                    <div class="checklist-item"><strong>Low:</strong> Cosmetic issue only</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <h3 style="color: var(--warning);">⚠️ PRIORITY</h3>
+                            <p><strong>What:</strong> Order of fixing bugs<br>
+                            <strong>Who defines:</strong> Project Manager<br>
+                            <strong>Focus:</strong> When to fix</p>
+                            
+                            <div style="margin-top: 15px;">
+                                <div class="checklist">
+                                    <div class="checklist-item"><strong>P1 (Urgent):</strong> Fix immediately</div>
+                                    <div class="checklist-item"><strong>P2 (High):</strong> Fix soon</div>
+                                    <div class="checklist-item"><strong>P3 (Medium):</strong> Fix eventually</div>
+                                    <div class="checklist-item"><strong>P4 (Low):</strong> Can defer</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-box">
+                        <strong>💡 Important:</strong> A bug can be:<br>
+                        • Critical + P4: Rarely fix critical bugs quickly if not used often<br>
+                        • Low + P1: Fix simple issues fast if high priority<br>
+                        • Critical + P1: MUST fix - company logo not displaying (looks bad but critical to business)
+                    </div>
+
+                    <div class="subsection-title">🎯 Test Artifacts & Deliverables</div>
+
+                    <table>
+                        <tr>
+                            <th>Artifact</th>
+                            <th>Purpose</th>
+                            <th>Created By</th>
+                            <th>When</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Test Plan</strong></td>
+                            <td>Overall testing strategy & schedule</td>
+                            <td>Test Lead</td>
+                            <td>Project start</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Test Scenarios</strong></td>
+                            <td>High-level test flows</td>
+                            <td>Senior Tester</td>
+                            <td>Analysis phase</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Test Cases</strong></td>
+                            <td>Detailed step-by-step tests</td>
+                            <td>Test Engineers</td>
+                            <td>Design phase</td>
+                        </tr>
+                        <tr>
+                            <td><strong>RTM</strong></td>
+                            <td>Requirement to Test mapping</td>
+                            <td>Test Lead</td>
+                            <td>After test cases</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Bug Reports</strong></td>
+                            <td>Defect documentation</td>
+                            <td>Testers</td>
+                            <td>Execution phase</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Test Execution Report</strong></td>
+                            <td>Summary of test results</td>
+                            <td>Test Lead</td>
+                            <td>After each cycle</td>
+                        </tr>
+                    </table>
+
+                    <div class="subsection-title">📈 Bug Leakage vs Bug Release</div>
+
+                    <div class="comparison">
+                        <div class="comparison-box left">
+                            <h3>🔓 BUG LEAKAGE (Bad!)</h3>
+                            <p><strong>Definition:</strong> Bug found by customer that testing team missed<br><br>
+                            <strong>When:</strong> Defect reaches production<br><br>
+                            <strong>Impact:</strong> High - affects revenue<br><br>
+                            <strong>Root Cause:</strong><br>
+                            • Incomplete testing<br>
+                            • Missed edge cases<br>
+                            • Poor test coverage</p>
+                        </div>
+                        <div class="comparison-box right">
+                            <h3>📦 BUG RELEASE (Acceptable)</h3>
+                            <p><strong>Definition:</strong> Known bug released with approval<br><br>
+                            <strong>When:</strong> Customer agrees to live with it<br><br>
+                            <strong>Impact:</strong> Low - customer accepted<br><br>
+                            <strong>Reasons:</strong><br>
+                            • Time pressure<br>
+                            • Low severity<br>
+                            • Business decision</p>
+                        </div>
+                    </div>
+                `;
+            }
+
+            else if (s === 'basics' && sub === 'basics-quality') {
+                html += `
+                    <div class="section-title"><span>🏆</span> Quality, QA, and QC Explained</div>
+
+                    <div class="subsection-title">📚 Understanding Quality</div>
+
+                    <div class="info-box">
+                        <strong>Quality Definition:</strong><br>
+                        "Meeting customer requirements for the first time, every time"<br><br>
+                        Quality = <span class="highlight">No Defects</span> + <span class="highlight">Meets Expectations</span> + <span class="highlight">Right Cost</span>
+                    </div>
+
+                    <div class="grid-2">
+                        <div class="card">
+                            <h3 style="color: var(--primary);">🏗️ Producer View</h3>
+                            <p>Quality = Product meets <strong>specifications</strong></p>
+                            <div class="checklist">
+                                <div class="checklist-item">Correct implementation</div>
+                                <div class="checklist-item">All features working</div>
+                                <div class="checklist-item">No bugs</div>
+                                <div class="checklist-item">Performance targets met</div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <h3 style="color: var(--success);">👤 Customer View</h3>
+                            <p>Quality = Product <strong>fits for use</strong></p>
+                            <div class="checklist">
+                                <div class="checklist-item">Solves their problem</div>
+                                <div class="checklist-item">Easy to use</div>
+                                <div class="checklist-item">Reliable & stable</div>
+                                <div class="checklist-item">Value for money</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="subsection-title">🎯 QA vs QC vs Testing</div>
+
+                    <table>
+                        <tr>
+                            <th>Aspect</th>
+                            <th>QA (Quality Assurance)</th>
+                            <th>QC (Quality Control)</th>
+                            <th>Testing</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Focus</strong></td>
+                            <td>PROCESS prevention</td>
+                            <td>PRODUCT detection</td>
+                            <td>Specific verification</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Activity</strong></td>
+                            <td>Planning, reviewing</td>
+                            <td>Testing, finding defects</td>
+                            <td>Executing test cases</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Timing</strong></td>
+                            <td>Before development</td>
+                            <td>After development</td>
+                            <td>Execution phase</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Goal</strong></td>
+                            <td>Prevent defects</td>
+                            <td>Detect defects</td>
+                            <td>Find bugs early</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Approach</strong></td>
+                            <td>Proactive</td>
+                            <td>Reactive</td>
+                            <td>Systematic</td>
+                        </tr>
+                    </table>
+
+                    <div class="example-box">
+                        <strong>💼 Real Example:</strong><br>
+                        <strong>QA:</strong> Process says "Review requirements before coding"<br>
+                        <strong>QC:</strong> Test the requirement validation<br>
+                        <strong>Testing:</strong> Execute test cases on final product
+                    </div>
+
+                    <div class="subsection-title">📊 Quality Factors</div>
+
+                    <div class="info-box">
+                        <strong>Software Quality Factors (SQF):</strong>
+                        <div class="checklist" style="margin-top: 10px;">
+                            <div class="checklist-item"><strong>Correctness:</strong> Behaves as specified</div>
+                            <div class="checklist-item"><strong>Reliability:</strong> Performs consistently</div>
+                            <div class="checklist-item"><strong>Efficiency:</strong> Good performance</div>
+                            <div class="checklist-item"><strong>Usability:</strong> Easy to use</div>
+                            <div class="checklist-item"><strong>Maintainability:</strong> Easy to fix & modify</div>
+                            <div class="checklist-item"><strong>Testability:</strong> Easy to test</div>
+                            <div class="checklist-item"><strong>Portability:</strong> Works on different platforms</div>
+                            <div class="checklist-item"><strong>Integrity:</strong> Data protection</div>
+                        </div>
+                    </div>
+
+                    <div class="subsection-title">🔄 Verification vs Validation</div>
+
+                    <table>
+                        <tr>
+                            <th style="width: 25%;">Aspect</th>
+                            <th style="width: 37.5%;">Verification</th>
+                            <th style="width: 37.5%;">Validation</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Question</strong></td>
+                            <td>Are we building the product RIGHT?</td>
+                            <td>Are we building the RIGHT product?</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Focus</strong></td>
+                            <td>Process & design</td>
+                            <td>Final product & business needs</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Who</strong></td>
+                            <td>QA, Dev Team</td>
+                            <td>Testing Team, Customer</td>
+                        </tr>
+                        <tr>
+                            <td><strong>When</strong></td>
+                            <td>During development</td>
+                            <td>Testing & UAT</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Method</strong></td>
+                            <td>Review, inspection</td>
+                            <td>Testing, demos</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Example</strong></td>
+                            <td>Code review, design review</td>
+                            <td>Test execution, user acceptance</td>
+                        </tr>
+                    </table>
+
+                    <div class="warning-box">
+                        <strong>⚠️ Common Misconception:</strong><br>
+                        "If verification is done well, we don't need validation"<br><br>
+                        <strong>WRONG!</strong> You can build something correctly but it might not solve customer problems. Both are equally important!
+                    </div>
+                `;
+            }
+
+            else if (s === 'basics' && sub === 'basics-sdlc') {
+                html += `
+                    <div class="section-title"><span>🔄</span> SDLC and Testing Integration</div>
+
+                    <div class="subsection-title">📋 What is SDLC?</div>
+                    <p>SDLC (Software Development Life Cycle) is the complete process from concept to deployment. Testing is integrated at every phase.</p>
+
+                    <div class="subsection-title">🎯 SDLC Phases</div>
+
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-content">
+                                <h4 style="color: var(--primary);">1️⃣ Requirements Collection</h4>
+                                <p><strong>Activities:</strong></p>
+                                <div class="checklist">
+                                    <div class="checklist-item">Customer shares business needs</div>
+                                    <div class="checklist-item">BA creates Business Requirements Spec (BRS)</div>
+                                    <div class="checklist-item">Document features & constraints</div>
+                                </div>
+                                <p style="margin-top: 10px;"><strong>Testing Role:</strong> Understand requirements, prepare test strategy</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-content">
+                                <h4 style="color: var(--primary);">2️⃣ Requirements Analysis</h4>
+                                <p><strong>Activities:</strong></p>
+                                <div class="checklist">
+                                    <div class="checklist-item">System Analyst creates SRS (System Requirements Spec)</div>
+                                    <div class="checklist-item">Detailed functional & non-functional requirements</div>
+                                    <div class="checklist-item">Create use cases</div>
+                                </div>
+                                <p style="margin-top: 10px;"><strong>Testing Role:</strong> Write test scenarios from use cases</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-content">
+                                <h4 style="color: var(--primary);">3️⃣ Design Phase</h4>
+                                <p><strong>Activities:</strong></p>
+                                <div class="checklist">
+                                    <div class="checklist-item">Architecture design (high-level)</div>
+                                    <div class="checklist-item">Database design</div>
+                                    <div class="checklist-item">Technical design (low-level)</div>
+                                    <div class="checklist-item">Create prototypes/wireframes</div>
+                                </div>
+                                <p style="margin-top: 10px;"><strong>Testing Role:</strong> Design test cases from design docs</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-content">
+                                <h4 style="color: var(--primary);">4️⃣ Development/Coding</h4>
+                                <p><strong>Activities:</strong></p>
+                                <div class="checklist">
+                                    <div class="checklist-item">Developers write code</div>
+                                    <div class="checklist-item">Unit testing by developers</div>
+                                    <div class="checklist-item">Code reviews</div>
+                                    <div class="checklist-item">Create builds</div>
+                                </div>
+                                <p style="margin-top: 10px;"><strong>Testing Role:</strong> Prepare test environment</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-content">
+                                <h4 style="color: var(--primary);">5️⃣ Testing Phase</h4>
+                                <p><strong>Activities:</strong></p>
+                                <div class="checklist">
+                                    <div class="checklist-item">Test execution</div>
+                                    <div class="checklist-item">Bug finding & reporting</div>
+                                    <div class="checklist-item">Regression testing</div>
+                                    <div class="checklist-item">Test coverage analysis</div>
+                                </div>
+                                <p style="margin-top: 10px;"><strong>Testing Role:</strong> PRIME FOCUS - Execute all tests</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-content">
+                                <h4 style="color: var(--primary);">6️⃣ Deployment/Implementation</h4>
+                                <p><strong>Activities:</strong></p>
+                                <div class="checklist">
+                                    <div class="checklist-item">Release to production</div>
+                                    <div class="checklist-item">Smoke testing in production</div>
+                                    <div class="checklist-item">User training</div>
+                                </div>
+                                <p style="margin-top: 10px;"><strong>Testing Role:</strong> Final smoke test, support</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-content">
+                                <h4 style="color: var(--primary);">7️⃣ Maintenance</h4>
+                                <p><strong>Activities:</strong></p>
+                                <div class="checklist">
+                                    <div class="checklist-item">Monitor performance</div>
+                                    <div class="checklist-item">Fix production bugs</div>
+                                    <div class="checklist-item">Handle change requests</div>
+                                    <div class="checklist-item">Release patches</div>
+                                </div>
+                                <p style="margin-top: 10px;"><strong>Testing Role:</strong> UAT support, patch testing</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="subsection-title">📊 STLC (Software Test Life Cycle)</div>
+                    <p>Testing has its own lifecycle within SDLC:</p>
+
+                    <div class="flow">
+                        <div class="flow-item">System Study</div>
+                        <div style="font-size: 1.5em;">→</div>
+                        <div class="flow-item">Test Planning</div>
+                        <div style="font-size: 1.5em;">→</div>
+                        <div class="flow-item">Test Design</div>
+                        <div style="font-size: 1.5em;">→</div>
+                        <div class="flow-item">Test Execution</div>
+                        <div style="font-size: 1.5em;">→</div>
+                        <div class="flow-item">Test Closure</div>
+                    </div>
+
+                    <table>
+                        <tr>
+                            <th>STLC Phase</th>
+                            <th>Activities</th>
+                            <th>Deliverables</th>
+                        </tr>
+                        <tr>
+                            <td><strong>System Study</strong></td>
+                            <td>Understand requirements, Create test strategy</td>
+                            <td>Test Strategy Document</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Test Planning</strong></td>
+                            <td>Create test plan, Resource allocation</td>
+                            <td>Test Plan</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Test Design</strong></td>
+                            <td>Write test cases, Create RTM</td>
+                            <td>Test Cases, RTM</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Test Execution</strong></td>
+                            <td>Run tests, Find bugs, Log defects</td>
+                            <td>Test Results, Bug Reports</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Test Closure</strong></td>
+                            <td>Generate reports, Post-mortem meeting</td>
+                            <td>Test Summary Report</td>
+                        </tr>
+                    </table>
+
+                    <div class="chart-container">
+                        <canvas id="sdlcChart"></canvas>
+                    </div>
+
+                    <div class="info-box" style="margin-top: 20px;">
+                        <strong>💡 Key Insight:</strong><br>
+                        "Quality is not tested in, it's built in"<br><br>
+                        Better testing early (in design phase) is cheaper than fixing later in production!
+                    </div>
+                `;
+            }
+
+            else if (s === 'basics' && sub === 'basics-advanced') {
+                html += `
+                    <div class="section-title"><span>⚡</span> Advanced Testing Concepts</div>
+
+                    <div class="subsection-title">🎯 Entry & Exit Criteria</div>
+
+                    <div class="grid-2">
+                        <div class="card">
+                            <h3 style="color: var(--success);">✅ ENTRY CRITERIA</h3>
+                            <p><strong>When to START testing?</strong></p>
+                            <div class="checklist">
+                                <div class="checklist-item">Requirements finalized</div>
+                                <div class="checklist-item">Build ready & stable</div>
+                                <div class="checklist-item">Test cases approved</div>
+                                <div class="checklist-item">Test environment ready</div>
+                                <div class="checklist-item">Test data prepared</div>
+                                <div class="checklist-item">Resources available</div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <h3 style="color: var(--danger);">🛑 EXIT CRITERIA</h3>
+                            <p><strong>When to STOP testing?</strong></p>
+                            <div class="checklist">
+                                <div class="checklist-item">All test cases executed</div>
+                                <div class="checklist-item">95%+ pass rate achieved</div>
+                                <div class="checklist-item">Zero critical bugs open</div>
+                                <div class="checklist-item">Risk accepted by management</div>
+                                <div class="checklist-item">Test reports signed off</div>
+                                <div class="checklist-item">Release date reached</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="subsection-title">🔄 Testing Cycles & Respins</div>
+
+                    <div class="info-box">
+                        <strong>Test Cycle:</strong> Complete execution of all test cases for a build<br>
+                        <strong>Respin:</strong> Quick rebuild to fix critical blocking bugs<br><br>
+                        <strong>Example:</strong><br>
+                        • Day 1-5: Test Cycle 1 → Find bugs<br>
+                        • Day 2: Blocker found (login broken) → Respin needed<br>
+                        • Day 3: Patched build arrives → Retest blocker<br>
+                        • Day 5: Complete Cycle 1<br>
+                        • Day 6-10: Test Cycle 2 → More detailed testing
+                    </div>
+
+                    <div class="subsection-title">📊 Test Metrics & Measurements</div>
+
+                    <table>
+                        <tr>
+                            <th>Metric</th>
+                            <th>Formula</th>
+                            <th>Interpretation</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Pass Rate</strong></td>
+                            <td>Passed Tests / Total Tests × 100</td>
+                            <td>Quality indicator (should be >95%)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Bug Density</strong></td>
+                            <td>Bugs Found / KLOC (1000 lines)</td>
+                            <td>Defects per module (benchmark: 2-5)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Test Coverage</strong></td>
+                            <td>Test Cases Written / Requirements × 100</td>
+                            <td>Req coverage (should be 100%)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Defect Escape %</strong></td>
+                            <td>Production Defects / Total Defects × 100</td>
+                            <td>Testing effectiveness (lower = better)</td>
+                        </tr>
+                    </table>
+
+                    <div class="subsection-title">📈 RTM (Requirement Traceability Matrix)</div>
+
+                    <div class="info-box">
+                        <strong>Purpose:</strong> Ensure every requirement has at least one test case<br><br>
+                        <strong>Benefits:</strong>
+                        <div class="checklist" style="margin-top: 10px;">
+                            <div class="checklist-item">Verify 100% requirement coverage</div>
+                            <div class="checklist-item">Track requirement changes</div>
+                            <div class="checklist-item">Link requirements to automation</div>
+                            <div class="checklist-item">Identify gaps</div>
+                        </div>
+                    </div>
+
+                    <table>
+                        <tr>
+                            <th>Requirement ID</th>
+                            <th>Requirement Description</th>
+                            <th>Test Case</th>
+                            <th>Automation</th>
+                        </tr>
+                        <tr>
+                            <td>REQ-001</td>
+                            <td>Login with username/password</td>
+                            <td>TC-LOGIN-001</td>
+                            <td>✓ Automated</td>
+                        </tr>
+                        <tr>
+                            <td>REQ-002</td>
+                            <td>Password reset functionality</td>
+                            <td>TC-RESET-001</td>
+                            <td>Manual</td>
+                        </tr>
+                        <tr>
+                            <td>REQ-003</td>
+                            <td style="color: var(--danger);"><strong>UI Validations</strong></td>
+                            <td><span style="color: var(--danger); font-weight: bold;">MISSING</span></td>
+                            <td>-</td>
+                        </tr>
+                    </table>
+
+                    <div class="example-box" style="margin-top: 20px;">
+                        <strong>⚠️ Red Flag:</strong> REQ-003 has no test case! Must create TC-UI-001 to complete RTM.
+                    </div>
+
+                    <div class="subsection-title">🎯 Role-Based Responsibilities</div>
+
+                    <table>
+                        <tr>
+                            <th>Role</th>
+                            <th>Responsibilities</th>
+                            <th>Experience Level</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Test Manager</strong></td>
+                            <td>Write test plan, manage resources, escalations, sign-off</td>
+                            <td>10+ years</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Test Lead</strong></td>
+                            <td>Review test plan, allocate work, consolidate reports</td>
+                            <td>7-10 years</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Senior QA</strong></td>
+                            <td>Write test cases, review, execute complex scenarios</td>
+                            <td>5-7 years</td>
+                        </tr>
+                        <tr>
+                            <td><strong>QA Engineer</strong></td>
+                            <td>Write & execute test cases, report bugs</td>
+                            <td>2-4 years</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Junior QA</strong></td>
+                            <td>Execute test cases, basic testing</td>
+                            <td>0-2 years</td>
+                        </tr>
+                    </table>
+
+                    <div class="subsection-title">🏆 Key Success Factors</div>
+
+                    <div class="warning-box">
+                        <strong>Mistakes to Avoid:</strong>
+                        <div class="checklist" style="margin-top: 10px;">
+                            <div class="checklist-item">Starting testing without clear requirements</div>
+                            <div class="checklist-item">Testing without proper test plan</div>
+                            <div class="checklist-item">Skipping RTM creation</div>
+                            <div class="checklist-item">Not documenting test cases</div>
+                            <div class="checklist-item">Releasing with critical bugs</div>
+                            <div class="checklist-item">Poor communication with dev team</div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            else {
+                html += `
+                    <div class="section-title">📚 Content Loading...</div>
+                    <p>This section is being populated with comprehensive content. Check back soon!</p>
+                    <p><strong>Section:</strong> ${s} → ${sub}</p>
+                `;
+            }
+
+            html += '</div>';
+            return html;
+        }
+
+        function initCharts() {
+            // Cost Chart
+            const costCtx = document.getElementById('costChart');
+            if (costCtx && !costCtx.chart) {
+                costCtx.chart = new Chart(costCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Requirements', 'Design', 'Coding', 'Testing', 'Production'],
+                        datasets: [{
+                            label: 'Cost to Fix Defect ($)',
+                            data: [100, 500, 1000, 5000, 50000],
+                            backgroundColor: [
+                                'rgba(76, 175, 80, 0.7)',
+                                'rgba(255, 193, 7, 0.7)',
+                                'rgba(255, 152, 0, 0.7)',
+                                'rgba(244, 67, 54, 0.7)',
+                                'rgba(211, 47, 47, 0.9)'
+                            ],
+                            borderColor: [
+                                'rgba(76, 175, 80, 1)',
+                                'rgba(255, 193, 7, 1)',
+                                'rgba(255, 152, 0, 1)',
+                                'rgba(244, 67, 54, 1)',
+                                'rgba(211, 47, 47, 1)'
+                            ],
+                            borderWidth: 2
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            }
+
+            // Defect Chart
+            const defectCtx = document.getElementById('defectChart');
+            if (defectCtx && !defectCtx.chart) {
+                defectCtx.chart = new Chart(defectCtx, {
+                    type: 'line',
+                    data: {
+                        labels: ['Module A', 'Module B', 'Module C', 'Module D', 'Module E'],
+                        datasets: [{
+                            label: 'Defects Found',
+                            data: [150, 80, 40, 20, 10],
+                            borderColor: 'rgba(102, 126, 234, 1)',
+                            backgroundColor: 'rgba(102, 126, 234, 0.1)',
+                            fill: true,
+                            tension: 0.4,
+                            pointBackgroundColor: 'rgba(102, 126, 234, 1)',
+                            pointBorderColor: '#fff',
+                            pointBorderWidth: 2,
+                            pointRadius: 6
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            }
+
+            // Usage Chart
+            const usageCtx = document.getElementById('usageChart');
+            if (usageCtx && !usageCtx.chart) {
+                usageCtx.chart = new Chart(usageCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Manual Testing', 'Automation', 'Hybrid'],
+                        datasets: [{
+                            data: [68, 22, 10],
+                            backgroundColor: [
+                                'rgba(102, 126, 234, 0.8)',
+                                'rgba(118, 75, 162, 0.8)',
+                                'rgba(255, 193, 7, 0.8)'
+                            ],
+                            borderColor: [
+                                'rgba(102, 126, 234, 1)',
+                                'rgba(118, 75, 162, 1)',
+                                'rgba(255, 193, 7, 1)'
+                            ],
+                            borderWidth: 2
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'bottom'
+                            }
+                        }
+                    }
+                });
+            }
+
+            // SDLC Chart
+            const sdlcCtx = document.getElementById('sdlcChart');
+            if (sdlcCtx && !sdlcCtx.chart) {
+                sdlcCtx.chart = new Chart(sdlcCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Requirements', 'Analysis', 'Design', 'Development', 'Testing', 'Deployment'],
+                        datasets: [{
+                            label: 'Testing Effort %',
+                            data: [5, 10, 15, 5, 60, 5],
+                            backgroundColor: [
+                                'rgba(102, 126, 234, 0.7)',
+                                'rgba(118, 75, 162, 0.7)',
+                                'rgba(255, 193, 7, 0.7)',
+                                'rgba(76, 175, 80, 0.7)',
+                                'rgba(244, 67, 54, 0.7)',
+                                'rgba(33, 150, 243, 0.7)'
+                            ],
+                            borderColor: [
+                                'rgba(102, 126, 234, 1)',
+                                'rgba(118, 75, 162, 1)',
+                                'rgba(255, 193, 7, 1)',
+                                'rgba(76, 175, 80, 1)',
+                                'rgba(244, 67, 54, 1)',
+                                'rgba(33, 150, 243, 1)'
+                            ],
+                            borderWidth: 2
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                max: 100
+                            }
+                        }
+                    }
+                });
+            }
+        }
+
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', () => {
+            generateNav();
+            loadContent('intro', 'intro-what');
+        });
+    </script>
+</body>
+</html>

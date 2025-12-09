@@ -1,0 +1,1900 @@
+
+<!-- STLC & PROCESS MAIN SECTION -->
+<div id="stlcProcess" class="tab-content">
+    <!-- Header -->
+    <div class="section-header">
+        <h1>🔄 STLC & Process Methodologies</h1>
+        <p class="subtitle">Master the complete Software Testing Lifecycle and Project Execution Strategies</p>
+    </div>
+
+    <!-- Statistics Box -->
+    <div class="stats-container">
+        <div class="stat-box">
+            <div class="stat-number">9</div>
+            <div class="stat-label">SDLC Models</div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-number">8</div>
+            <div class="stat-label">STLC Phases</div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-number">15</div>
+            <div class="stat-label">Test Plan Sections</div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-number">80%</div>
+            <div class="stat-label">Test Execution Time</div>
+        </div>
+    </div>
+
+    <!-- Main Navigation Tabs -->
+    <div class="process-nav-tabs">
+        <button class="nav-tab active" data-target="stlcOverview">📋 STLC Overview</button>
+        <button class="nav-tab" data-target="sdlcModels">🏗️ SDLC Models</button>
+        <button class="nav-tab" data-target="stlcPhases">🔁 STLC Phases</button>
+        <button class="nav-tab" data-target="testPlan">📝 Test Planning</button>
+        <button class="nav-tab" data-target="agileProcess">⚡ Agile & Scrum</button>
+        <button class="nav-tab" data-target="entryExitCriteria">🚪 Entry/Exit Criteria</button>
+        <button class="nav-tab" data-target="advancedTopics">🎓 Advanced Topics</button>
+    </div>
+
+    <!-- ==================== STLC OVERVIEW ==================== -->
+    <div id="stlcOverview" class="process-content active">
+        <div class="content-header">
+            <h2>📋 Software Testing Lifecycle (STLC) Overview</h2>
+            <p>STLC is part of SDLC that defines the structured approach to testing at each stage of development</p>
+        </div>
+
+        <!-- STLC Definition Card -->
+        <div class="info-card gradient-blue">
+            <h3>🎯 What is STLC?</h3>
+            <p><strong>STLC (Software Testing Lifecycle)</strong> is a systematic process that involves planning, designing, executing, and closing test activities throughout the software development lifecycle.</p>
+            <div class="highlight-box">
+                <strong>Key Point:</strong> STLC is part of SDLC, and Defect Life Cycle is part of STLC
+            </div>
+        </div>
+
+        <!-- STLC Flow Diagram -->
+        <div class="flow-diagram">
+            <div class="flow-title">🔄 STLC Complete Flow</div>
+            <div class="flow-steps">
+                <div class="step-box step-1">
+                    <div class="step-num">1</div>
+                    <div class="step-name">Requirements<br>Collection</div>
+                </div>
+                <div class="arrow">→</div>
+                <div class="step-box step-2">
+                    <div class="step-num">2</div>
+                    <div class="step-name">System<br>Study</div>
+                </div>
+                <div class="arrow">→</div>
+                <div class="step-box step-3">
+                    <div class="step-num">3</div>
+                    <div class="step-name">Test<br>Planning</div>
+                </div>
+                <div class="arrow">→</div>
+                <div class="step-box step-4">
+                    <div class="step-num">4</div>
+                    <div class="step-name">Test Case<br>Design</div>
+                </div>
+            </div>
+            <div class="flow-steps">
+                <div class="step-box step-5">
+                    <div class="step-num">5</div>
+                    <div class="step-name">Test<br>Execution</div>
+                </div>
+                <div class="arrow">→</div>
+                <div class="step-box step-6">
+                    <div class="step-num">6</div>
+                    <div class="step-name">Defect<br>Tracking</div>
+                </div>
+                <div class="arrow">→</div>
+                <div class="step-box step-7">
+                    <div class="step-num">7</div>
+                    <div class="step-name">Test<br>Closure</div>
+                </div>
+                <div class="arrow">→</div>
+                <div class="step-box step-8">
+                    <div class="step-num">8</div>
+                    <div class="step-name">Retrospect<br>Meeting</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- STLC Time Distribution -->
+        <div class="info-card gradient-yellow">
+            <h3>⏱️ STLC Time Distribution</h3>
+            <div class="time-distribution">
+                <div class="time-item">
+                    <span class="time-phase">Planning & Design</span>
+                    <div class="time-bar" style="width: 20%;">
+                        <span class="time-percent">20%</span>
+                    </div>
+                </div>
+                <div class="time-item">
+                    <span class="time-phase">Test Execution</span>
+                    <div class="time-bar active" style="width: 80%;">
+                        <span class="time-percent">80%</span>
+                    </div>
+                </div>
+            </div>
+            <p><strong>Insight:</strong> Majority of testing effort is spent on test execution and cycle iterations</p>
+        </div>
+
+        <!-- Key Components Table -->
+        <div class="table-section">
+            <h3>📊 STLC Key Components & Deliverables</h3>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Phase</th>
+                        <th>Key Activities</th>
+                        <th>Deliverables</th>
+                        <th>Responsibility</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Test Planning</strong></td>
+                        <td>Strategy, scope, resources, schedule</td>
+                        <td>Test Plan Document</td>
+                        <td>Test Manager / Lead</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Test Design</strong></td>
+                        <td>Test cases, scenarios, data preparation</td>
+                        <td>Test Cases, RTM, Test Scripts</td>
+                        <td>Test Engineer</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Test Execution</strong></td>
+                        <td>Execute test cases, report results</td>
+                        <td>Test Execution Report, Defect Report</td>
+                        <td>Quality Analyst</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Defect Tracking</strong></td>
+                        <td>Log, track, manage defects</td>
+                        <td>Defect Report, Metrics</td>
+                        <td>Test Lead</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Test Closure</strong></td>
+                        <td>Final reporting, lessons learned</td>
+                        <td>Test Closure Report, RTM</td>
+                        <td>Test Manager</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Quick Facts -->
+        <div class="alert-box alert-info">
+            <strong>💡 STLC Best Practices:</strong>
+            <ul>
+                <li>Involve all stakeholders from the beginning</li>
+                <li>Define clear entry and exit criteria for each phase</li>
+                <li>Maintain comprehensive documentation</li>
+                <li>Track metrics continuously</li>
+                <li>Conduct retrospective meetings after each release</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ==================== SDLC MODELS ==================== -->
+    <div id="sdlcModels" class="process-content">
+        <div class="content-header">
+            <h2>🏗️ SDLC Models & Testing Integration</h2>
+            <p>Understanding different SDLC models and how testing fits into each approach</p>
+        </div>
+
+        <!-- SDLC Models Tabs -->
+        <div class="model-tabs">
+            <button class="model-tab active" data-model="waterfall">💧 Waterfall</button>
+            <button class="model-tab" data-model="spiral">🌀 Spiral</button>
+            <button class="model-tab" data-model="vmodel">V-Model</button>
+            <button class="model-tab" data-model="prototype">🎨 Prototype</button>
+            <button class="model-tab" data-model="agile">⚡ Agile</button>
+            <button class="model-tab" data-model="hybrid">🔗 Hybrid</button>
+        </div>
+
+        <!-- Waterfall Model -->
+        <div id="waterfall-model" class="model-content active">
+            <div class="model-card">
+                <h3>💧 Waterfall Model</h3>
+                <div class="model-flow">
+                    <div class="model-phase">Requirements</div>
+                    <div class="model-phase">Analysis</div>
+                    <div class="model-phase">Design</div>
+                    <div class="model-phase">Coding</div>
+                    <div class="model-phase">Testing</div>
+                    <div class="model-phase">Deployment</div>
+                </div>
+
+                <div class="model-details">
+                    <h4>Characteristics:</h4>
+                    <ul>
+                        <li>Sequential, phase-by-phase approach</li>
+                        <li>Testing starts AFTER development is complete</li>
+                        <li>No backtracking allowed</li>
+                        <li>Rigid structure, fixed requirements</li>
+                    </ul>
+
+                    <h4>✅ Advantages:</h4>
+                    <ul>
+                        <li>Simple and easy to understand</li>
+                        <li>Well-organized with clear deliverables</li>
+                        <li>Stable for projects with fixed requirements</li>
+                    </ul>
+
+                    <h4>❌ Disadvantages:</h4>
+                    <ul>
+                        <li>Late defect detection (expensive to fix)</li>
+                        <li>Bugs flow downward through phases</li>
+                        <li>No flexibility for requirement changes</li>
+                        <li>High risk for complex projects</li>
+                    </ul>
+
+                    <h4>🎯 When to Use:</h4>
+                    <p>Short-term projects, well-defined requirements, simple applications (e.g., calculators)</p>
+
+                    <h4>⚠️ Testing Challenges:</h4>
+                    <div class="risk-box">
+                        <strong>High Risk:</strong> Testing only validates if requirements are met, not if they're right
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Spiral Model -->
+        <div id="spiral-model" class="model-content">
+            <div class="model-card">
+                <h3>🌀 Spiral Model (Iterative)</h3>
+                <div class="model-description">
+                    <p>Combines advantages of waterfall and iterative approaches. Development and testing happen in cycles for each module.</p>
+                </div>
+
+                <div class="spiral-flow">
+                    <div class="spiral-section">
+                        <strong>Cycle 1:</strong> Module A (Req → Design → Code → Test)
+                    </div>
+                    <div class="spiral-section">
+                        <strong>Cycle 2:</strong> Module B (Test B + Integration B-A)
+                    </div>
+                    <div class="spiral-section">
+                        <strong>Cycle 3:</strong> Module C (Test C + Integration C-A-B)
+                    </div>
+                </div>
+
+                <div class="model-details">
+                    <h4>Testing Strategy:</h4>
+                    <ul>
+                        <li>Unit test each module after coding</li>
+                        <li>Integration test with previously tested modules</li>
+                        <li>Continuous testing in each cycle</li>
+                    </ul>
+
+                    <h4>✅ Advantages:</h4>
+                    <ul>
+                        <li>Early defect detection</li>
+                        <li>Allows requirement changes between cycles</li>
+                        <li>Lower cost of change</li>
+                        <li>Risk identification at each cycle</li>
+                    </ul>
+
+                    <h4>🎯 Best For:</h4>
+                    <p>Projects with module dependencies, staged requirements, large applications (MS-Excel style)</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- V-Model -->
+        <div id="vmodel-model" class="model-content">
+            <div class="model-card">
+                <h3>V-Model (Verification & Validation)</h3>
+                <p><strong>Key Innovation:</strong> Testing starts from the requirement stage, not after coding</p>
+
+                <div class="v-model-diagram">
+                    <div class="v-left">
+                        <div class="v-phase"><strong>CRS</strong> → Review CRS, Write ATP</div>
+                        <div class="v-phase"><strong>SRS</strong> → Review SRS, Write STP</div>
+                        <div class="v-phase"><strong>HLD</strong> → Review HLD, Write ITP</div>
+                        <div class="v-phase"><strong>LLD</strong> → Review LLD, Write FTP</div>
+                    </div>
+                    <div class="v-center">
+                        <strong>CODING</strong>
+                    </div>
+                    <div class="v-right">
+                        <div class="v-phase">← Unit Testing ← LLD Review</div>
+                        <div class="v-phase">← Functional Testing ← HLD Review</div>
+                        <div class="v-phase">← Integration Testing ← SRS Review</div>
+                        <div class="v-phase">← System Testing ← CRS Review</div>
+                    </div>
+                </div>
+
+                <div class="model-details">
+                    <h4>✅ Key Advantages:</h4>
+                    <ul>
+                        <li><strong>Early Testing:</strong> Catches defects at early stages</li>
+                        <li><strong>Parallel Activities:</strong> Dev and Testing teams work simultaneously</li>
+                        <li><strong>Reduced Rework:</strong> Avoids downward flow of defects</li>
+                        <li><strong>Lower Cost:</strong> Less re-work needed</li>
+                        <li><strong>Higher Quality:</strong> Testing involved at every stage</li>
+                    </ul>
+
+                    <h4>❌ Disadvantages:</h4>
+                    <ul>
+                        <li>High initial investment (testing team needed from start)</li>
+                        <li>Extensive documentation requirements</li>
+                        <li>No working prototype until late in cycle</li>
+                    </ul>
+
+                    <h4>🎯 When to Use:</h4>
+                    <p>Long-term projects, complex applications, quality-critical systems, regulated industries</p>
+
+                    <h4>📊 Test Cost Comparison</h4>
+                    <div class="cost-comparison">
+                        <div class="cost-item">
+                            <span>Waterfall: 💰💰💰💰💰</span>
+                            <p>High defect-fix costs</p>
+                        </div>
+                        <div class="cost-item">
+                            <span>V-Model: 💰💰</span>
+                            <p>Lower overall cost</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Prototype Model -->
+        <div id="prototype-model" class="model-content">
+            <div class="model-card">
+                <h3>🎨 Prototype Model</h3>
+                <p>Focus on creating a prototype (mock-up) to understand and validate requirements</p>
+
+                <div class="prototype-flow">
+                    <div class="proto-step">1. Req Collection</div>
+                    <div class="proto-arrow">→</div>
+                    <div class="proto-step">2. Build Prototype</div>
+                    <div class="proto-arrow">→</div>
+                    <div class="proto-step">3. Customer Review</div>
+                    <div class="proto-arrow">→</div>
+                    <div class="proto-step">4. Approve/Change</div>
+                    <div class="proto-arrow">→</div>
+                    <div class="proto-step">5. Real Development</div>
+                </div>
+
+                <div class="model-details">
+                    <h4>Two Types of Prototypes:</h4>
+                    <ul>
+                        <li><strong>Static:</strong> Documentation with screenshots and instructions</li>
+                        <li><strong>Dynamic:</strong> Interactive dummy pages (HTML mock)</li>
+                    </ul>
+
+                    <h4>✅ Advantages:</h4>
+                    <ul>
+                        <li>Sets customer expectations early</li>
+                        <li>Easy requirement changes in prototype phase</li>
+                        <li>Better communication between teams</li>
+                    </ul>
+
+                    <h4>🎯 When to Use:</h4>
+                    <p>New customers, new domain, unclear requirements</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Model Comparison Table -->
+        <div class="table-section" style="margin-top: 30px;">
+            <h3>📊 SDLC Models Comparison</h3>
+            <table class="data-table comparison-table">
+                <thead>
+                    <tr>
+                        <th>Aspect</th>
+                        <th>Waterfall</th>
+                        <th>Spiral</th>
+                        <th>V-Model</th>
+                        <th>Agile</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Testing Start</strong></td>
+                        <td>After Coding</td>
+                        <td>Each Cycle</td>
+                        <td>From Requirement</td>
+                        <td>Every Sprint</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Flexibility</strong></td>
+                        <td>Low</td>
+                        <td>High</td>
+                        <td>Medium</td>
+                        <td>Very High</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Cost</strong></td>
+                        <td>High (Late fixes)</td>
+                        <td>Medium</td>
+                        <td>Low (Early fixes)</td>
+                        <td>Medium</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Time to Market</strong></td>
+                        <td>Longest</td>
+                        <td>Medium</td>
+                        <td>Long</td>
+                        <td>Shortest</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Risk Level</strong></td>
+                        <td>High</td>
+                        <td>Medium</td>
+                        <td>Low</td>
+                        <td>Medium</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- ==================== STLC PHASES ==================== -->
+    <div id="stlcPhases" class="process-content">
+        <div class="content-header">
+            <h2>🔁 Complete STLC Phases - Deep Dive</h2>
+            <p>Detailed breakdown of each phase in Software Testing Lifecycle</p>
+        </div>
+
+        <!-- Phase 1: Requirements Collection & System Study -->
+        <div class="phase-card">
+            <div class="phase-header phase-1">
+                <h3>Phase 1️⃣: Requirements Collection & System Study</h3>
+            </div>
+            <div class="phase-body">
+                <h4>📋 Activities:</h4>
+                <ul>
+                    <li><strong>Collect Requirements:</strong> From Business Analysts and Customers</li>
+                    <li><strong>Document Formats:</strong>
+                        <ul>
+                            <li>CRS - Customer Requirement Specification</li>
+                            <li>BRS - Business Requirement Specification</li>
+                            <li>SRS - System Requirement Specification</li>
+                            <li>FS - Functional Specification</li>
+                        </ul>
+                    </li>
+                    <li><strong>System Study:</strong> Understand application functionality</li>
+                    <li><strong>Use Case Analysis:</strong> How end users interact with system</li>
+                </ul>
+
+                <h4>🎯 Key Responsibilities:</h4>
+                <div class="responsibility-box">
+                    <div class="resp-item">
+                        <strong>Test Manager:</strong> Initiates testing process, understands business goals
+                    </div>
+                    <div class="resp-item">
+                        <strong>Test Lead:</strong> Reviews requirements with team, identifies dependencies
+                    </div>
+                    <div class="resp-item">
+                        <strong>Test Engineers:</strong> Study requirements and design documents
+                    </div>
+                </div>
+
+                <h4>📊 Deliverables:</h4>
+                <ul>
+                    <li>Requirements Document Review</li>
+                    <li>System Study Report</li>
+                    <li>Risk Identification</li>
+                </ul>
+
+                <h4>⚠️ Common Issues:</h4>
+                <div class="alert-box alert-warning">
+                    <ul>
+                        <li>Unclear or changing requirements</li>
+                        <li>Missing business logic documentation</li>
+                        <li>Lack of stakeholder communication</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Phase 2: Test Planning -->
+        <div class="phase-card">
+            <div class="phase-header phase-2">
+                <h3>Phase 2️⃣: Test Planning & Strategy</h3>
+            </div>
+            <div class="phase-body">
+                <h4>📋 Test Plan Document (15 Sections):</h4>
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <strong>1. Objective</strong>
+                        <p>Why we are creating the test plan - scope and goals</p>
+                    </div>
+                    <div class="accordion-item">
+                        <strong>2. Scope</strong>
+                        <p>Features to test, features NOT to test, reasons</p>
+                    </div>
+                    <div class="accordion-item">
+                        <strong>3. Testing Methodologies</strong>
+                        <p>Types of testing: Functional, Non-functional, Smoke, etc.</p>
+                    </div>
+                    <div class="accordion-item">
+                        <strong>4. Approach</strong>
+                        <p>High-level scenarios and flow graphs</p>
+                    </div>
+                    <div class="accordion-item">
+                        <strong>5. Assumptions</strong>
+                        <p>Resource availability, technology, timeline assumptions</p>
+                    </div>
+                    <div class="accordion-item">
+                        <strong>6. Risks</strong>
+                        <p>Potential challenges and mitigation plans</p>
+                    </div>
+                    <div class="accordion-item">
+                        <strong>7. Contingency Plan</strong>
+                        <p>Backup plans to overcome identified risks</p>
+                    </div>
+                    <div class="accordion-item">
+                        <strong>8. Roles & Responsibilities</strong>
+                        <p>Who does what - Test Manager, Lead, Engineers</p>
+                    </div>
+                    <div class="accordion-item">
+                        <strong>9-15. Additional Sections</strong>
+                        <p>Timeline, Test Environment, Entry/Exit Criteria, Automation, Deliverables, Communication, Review</p>
+                    </div>
+                </div>
+
+                <h4>⏰ Time Estimates:</h4>
+                <div class="estimate-box">
+                    <div class="estimate-item">
+                        <strong>3-5 test cases/day</strong> ← Initial writing
+                    </div>
+                    <div class="estimate-item">
+                        <strong>24-30 test cases/day</strong> ← Review (3x write rate)
+                    </div>
+                    <div class="estimate-item">
+                        <strong>35-60 test cases/day</strong> ← Execution (5x write rate)
+                    </div>
+                </div>
+
+                <h4>✅ Entry Criteria:</h4>
+                <ul>
+                    <li>Requirements are finalized and approved</li>
+                    <li>Project scope is defined</li>
+                    <li>Resources identified</li>
+                    <li>Testability assessment done</li>
+                </ul>
+
+                <h4>📊 Deliverables:</h4>
+                <ul>
+                    <li>Comprehensive Test Plan (IEEE 829 Format)</li>
+                    <li>Test Strategy Document</li>
+                    <li>Risk Assessment Report</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Phase 3: Test Case Design -->
+        <div class="phase-card">
+            <div class="phase-header phase-3">
+                <h3>Phase 3️⃣: Test Case Design & Preparation</h3>
+            </div>
+            <div class="phase-body">
+                <h4>📋 Test Case Structure:</h4>
+                <div class="code-example">
+                    <strong>Header:</strong> Test Name, ID, Module, Severity, Type
+                    <br><strong>Body:</strong> Steps, Expected Results, Test Data
+                    <br><strong>Footer:</strong> Author, Reviewer, Status
+                </div>
+
+                <h4>🎯 Test Case Writing Process:</h4>
+                <ol>
+                    <li>System Study → Understand functionality</li>
+                    <li>Identify Scenarios → All possible user paths</li>
+                    <li>Write Test Cases → Apply design techniques</li>
+                    <li>Review Test Cases → Peer review, manager approval</li>
+                    <li>Store in Repository → Version control</li>
+                </ol>
+
+                <h4>📊 Traceability Matrix (RTM):</h4>
+                <p>Ensures every requirement has at least one test case</p>
+                <table class="mini-table">
+                    <tr>
+                        <th>Requirement ID</th>
+                        <th>Requirement Description</th>
+                        <th>Test Case Name</th>
+                    </tr>
+                    <tr>
+                        <td>REQ-1.1</td>
+                        <td>User login with valid credentials</td>
+                        <td>TC-LOGIN-001</td>
+                    </tr>
+                    <tr>
+                        <td>REQ-1.2</td>
+                        <td>User login with invalid credentials</td>
+                        <td>TC-LOGIN-002</td>
+                    </tr>
+                </table>
+
+                <h4>⏱️ Test Case Metrics:</h4>
+                <div class="metrics-box">
+                    <div class="metric">
+                        <strong>For 70 screens:</strong> 1050-1200 test cases
+                    </div>
+                    <div class="metric">
+                        <strong>Per screen:</strong> 10-15 test cases (FT, IT, ST scenarios)
+                    </div>
+                    <div class="metric">
+                        <strong>Average steps:</strong> 20-40 steps per test case
+                    </div>
+                </div>
+
+                <h4>📊 Deliverables:</h4>
+                <ul>
+                    <li>Test Cases Document (with 100+ cases)</li>
+                    <li>Test Scenarios Document</li>
+                    <li>Traceability Matrix (RTM)</li>
+                    <li>Test Data Repository</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Phase 4: Test Execution -->
+        <div class="phase-card">
+            <div class="phase-header phase-4">
+                <h3>Phase 4️⃣: Test Execution & Validation</h3>
+            </div>
+            <div class="phase-body">
+                <h4>🔄 Test Execution Cycles:</h4>
+                <div class="cycle-box">
+                    <strong>Cycle 1 (Exploratory):</strong> Quick sanity check to ensure basic functionality
+                    <div class="cycle-detail">Testers: Testing team | Duration: 1-2 days | Type: Exploratory/Ad-hoc</div>
+                </div>
+                <div class="cycle-box">
+                    <strong>Cycle 2 (Functional):</strong> Comprehensive test case execution
+                    <div class="cycle-detail">Testers: Dedicated test engineers | Duration: 5-10 days | Type: Planned execution</div>
+                </div>
+                <div class="cycle-box">
+                    <strong>Cycle 3+ (Regression):</strong> Re-test old features and new features after bug fixes
+                    <div class="cycle-detail">Testers: Full team | Duration: Varying | Type: Regression + Unit regression</div>
+                </div>
+
+                <h4>📊 Test Execution Report (TER):</h4>
+                <table class="mini-table">
+                    <tr>
+                        <th>Module</th>
+                        <th>Total TC</th>
+                        <th>Executed</th>
+                        <th>Pass</th>
+                        <th>Fail</th>
+                        <th>Pass %</th>
+                    </tr>
+                    <tr>
+                        <td>Login</td>
+                        <td>50</td>
+                        <td>50</td>
+                        <td>48</td>
+                        <td>2</td>
+                        <td>96%</td>
+                    </tr>
+                    <tr>
+                        <td>Dashboard</td>
+                        <td>75</td>
+                        <td>70</td>
+                        <td>65</td>
+                        <td>5</td>
+                        <td>92%</td>
+                    </tr>
+                </table>
+
+                <h4>✅ Entry Criteria:</h4>
+                <ul>
+                    <li>Test cases approved and finalized</li>
+                    <li>Build/deployment ready</li>
+                    <li>Test environment configured</li>
+                    <li>Test data prepared</li>
+                    <li>All resources available</li>
+                </ul>
+
+                <h4>🚪 Exit Criteria:</h4>
+                <ul>
+                    <li>95%+ test cases executed</li>
+                    <li>85%+ test pass rate</li>
+                    <li>0 critical bugs remaining</li>
+                    <li>All defects logged and tracked</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Phase 5: Defect Tracking -->
+        <div class="phase-card">
+            <div class="phase-header phase-5">
+                <h3>Phase 5️⃣: Defect Tracking & Management</h3>
+            </div>
+            <div class="phase-body">
+                <h4>🐛 Defect Lifecycle:</h4>
+                <div class="lifecycle-flow">
+                    <div class="lifecycle-step">NEW</div>
+                    <div class="step-arrow">→</div>
+                    <div class="lifecycle-step">ASSIGNED</div>
+                    <div class="step-arrow">→</div>
+                    <div class="lifecycle-step">IN PROGRESS</div>
+                    <div class="step-arrow">→</div>
+                    <div class="lifecycle-step">FIXED</div>
+                    <div class="step-arrow">→</div>
+                    <div class="lifecycle-step">VERIFIED</div>
+                    <div class="step-arrow">→</div>
+                    <div class="lifecycle-step">CLOSED</div>
+                </div>
+
+                <h4>💾 Defect Report Contents:</h4>
+                <ul>
+                    <li><strong>Defect ID:</strong> Unique identifier</li>
+                    <li><strong>Title:</strong> Brief description</li>
+                    <li><strong>Severity:</strong> Critical, Major, Minor, Cosmetic</li>
+                    <li><strong>Priority:</strong> P1 (Urgent), P2 (High), P3 (Medium), P4 (Low)</li>
+                    <li><strong>Steps to Reproduce:</strong> Exact steps that caused defect</li>
+                    <li><strong>Expected vs Actual:</strong> What should happen vs what happened</li>
+                    <li><strong>Screenshots/Attachments:</strong> Evidence of the issue</li>
+                </ul>
+
+                <h4>⚖️ Severity vs Priority Matrix:</h4>
+                <table class="mini-table">
+                    <tr>
+                        <th>Severity/Priority</th>
+                        <th>High</th>
+                        <th>Medium</th>
+                        <th>Low</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Critical</strong></td>
+                        <td>System crash - Fix immediately</td>
+                        <td>Major feature broken - High priority</td>
+                        <td>Cosmetic issue - Can defer</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Major</strong></td>
+                        <td>Core functionality issue</td>
+                        <td>User flow interrupted</td>
+                        <td>Workaround available</td>
+                    </tr>
+                </table>
+
+                <h4>📊 Defect Metrics:</h4>
+                <div class="metric-grid">
+                    <div class="metric-card">
+                        <strong>DRE</strong>
+                        <p>Defect Removal Efficiency</p>
+                        <p class="formula">= (Defects Found in Testing) / (Total Defects) × 100</p>
+                    </div>
+                    <div class="metric-card">
+                        <strong>Defect Density</strong>
+                        <p>Defects per KLOC</p>
+                        <p class="formula">= Number of Defects / Size in KLOC</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Phase 6: Test Closure -->
+        <div class="phase-card">
+            <div class="phase-header phase-6">
+                <h3>Phase 6️⃣: Test Closure & Reporting</h3>
+            </div>
+            <div class="phase-body">
+                <h4>📋 Test Closure Activities:</h4>
+                <ul>
+                    <li><strong>Coverage Analysis:</strong> Module-wise and feature-wise coverage</li>
+                    <li><strong>Stability Assessment:</strong> 20% testing finds 80% bugs</li>
+                    <li><strong>Bug Density Analysis:</strong> Which modules have most defects</li>
+                    <li><strong>Deferred Bugs Review:</strong> Postponed issues for next release</li>
+                    <li><strong>Test Summary Report:</strong> Final metrics and statistics</li>
+                </ul>
+
+                <h4>🎯 Exit Criteria Verification:</h4>
+                <ul>
+                    <li>✅ All test cases executed</li>
+                    <li>✅ Coverage goals met</li>
+                    <li>✅ Pass rate criteria achieved</li>
+                    <li>✅ No critical bugs remaining</li>
+                    <li>✅ RTM complete and verified</li>
+                </ul>
+
+                <h4>📄 Deliverables:</h4>
+                <ul>
+                    <li>Test Closure Report</li>
+                    <li>Test Execution Summary</li>
+                    <li>Metrics & Graphs</li>
+                    <li>Bug Trend Analysis</li>
+                    <li>Release Notes</li>
+                </ul>
+
+                <h4>📊 Release Note Contents:</h4>
+                <ul>
+                    <li>Features added/modified/deleted</li>
+                    <li>Known issues and limitations</li>
+                    <li>Platforms tested on</li>
+                    <li>Deferred bugs for future release</li>
+                    <li>Installation instructions</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Phase 7: Retrospective -->
+        <div class="phase-card">
+            <div class="phase-header phase-7">
+                <h3>Phase 7️⃣: Retrospective & Continuous Improvement</h3>
+            </div>
+            <div class="phase-body">
+                <h4>🔄 Post-Mortem Meeting Activities:</h4>
+                <div class="retrospective-box">
+                    <div class="retro-section">
+                        <strong>✅ What Went Well?</strong>
+                        <p>Successful practices and achievements to replicate</p>
+                    </div>
+                    <div class="retro-section">
+                        <strong>🔧 What Could Improve?</strong>
+                        <p>Process improvements and optimization opportunities</p>
+                    </div>
+                    <div class="retro-section">
+                        <strong>❌ What Went Wrong?</strong>
+                        <p>Challenges faced and lessons learned</p>
+                    </div>
+                </div>
+
+                <h4>💡 Process Refinement:</h4>
+                <ul>
+                    <li>Document all findings in QMS (Quality Management System)</li>
+                    <li>Store in Retrospective folder for future reference</li>
+                    <li>Use insights for next project planning</li>
+                    <li>Implement good practices immediately</li>
+                </ul>
+
+                <h4>📊 Deliverables:</h4>
+                <ul>
+                    <li>Retrospective Meeting Minutes</li>
+                    <li>Action Items Log</li>
+                    <li>Process Improvement Document</li>
+                    <li>Best Practices Repository</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== TEST PLANNING DETAILS ==================== -->
+    <div id="testPlan" class="process-content">
+        <div class="content-header">
+            <h2>📝 Comprehensive Test Planning Guide</h2>
+            <p>Create effective test plans that drive project success</p>
+        </div>
+
+        <!-- Test Plan Sections Detail -->
+        <div class="planning-grid">
+            <div class="planning-card">
+                <h3>1. Test Plan Objective</h3>
+                <p>Define the purpose and scope of testing. Why are we testing? What do we aim to achieve?</p>
+                <div class="code-example">
+                    Example: "This test plan outlines the testing strategy for OrangeHRM v3.0 My Info Module to ensure all functional and non-functional requirements are met before production deployment."
+                </div>
+            </div>
+
+            <div class="planning-card">
+                <h3>2. Scope Definition</h3>
+                <p><strong>Features to Test:</strong> Compose Mail, Inbox, Send, Delete<br>
+                <strong>Features NOT to Test:</strong> Help section, Admin config<br>
+                <strong>Reasons:</strong> Help written by technical writers, Admin is third-party integration</p>
+            </div>
+
+            <div class="planning-card">
+                <h3>3. Testing Methodologies</h3>
+                <p>Define all testing types to be performed</p>
+                <ul style="margin: 10px 0; padding-left: 20px;">
+                    <li>Smoke Testing ✓</li>
+                    <li>Functional Testing ✓</li>
+                    <li>Integration Testing ✓</li>
+                    <li>System Testing ✓</li>
+                    <li>Performance Testing ✓</li>
+                    <li>Security Testing ✓</li>
+                </ul>
+            </div>
+
+            <div class="planning-card">
+                <h3>4. Resource Planning</h3>
+                <p>Calculate team size: 70 screens ÷ 5 screens/engineer = 14 testers needed</p>
+                <ul style="margin: 10px 0; padding-left: 20px;">
+                    <li>1 Test Manager</li>
+                    <li>2-3 Test Leads</li>
+                    <li>10-12 Test Engineers</li>
+                </ul>
+            </div>
+
+            <div class="planning-card">
+                <h3>5. Timeline & Scheduling</h3>
+                <p>Create detailed schedule for each testing phase</p>
+                <table class="mini-table">
+                    <tr>
+                        <th>Activity</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Duration</th>
+                    </tr>
+                    <tr>
+                        <td>Test Planning</td>
+                        <td>2025-01-01</td>
+                        <td>2025-01-05</td>
+                        <td>5 days</td>
+                    </tr>
+                    <tr>
+                        <td>Test Design</td>
+                        <td>2025-01-06</td>
+                        <td>2025-01-20</td>
+                        <td>15 days</td>
+                    </tr>
+                    <tr>
+                        <td>Execution Cycle 1</td>
+                        <td>2025-01-21</td>
+                        <td>2025-02-04</td>
+                        <td>15 days</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="planning-card">
+                <h3>6. Entry & Exit Criteria</h3>
+                <p><strong>Entry:</strong> All test cases approved, build ready, environment configured</p>
+                <p><strong>Exit:</strong> 95% test execution, 85% pass rate, 0 critical bugs</p>
+            </div>
+        </div>
+
+        <!-- Test Plan Template -->
+        <div class="info-card gradient-purple">
+            <h3>📄 IEEE 829 Test Plan Template Outline</h3>
+            <div class="template-outline">
+                <strong>1. OBJECTIVE</strong> - Purpose and goals of testing<br>
+                <strong>2. SCOPE</strong> - What to test and what not to test<br>
+                <strong>3. TESTING METHODOLOGIES</strong> - Types of testing to perform<br>
+                <strong>4. APPROACH</strong> - High-level test strategy<br>
+                <strong>5. ASSUMPTIONS</strong> - Resource, technology, timeline assumptions<br>
+                <strong>6. RISKS</strong> - Potential challenges<br>
+                <strong>7. CONTINGENCY PLAN</strong> - Mitigation strategies<br>
+                <strong>8. ROLES & RESPONSIBILITIES</strong> - Team structure and duties<br>
+                <strong>9. COMMUNICATION PLAN</strong> - Status updates and escalations<br>
+                <strong>10. TEST ENVIRONMENT</strong> - Hardware and software setup<br>
+                <strong>11. TEST DELIVERABLES</strong> - Artifacts to be delivered<br>
+                <strong>12. ENTRY & EXIT CRITERIA</strong> - Go/no-go conditions<br>
+                <strong>13. TEST AUTOMATION</strong> - Automation strategy<br>
+                <strong>14. TEMPLATES</strong> - Test case, defect report formats<br>
+                <strong>15. APPROVAL</strong> - Sign-offs from stakeholders
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== AGILE & SCRUM ==================== -->
+    <div id="agileProcess" class="process-content">
+        <div class="content-header">
+            <h2>⚡ Agile & Scrum Testing Process</h2>
+            <p>Testing in iterative, fast-paced development cycles</p>
+        </div>
+
+        <!-- Agile Overview -->
+        <div class="agile-card">
+            <h3>🎯 Agile vs Waterfall Testing</h3>
+            <table class="comparison-table">
+                <tr>
+                    <th>Aspect</th>
+                    <th>Waterfall Testing</th>
+                    <th>Agile Testing</th>
+                </tr>
+                <tr>
+                    <td>Timeline</td>
+                    <td>Sequential (60+ days)</td>
+                    <td>Iterative (1-4 weeks/sprint)</td>
+                </tr>
+                <tr>
+                    <td>Test Cases</td>
+                    <td>Comprehensive upfront (1000+)</td>
+                    <td>User stories + acceptance criteria</td>
+                </tr>
+                <tr>
+                    <td>Execution</td>
+                    <td>After development complete</td>
+                    <td>During each sprint</td>
+                </tr>
+                <tr>
+                    <td>Automation</td>
+                    <td>After 1st release</td>
+                    <td>From Sprint 1</td>
+                </tr>
+                <tr>
+                    <td>Feedback</td>
+                    <td>At end of project</td>
+                    <td>After each sprint</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Scrum Framework -->
+        <div class="agile-card">
+            <h3>⚙️ Scrum Framework Components</h3>
+            <div class="scrum-components">
+                <div class="component">
+                    <strong>🎯 Sprint</strong> - Time-boxed iteration (1-4 weeks)
+                </div>
+                <div class="component">
+                    <strong>📋 Product Backlog</strong> - Prioritized list of features
+                </div>
+                <div class="component">
+                    <strong>🎪 Sprint Backlog</strong> - Items selected for current sprint
+                </div>
+                <div class="component">
+                    <strong>👥 Development Team</strong> - Developers, QA, Business Analysts
+                </div>
+                <div class="component">
+                    <strong>👨‍💼 Scrum Master</strong> - Removes impediments, facilitates team
+                </div>
+                <div class="component">
+                    <strong>🏆 Product Owner</strong> - Manages requirements and priorities
+                </div>
+            </div>
+        </div>
+
+        <!-- Sprint Phases -->
+        <div class="sprint-phases">
+            <h3>🔄 Scrum Sprint Execution Phases</h3>
+
+            <div class="sprint-phase">
+                <h4>1️⃣ Sprint Planning (Day 1)</h4>
+                <p><strong>Duration:</strong> 2 hours | <strong>Team:</strong> Dev, QA, Scrum Master, PO</p>
+                <ul>
+                    <li>Analyze user stories from product backlog</li>
+                    <li>Estimate effort and complexity</li>
+                    <li>Assign tasks to team members</li>
+                    <li>Define sprint goal</li>
+                    <li>Commit to deliverables</li>
+                </ul>
+            </div>
+
+            <div class="sprint-phase">
+                <h4>2️⃣ Daily Standup (Daily - 15 mins)</h4>
+                <p>Each team member answers:</p>
+                <ul>
+                    <li>✅ What did I complete yesterday?</li>
+                    <li>🎯 What will I work on today?</li>
+                    <li>⚠️ What are the blockers/impediments?</li>
+                </ul>
+            </div>
+
+            <div class="sprint-phase">
+                <h4>3️⃣ Development & Testing (Days 2-8)</h4>
+                <ul>
+                    <li><strong>Developers:</strong> Code user story features</li>
+                    <li><strong>QA:</strong> Create test cases for user stories</li>
+                    <li><strong>Parallel Execution:</strong> Test completed work daily</li>
+                    <li><strong>Continuous Integration:</strong> Automated test runs</li>
+                </ul>
+            </div>
+
+            <div class="sprint-phase">
+                <h4>4️⃣ Sprint Review (Day 9)</h4>
+                <p><strong>Duration:</strong> 1.5 hours | Demo completed work to stakeholders</p>
+                <ul>
+                    <li>Show working software to customer</li>
+                    <li>Get feedback on features</li>
+                    <li>Document approved work</li>
+                </ul>
+            </div>
+
+            <div class="sprint-phase">
+                <h4>5️⃣ Sprint Retrospective (Day 9)</h4>
+                <p><strong>Duration:</strong> 1.5 hours | Team reflects on process</p>
+                <div class="retro-box">
+                    <div><strong>✅ Keep Doing:</strong> What went well this sprint?</div>
+                    <div><strong>🔧 Start Doing:</strong> What could improve?</div>
+                    <div><strong>❌ Stop Doing:</strong> What's not working?</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Testing in User Stories -->
+        <div class="agile-card">
+            <h3>📖 Testing User Stories</h3>
+            <p><strong>User Story Format:</strong> "As a [user], I want [feature] so that [benefit]"</p>
+            <div class="code-example">
+                Example: "As a customer, I want to add items to my cart so that I can purchase multiple items at once"
+                <br><strong>Acceptance Criteria:</strong>
+                <br>✓ Customer can click 'Add to Cart' button
+                <br>✓ Item quantity appears in cart badge
+                <br>✓ Total price updates correctly
+            </div>
+        </div>
+
+        <!-- Agile Metrics -->
+        <div class="agile-card">
+            <h3>📊 Agile Testing Metrics</h3>
+            <table class="mini-table">
+                <tr>
+                    <th>Metric</th>
+                    <th>Description</th>
+                    <th>Target</th>
+                </tr>
+                <tr>
+                    <td>Sprint Velocity</td>
+                    <td>Story points completed per sprint</td>
+                    <td>Consistent week-to-week</td>
+                </tr>
+                <tr>
+                    <td>Test Coverage</td>
+                    <td>% of code covered by tests</td>
+                    <td>80-90%</td>
+                </tr>
+                <tr>
+                    <td>Bug Escape Rate</td>
+                    <td>Bugs found in production</td>
+                    <td>&lt; 5%</td>
+                </tr>
+                <tr>
+                    <td>Defect Density</td>
+                    <td>Defects per sprint deliverable</td>
+                    <td>&lt; 2 per feature</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- ==================== ENTRY/EXIT CRITERIA ==================== -->
+    <div id="entryExitCriteria" class="process-content">
+        <div class="content-header">
+            <h2>🚪 Entry & Exit Criteria Framework</h2>
+            <p>Go/No-Go decision gates for each testing phase</p>
+        </div>
+
+        <!-- Phase Criteria -->
+        <div class="criteria-card">
+            <h3>🚀 Functional Testing (FT) Criteria</h3>
+            <div class="criteria-box">
+                <h4>✅ Entry Criteria (Must Meet ALL):</h4>
+                <ul>
+                    <li>✓ SRS document reviewed and approved</li>
+                    <li>✓ Design specifications finalized</li>
+                    <li>✓ Test cases prepared and approved</li>
+                    <li>✓ Test data prepared</li>
+                    <li>✓ Test environment configured</li>
+                    <li>✓ Build/Application deployed</li>
+                    <li>✓ All test engineers available</li>
+                </ul>
+                <h4>🚪 Exit Criteria (Based On):</h4>
+                <ul>
+                    <li>✓ Test Execution: 95%+ test cases executed</li>
+                    <li>✓ Test Pass Rate: 85%+ pass rate</li>
+                    <li>✓ Defect Severity: 0 Blocker/Showstopper bugs</li>
+                    <li>✓ Critical Bugs: Max 20 critical (severity=high) bugs</li>
+                    <li>✓ Major Bugs: Max 60 major bugs</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="criteria-card">
+            <h3>🔗 Integration Testing (IT) Criteria</h3>
+            <div class="criteria-box">
+                <h4>✅ Entry Criteria:</h4>
+                <ul>
+                    <li>✓ Unit testing complete (developer responsibility)</li>
+                    <li>✓ Major bugs from UT fixed</li>
+                    <li>✓ HLD document reviewed</li>
+                    <li>✓ All modules ready for integration</li>
+                    <li>✓ IT test cases prepared</li>
+                </ul>
+                <h4>🚪 Exit Criteria:</h4>
+                <ul>
+                    <li>✓ All integration points tested</li>
+                    <li>✓ 90%+ pass rate (higher than FT)</li>
+                    <li>✓ Interface defects resolved</li>
+                    <li>✓ Data flow verified between modules</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="criteria-card">
+            <h3>🏗️ System Testing (ST) Criteria</h3>
+            <div class="criteria-box">
+                <h4>✅ Entry Criteria:</h4>
+                <ul>
+                    <li>✓ IT complete with 90%+ pass rate</li>
+                    <li>✓ System test plan finalized</li>
+                    <li>✓ Production-like environment ready</li>
+                    <li>✓ All modules integrated</li>
+                </ul>
+                <h4>🚪 Exit Criteria (Most Stringent):</h4>
+                <ul>
+                    <li>✓ 99%+ test execution</li>
+                    <li>✓ 95%+ pass rate minimum</li>
+                    <li>✓ 0 Critical bugs</li>
+                    <li>✓ Maximum 30 Major bugs</li>
+                    <li>✓ Maximum 50 Minor bugs</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="criteria-card">
+            <h3>👥 UAT (User Acceptance Testing) Criteria</h3>
+            <div class="criteria-box">
+                <h4>✅ Entry Criteria:</h4>
+                <ul>
+                    <li>✓ System testing complete</li>
+                    <li>✓ All critical/high bugs fixed</li>
+                    <li>✓ Business scenarios ready</li>
+                    <li>✓ Business users/customers available</li>
+                </ul>
+                <h4>🚪 Exit Criteria:</h4>
+                <ul>
+                    <li>✓ Business sign-off received</li>
+                    <li>✓ Known issues documented</li>
+                    <li>✓ Production deployment approved</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Weighted Defect Concept -->
+        <div class="info-card gradient-orange">
+            <h3>⚖️ Weighted Defects Approach</h3>
+            <p>Use weighted defects to make better exit decisions</p>
+            <div class="weight-formula">
+                <strong>Calculation:</strong><br>
+                3 Major Defects = 1 Critical<br>
+                5 Minor Defects = 1 Critical<br>
+                Total Critical Bugs Should Not Exceed 60
+            </div>
+            <h4>Example:</h4>
+            <div class="example-box">
+                Scenario 1: Can Exit?
+                <ul>
+                    <li>21 Critical + 50 Major (÷3) = 17 + 99 Minor (÷5) = 20 = Total 58 Critical ✅</li>
+                </ul>
+                Scenario 2: Cannot Exit?
+                <ul>
+                    <li>25 Critical + 30 Major + 50 Minor = Exceeds 60 ❌</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== ADVANCED TOPICS ==================== -->
+    <div id="advancedTopics" class="process-content">
+        <div class="content-header">
+            <h2>🎓 Advanced Testing Concepts & Strategies</h2>
+            <p>Deep dive into sophisticated testing approaches</p>
+        </div>
+
+        <!-- Test Pyramid -->
+        <div class="advanced-card">
+            <h3>🔺 Testing Pyramid Strategy</h3>
+            <p>Optimal distribution of testing effort across layers</p>
+            <div class="pyramid">
+                <div class="pyramid-level level-1">
+                    <strong>UI/E2E Testing</strong><br>10-15%
+                </div>
+                <div class="pyramid-level level-2">
+                    <strong>Integration Testing</strong><br>25-30%
+                </div>
+                <div class="pyramid-level level-3">
+                    <strong>Unit Testing</strong><br>55-65%
+                </div>
+            </div>
+            <p><strong>Principle:</strong> Invest more in fast, automated unit tests; fewer in slow E2E tests</p>
+        </div>
+
+        <!-- Test Effort Estimation -->
+        <div class="advanced-card">
+            <h3>📊 Test Effort Estimation</h3>
+            <p>Calculating testing resources and timeline</p>
+            <div class="estimation-formula">
+                <h4>Simple Ratio:</h4>
+                <ul>
+                    <li>Test Planning: 10% of total time</li>
+                    <li>Test Design: 20% of total time</li>
+                    <li>Test Execution: 60% of total time</li>
+                    <li>Test Closure: 10% of total time</li>
+                </ul>
+                <h4>For 1000 Lines of Code:</h4>
+                <ul>
+                    <li>3-5 test cases can be written per day</li>
+                    <li>24-30 test cases can be reviewed per day</li>
+                    <li>35-60 test cases can be executed per day</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Risk-Based Testing -->
+        <div class="advanced-card">
+            <h3>⚠️ Risk-Based Testing Approach</h3>
+            <p>Prioritize testing based on business risk and impact</p>
+            <div class="risk-matrix">
+                <table class="mini-table">
+                    <tr>
+                        <th>Impact</th>
+                        <th>High Probability</th>
+                        <th>Medium Probability</th>
+                        <th>Low Probability</th>
+                    </tr>
+                    <tr>
+                        <td><strong>High</strong></td>
+                        <td style="background: #ff6b6b;">🔴 Critical</td>
+                        <td style="background: #ffa500;">🟠 High</td>
+                        <td style="background: #ffeb3b;">🟡 Medium</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Medium</strong></td>
+                        <td style="background: #ffa500;">🟠 High</td>
+                        <td style="background: #ffeb3b;">🟡 Medium</td>
+                        <td style="background: #90ee90;">🟢 Low</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Low</strong></td>
+                        <td style="background: #ffeb3b;">🟡 Medium</td>
+                        <td style="background: #90ee90;">🟢 Low</td>
+                        <td style="background: #90ee90;">🟢 Low</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- Test Automation Strategy -->
+        <div class="advanced-card">
+            <h3>🤖 Test Automation Strategy</h3>
+            <p>When and what to automate for maximum ROI</p>
+            <div class="automation-box">
+                <h4>Automate:</h4>
+                <ul>
+                    <li>✅ Critical business processes</li>
+                    <li>✅ Regression test cases</li>
+                    <li>✅ Repetitive test scenarios</li>
+                    <li>✅ Performance tests</li>
+                </ul>
+                <h4>Do NOT Automate:</h4>
+                <ul>
+                    <li>❌ UI/Usability testing</li>
+                    <li>❌ Exploratory testing</li>
+                    <li>❌ Unstable/frequently changing features</li>
+                    <li>❌ One-time test cases</li>
+                </ul>
+                <h4>Automation Timeline:</h4>
+                <ul>
+                    <li>Release 1: Manual testing (build framework)</li>
+                    <li>Release 2+: Automate Release 1 features</li>
+                    <li>Release 3+: Manual test new features + Auto test old</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Quality Metrics -->
+        <div class="advanced-card">
+            <h3>📈 Advanced Quality Metrics</h3>
+            <div class="metrics-detail">
+                <h4>1. Defect Removal Efficiency (DRE):</h4>
+                <p class="formula">DRE = (Pre-delivery Defects Found) / (Total Defects = Pre + Post-delivery) × 100</p>
+                <p><strong>Goal:</strong> 95%+ (Catch defects before production)</p>
+
+                <h4>2. Defect Density:</h4>
+                <p class="formula">Defects Found / Size (KLOC)</p>
+                <p><strong>Goal:</strong> &lt; 0.5 defects per KLOC</p>
+
+                <h4>3. Test Case Effectiveness:</h4>
+                <p class="formula">= (Defects Found by Test Case) / (Total Test Cases Run) × 100</p>
+                <p><strong>Goal:</strong> High effectiveness means good quality tests</p>
+
+                <h4>4. Cumulative Weighted Defect Density:</h4>
+                <p class="formula">= (Critical×4 + Major×3 + Minor×2 + Trivial×1) / Size (KLOC)</p>
+                <p><strong>Goal:</strong> Track quality trend over releases</p>
+            </div>
+        </div>
+
+        <!-- Regression Testing Strategy -->
+        <div class="advanced-card">
+            <h3>🔄 Advanced Regression Testing</h3>
+            <p>Strategic approach to managing regression across releases</p>
+            <div class="regression-types">
+                <h4>Unit Regression Testing:</h4>
+                <p>Test only the bug fix/change - ensure fix doesn't break immediate area</p>
+
+                <h4>Regional Regression Testing:</h4>
+                <p>Test the change + impact areas - identify side effects</p>
+                <p class="highlight">Preferred method - balances coverage with efficiency</p>
+
+                <h4>Full Regression Testing:</h4>
+                <p>Test all changes + entire product - comprehensive coverage</p>
+                <p><strong>Strategy:</strong> Do 10 cycles RRT, 1 cycle FRT, repeat pattern</p>
+            </div>
+        </div>
+
+        <!-- Test Data Strategy -->
+        <div class="advanced-card">
+            <h3>💾 Advanced Test Data Management</h3>
+            <ul>
+                <li><strong>Production-like Data:</strong> Use sanitized production data for realistic testing</li>
+                <li><strong>Data Masking:</strong> Mask sensitive information (PII, financial data)</li>
+                <li><strong>Data Refresh:</strong> Reset data between test cycles</li>
+                <li><strong>Boundary Values:</strong> Test min/max values and edge cases</li>
+                <li><strong>Negative Test Data:</strong> Invalid formats, null values, special characters</li>
+                <li><strong>Large Dataset Testing:</strong> Test with high volume (stress testing data)</li>
+            </ul>
+        </div>
+
+        <!-- Key Takeaways -->
+        <div class="alert-box alert-success">
+            <h3>🎯 Key Takeaways from STLC & Process</h3>
+            <ul>
+                <li><strong>1. STLC Matters:</strong> Systematic approach ensures quality and reduces risks</li>
+                <li><strong>2. Model Selection:</strong> Choose SDLC model based on project needs (Waterfall, Spiral, Agile)</li>
+                <li><strong>3. Early Testing:</strong> Test from requirement stage (V-Model) vs. after coding (Waterfall)</li>
+                <li><strong>4. Entry/Exit Criteria:</strong> Clear gates prevent moving forward with quality issues</li>
+                <li><strong>5. Continuous Improvement:</strong> Retrospectives and metrics drive process excellence</li>
+                <li><strong>6. Risk-Based Approach:</strong> Focus testing on high-impact, high-probability areas</li>
+                <li><strong>7. Agile Adaptation:</strong> STLC applies to Agile too - adapt iterations for sprints</li>
+                <li><strong>8. Metrics Drive Decisions:</strong> Use DRE, defect density, coverage to guide testing</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Embedded CSS for STLC & Process -->
+<style>
+.process-nav-tabs {
+    display: flex;
+    gap: 10px;
+    margin: 20px 0;
+    flex-wrap: wrap;
+}
+
+.nav-tab {
+    padding: 10px 15px;
+    background: #f0f0f0;
+    border: 2px solid #ddd;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: 500;
+}
+
+.nav-tab.active {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-color: #667eea;
+}
+
+.nav-tab:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.process-content {
+    display: none;
+    animation: fadeIn 0.5s;
+}
+
+.process-content.active {
+    display: block;
+}
+
+.flow-diagram {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    padding: 30px;
+    border-radius: 15px;
+    margin: 20px 0;
+}
+
+.flow-steps {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 20px 0;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.step-box {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    min-width: 120px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border-left: 5px solid #667eea;
+}
+
+.arrow {
+    font-size: 28px;
+    color: #667eea;
+    font-weight: bold;
+}
+
+.model-tabs {
+    display: flex;
+    gap: 10px;
+    margin: 20px 0;
+    flex-wrap: wrap;
+}
+
+.model-tab {
+    padding: 10px 15px;
+    background: #f0f0f0;
+    border: 2px solid #ddd;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: all 0.3s;
+}
+
+.model-tab.active {
+    background: #667eea;
+    color: white;
+    border-color: #667eea;
+}
+
+.model-content {
+    display: none;
+}
+
+.model-content.active {
+    display: block;
+    animation: fadeIn 0.5s;
+}
+
+.model-flow {
+    display: flex;
+    gap: 15px;
+    margin: 20px 0;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.model-phase {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 15px 20px;
+    border-radius: 8px;
+    min-width: 130px;
+    text-align: center;
+    font-weight: 500;
+}
+
+.phase-card {
+    background: white;
+    border-left: 5px solid #667eea;
+    border-radius: 8px;
+    margin: 20px 0;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.phase-header {
+    padding: 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.phase-header h3 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.phase-body {
+    padding: 20px;
+}
+
+.phase-body ul {
+    list-style: none;
+    padding: 0;
+}
+
+.phase-body li {
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.phase-body li:last-child {
+    border-bottom: none;
+}
+
+.responsibility-box {
+    background: #f0f7ff;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 15px 0;
+}
+
+.resp-item {
+    padding: 10px;
+    background: white;
+    margin: 8px 0;
+    padding-left: 15px;
+    border-left: 4px solid #667eea;
+}
+
+.v-model-diagram {
+    display: flex;
+    gap: 20px;
+    margin: 20px 0;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.v-left, .v-right {
+    flex: 1;
+    min-width: 200px;
+}
+
+.v-center {
+    background: #667eea;
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: bold;
+    align-self: center;
+}
+
+.v-phase {
+    background: #f0f7ff;
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 5px;
+    border-left: 3px solid #667eea;
+}
+
+.accordion {
+    margin: 15px 0;
+}
+
+.accordion-item {
+    background: #f0f0f0;
+    padding: 15px;
+    margin: 8px 0;
+    border-radius: 5px;
+    border-left: 4px solid #667eea;
+}
+
+.accordion-item strong {
+    display: block;
+    color: #667eea;
+    margin-bottom: 8px;
+}
+
+.cycle-box {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 8px;
+    border-left: 5px solid #667eea;
+}
+
+.cycle-detail {
+    font-size: 12px;
+    color: #666;
+    margin-top: 8px;
+    padding: 8px;
+    background: rgba(255,255,255,0.8);
+    border-radius: 4px;
+}
+
+.retrospective-box {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+    margin: 15px 0;
+}
+
+.retro-section {
+    background: #f0f7ff;
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 4px solid #667eea;
+}
+
+.retro-section strong {
+    color: #667eea;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.agile-card {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 15px 0;
+    border: 2px solid #f0f0f0;
+}
+
+.scrum-components {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin: 15px 0;
+}
+
+.component {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.sprint-phases {
+    margin: 20px 0;
+}
+
+.sprint-phase {
+    background: #f0f7ff;
+    padding: 20px;
+    margin: 15px 0;
+    border-radius: 8px;
+    border-left: 5px solid #667eea;
+}
+
+.sprint-phase h4 {
+    margin-top: 0;
+    color: #667eea;
+}
+
+.criteria-card {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 15px 0;
+    border: 2px solid #f0f0f0;
+}
+
+.criteria-box {
+    background: #f0f7ff;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 10px 0;
+}
+
+.criteria-box h4 {
+    color: #667eea;
+    margin-top: 15px;
+}
+
+.risk-matrix {
+    margin: 15px 0;
+}
+
+.pyramid {
+    display: flex;
+    flex-direction: column;
+    margin: 20px 0;
+}
+
+.pyramid-level {
+    padding: 20px;
+    margin: 5px 0;
+    border-radius: 5px;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+}
+
+.level-1 {
+    background: linear-gradient(135deg, #ff6b6b 0%, #ff8e72 100%);
+    margin-left: 40%;
+    margin-right: 5%;
+}
+
+.level-2 {
+    background: linear-gradient(135deg, #ffa500 0%, #ffb84d 100%);
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+.level-3 {
+    background: linear-gradient(135deg, #51cf66 0%, #69db7c 100%);
+}
+
+.advanced-card {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 15px 0;
+    border: 2px solid #f0f0f0;
+}
+
+.estimation-formula {
+    background: #f0f7ff;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 10px 0;
+}
+
+.estimation-formula ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.estimation-formula li {
+    padding: 8px 15px;
+    background: white;
+    margin: 5px 0;
+    border-radius: 4px;
+    border-left: 4px solid #667eea;
+}
+
+.automation-box {
+    background: #f0f7ff;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .flow-steps {
+        flex-direction: column;
+    }
+
+    .arrow {
+        transform: rotate(90deg);
+    }
+
+    .model-flow {
+        flex-direction: column;
+    }
+
+    .retrospective-box {
+        grid-template-columns: 1fr;
+    }
+
+    .scrum-components {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+
+<!-- JavaScript for STLC & Process interactions -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Process Nav Tabs
+    const navTabs = document.querySelectorAll('.nav-tab');
+    navTabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+            const target = this.getAttribute('data-target');
+            showProcessContent(target);
+
+            navTabs.forEach(t => t.classList.remove('active'));
+            this.classList.add('active');
+        });
+    });
+
+    // Model Tabs
+    const modelTabs = document.querySelectorAll('.model-tab');
+    modelTabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+            const model = this.getAttribute('data-model');
+            showModelContent(model);
+
+            modelTabs.forEach(t => t.classList.remove('active'));
+            this.classList.add('active');
+        });
+    });
+
+    function showProcessContent(id) {
+        const contents = document.querySelectorAll('.process-content');
+        contents.forEach(c => c.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+    }
+
+    function showModelContent(model) {
+        const contents = document.querySelectorAll('.model-content');
+        contents.forEach(c => c.classList.remove('active'));
+        document.getElementById(model + '-model').classList.add('active');
+    }
+});
+</script>

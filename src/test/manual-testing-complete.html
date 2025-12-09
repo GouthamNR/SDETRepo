@@ -1,0 +1,1605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual Testing Complete Guide - QA Automation Academy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #667eea;
+            --primary-dark: #764ba2;
+            --secondary: #2196F3;
+            --success: #4CAF50;
+            --warning: #FF9800;
+            --danger: #f44336;
+            --light-bg: #f5f7fa;
+            --dark-bg: #1a1a2e;
+            --dark-surface: #16213e;
+            --text-light: #333;
+            --text-dark: #e0e0e0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-light);
+            background: var(--light-bg);
+            transition: background 0.3s, color 0.3s;
+        }
+
+        body.dark-mode {
+            background: var(--dark-bg);
+            color: var(--text-dark);
+        }
+
+        /* Navigation */
+        nav {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        nav h1 {
+            font-size: 1.5em;
+            cursor: pointer;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .theme-toggle, .home-btn {
+            background: rgba(255,255,255,0.2);
+            border: 1px solid white;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .theme-toggle:hover, .home-btn:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            padding: 1rem 2rem;
+            background: white;
+            border-bottom: 1px solid #e0e0e0;
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        body.dark-mode .breadcrumb {
+            background: var(--dark-surface);
+            border-bottom-color: #333;
+            color: #999;
+        }
+
+        .breadcrumb a {
+            color: var(--primary);
+            text-decoration: none;
+            margin: 0 0.5rem;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        /* Page Title */
+        .page-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--primary);
+            border-bottom: 3px solid var(--primary);
+            padding-bottom: 1rem;
+        }
+
+        .page-title h2 {
+            font-size: 2em;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Tab Navigation */
+        .tabs {
+            display: flex;
+            gap: 1rem;
+            border-bottom: 2px solid #ddd;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            background: white;
+            padding: 1rem;
+            border-radius: 8px 8px 0 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        body.dark-mode .tabs {
+            background: var(--dark-surface);
+            border-bottom-color: #333;
+        }
+
+        .tab-button {
+            padding: 0.8rem 1.5rem;
+            background: transparent;
+            border: 2px solid transparent;
+            cursor: pointer;
+            font-size: 0.95em;
+            transition: all 0.3s;
+            color: #666;
+            border-radius: 5px 5px 0 0;
+            font-weight: 500;
+        }
+
+        body.dark-mode .tab-button {
+            color: #999;
+        }
+
+        .tab-button:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .tab-button.active {
+            color: white;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            border-color: var(--primary);
+        }
+
+        /* Tab Content */
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease-in;
+            background: white;
+            padding: 2rem;
+            border-radius: 0 8px 8px 8px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+        }
+
+        body.dark-mode .tab-content {
+            background: var(--dark-surface);
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Section Styling */
+        h3 {
+            color: var(--primary);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-size: 1.4em;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 0.5rem;
+        }
+
+        h4 {
+            color: var(--primary);
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+            font-size: 1.1em;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        /* Cards and Boxes */
+        .card {
+            background: #f9f9f9;
+            border-left: 4px solid var(--primary);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+
+        body.dark-mode .card {
+            background: #1f2937;
+            border-left-color: var(--primary);
+        }
+
+        .card:hover {
+            box-shadow: 0 4px 12px rgba(102,126,234,0.3);
+            transform: translateX(5px);
+        }
+
+        /* Grid Layouts */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .grid-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            border-top: 4px solid var(--primary);
+        }
+
+        body.dark-mode .grid-item {
+            background: #1f2937;
+        }
+
+        .grid-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(102,126,234,0.3);
+        }
+
+        /* Lists */
+        ul, ol {
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+
+        table th {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        table td {
+            padding: 0.8rem 1rem;
+            border-bottom: 1px solid #ddd;
+        }
+
+        body.dark-mode table td {
+            border-bottom-color: #333;
+        }
+
+        table tr:hover {
+            background: #f5f5f5;
+        }
+
+        body.dark-mode table tr:hover {
+            background: #2a3f5f;
+        }
+
+        /* Examples */
+        .example {
+            background: #e3f2fd;
+            border-left: 4px solid #2196F3;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+            color: #1565c0;
+        }
+
+        body.dark-mode .example {
+            background: #1a237e;
+            color: #64b5f6;
+        }
+
+        /* Alerts */
+        .alert {
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 5px;
+            border-left: 4px solid;
+        }
+
+        .alert-info {
+            background: #e3f2fd;
+            border-left-color: #2196F3;
+            color: #1565c0;
+        }
+
+        .alert-warning {
+            background: #fff3e0;
+            border-left-color: #FF9800;
+            color: #e65100;
+        }
+
+        .alert-success {
+            background: #e8f5e9;
+            border-left-color: #4CAF50;
+            color: #2e7d32;
+        }
+
+        .alert-danger {
+            background: #ffebee;
+            border-left-color: #f44336;
+            color: #c62828;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            font-size: 0.9em;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .tabs {
+                flex-direction: column;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tab-content {
+                padding: 1rem;
+            }
+        }
+
+        /* Statistics Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(102,126,234,0.3);
+        }
+
+        .stat-number {
+            font-size: 1.8em;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+
+        /* Code Blocks */
+        code {
+            background: #f5f5f5;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            color: #c62828;
+        }
+
+        body.dark-mode code {
+            background: #2a3f5f;
+            color: #ff7043;
+        }
+
+        pre {
+            background: #f5f5f5;
+            padding: 1rem;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 1rem 0;
+            border-left: 4px solid var(--primary);
+        }
+
+        body.dark-mode pre {
+            background: #2a3f5f;
+            color: #e0e0e0;
+        }
+
+        pre code {
+            color: inherit;
+            background: transparent;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <h1 onclick="window.location='index.html'" style="cursor: pointer;">📚 QA Automation Academy</h1>
+        <div class="nav-buttons">
+            <button class="home-btn" onclick="window.location='index.html'">🏠 Home</button>
+            <button class="theme-toggle" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <a href="index.html">Home</a> / <strong>Manual Testing Complete Guide</strong> / Testing Types
+    </div>
+
+    <!-- Container -->
+    <div class="container">
+        <!-- Page Title -->
+        <div class="page-title">
+            <h2>🎯 Complete Manual Testing Guide</h2>
+            <p>Master all aspects of manual testing with comprehensive examples and real-world scenarios</p>
+        </div>
+
+        <!-- Tab Navigation -->
+        <div class="tabs">
+            <button class="tab-button active" onclick="openTab(event, 'basics')">📖 Basics</button>
+            <button class="tab-button" onclick="openTab(event, 'testcases')">✅ Test Cases</button>
+            <button class="tab-button" onclick="openTab(event, 'execution')">▶️ Execution</button>
+            <button class="tab-button" onclick="openTab(event, 'bugreporting')">🐛 Bug Reporting</button>
+            <button class="tab-button" onclick="openTab(event, 'testingtypes')">🎯 Testing Types</button>
+            <button class="tab-button" onclick="openTab(event, 'tools')">🛠️ Tools</button>
+        </div>
+
+        <!-- TAB 1: BASICS -->
+        <div id="basics" class="tab-content active">
+            <h3>📖 Manual Testing Fundamentals</h3>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Manual Execution</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">80%</span>
+                    <span class="stat-label">Human Effort</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">High</span>
+                    <span class="stat-label">Flexibility</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">Expert</span>
+                    <span class="stat-label">Required</span>
+                </div>
+            </div>
+
+            <h4>What is Manual Testing?</h4>
+            <p>Manual testing is the process of testing software applications by manually executing test cases without using any automation tools. A QA engineer performs all test activities manually, simulating real-world user behavior and scenarios.</p>
+
+            <div class="alert alert-info">
+                <strong>💡 Key Point:</strong> Manual testing requires human intelligence, experience, and intuition to find defects that automated tests might miss.
+            </div>
+
+            <h4>Key Responsibilities of Manual Testers</h4>
+            <div class="grid">
+                <div class="grid-item">
+                    <h5>🔍 Test Design</h5>
+                    <p>Create comprehensive test cases covering all scenarios and edge cases</p>
+                </div>
+                <div class="grid-item">
+                    <h5>▶️ Test Execution</h5>
+                    <p>Execute test cases step by step and verify expected results</p>
+                </div>
+                <div class="grid-item">
+                    <h5>🐛 Defect Identification</h5>
+                    <p>Identify and document bugs with detailed reproduction steps</p>
+                </div>
+                <div class="grid-item">
+                    <h5>📊 Analysis</h5>
+                    <p>Analyze defects and validate fixes through retesting</p>
+                </div>
+            </div>
+
+            <h4>Why Manual Testing Still Matters</h4>
+            <ul>
+                <li><strong>User Experience Testing:</strong> Only humans can truly evaluate UX/UI quality</li>
+                <li><strong>Exploratory Testing:</strong> Finding unexpected bugs requires human intuition</li>
+                <li><strong>Complex Scenarios:</strong> Real-world workflows often too complex to automate</li>
+                <li><strong>Ad-hoc Testing:</strong> Quick validation without predefined test cases</li>
+                <li><strong>New Features:</strong> Testing fresh features before automation scripts exist</li>
+            </ul>
+
+            <h4>Core Competencies Required</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Competency</th>
+                        <th>Description</th>
+                        <th>Importance</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Domain Knowledge</strong></td>
+                        <td>Understanding business logic and workflows</td>
+                        <td>Critical</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Attention to Detail</strong></td>
+                        <td>Catching small UI/UX inconsistencies</td>
+                        <td>Critical</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Problem Solving</strong></td>
+                        <td>Finding root causes of defects</td>
+                        <td>High</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Communication</strong></td>
+                        <td>Clear bug reporting and collaboration</td>
+                        <td>High</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Technical Knowledge</strong></td>
+                        <td>Understanding databases, APIs, logs</td>
+                        <td>Medium</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- TAB 2: TEST CASES -->
+        <div id="testcases" class="tab-content">
+            <h3>✅ Test Case Design & Writing</h3>
+
+            <h4>Components of a Good Test Case</h4>
+            <div class="grid">
+                <div class="grid-item">
+                    <strong>Test Case ID</strong>
+                    <p>Unique identifier (TC_001)</p>
+                </div>
+                <div class="grid-item">
+                    <strong>Title</strong>
+                    <p>Clear description of what is being tested</p>
+                </div>
+                <div class="grid-item">
+                    <strong>Prerequisites</strong>
+                    <p>Conditions that must be met before execution</p>
+                </div>
+                <div class="grid-item">
+                    <strong>Test Steps</strong>
+                    <p>Detailed action steps to execute</p>
+                </div>
+                <div class="grid-item">
+                    <strong>Expected Result</strong>
+                    <p>What should happen if the feature works correctly</p>
+                </div>
+                <div class="grid-item">
+                    <strong>Actual Result</strong>
+                    <p>What actually happened during execution</p>
+                </div>
+            </div>
+
+            <h4>Real Example Test Case</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Test Case ID</strong></td>
+                        <td>TC_LOGIN_001</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Title</strong></td>
+                        <td>Verify successful login with valid credentials</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Module</strong></td>
+                        <td>Authentication</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Priority</strong></td>
+                        <td>High (P1)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Prerequisites</strong></td>
+                        <td>1. User account exists 2. User is not logged in 3. Login page is accessible</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><strong>Test Steps & Expected Results:</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Step 1</td>
+                        <td>Navigate to login page → Page loads with username and password fields</td>
+                    </tr>
+                    <tr>
+                        <td>Step 2</td>
+                        <td>Enter valid username "testuser@email.com" → Text appears in field</td>
+                    </tr>
+                    <tr>
+                        <td>Step 3</td>
+                        <td>Enter valid password "Test@123" → Password appears as dots</td>
+                    </tr>
+                    <tr>
+                        <td>Step 4</td>
+                        <td>Click "Login" button → User logs in successfully and redirected to dashboard</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Pass Criteria</strong></td>
+                        <td>User successfully logged in and appears on dashboard with correct profile information</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4>Test Case Writing Best Practices</h4>
+            <div class="alert alert-success">
+                <strong>✓ DO:</strong>
+                <ul>
+                    <li>Use clear, specific language that anyone can understand</li>
+                    <li>Test one thing per test case (single responsibility)</li>
+                    <li>Include both positive and negative scenarios</li>
+                    <li>Make test cases independent and reusable</li>
+                    <li>Use actual data values instead of "any data"</li>
+                </ul>
+            </div>
+
+            <div class="alert alert-danger">
+                <strong>✗ DON'T:</strong>
+                <ul>
+                    <li>Create vague test cases like "test login"</li>
+                    <li>Include multiple assertions in one test case</li>
+                    <li>Forget to include expected results</li>
+                    <li>Leave test data to tester imagination</li>
+                    <li>Skip boundary value testing</li>
+                </ul>
+            </div>
+
+            <h4>Types of Test Cases</h4>
+            <div class="card">
+                <strong>Positive Test Cases</strong>
+                <p>Test with valid data and valid scenarios → System should work correctly</p>
+                <p>Example: Login with correct username and password</p>
+            </div>
+            <div class="card">
+                <strong>Negative Test Cases</strong>
+                <p>Test with invalid data or error scenarios → System should handle gracefully</p>
+                <p>Example: Login with incorrect password, empty fields, SQL injection attempts</p>
+            </div>
+            <div class="card">
+                <strong>Boundary Value Test Cases</strong>
+                <p>Test at limits of input ranges → Test extreme values</p>
+                <p>Example: Age field testing with 0, 1, 120, 999, -1 values</p>
+            </div>
+        </div>
+
+        <!-- TAB 3: EXECUTION -->
+        <div id="execution" class="tab-content">
+            <h3>▶️ Test Execution & Best Practices</h3>
+
+            <h4>Step-by-Step Test Execution Process</h4>
+            <ol>
+                <li><strong>Preparation:</strong> Verify test environment is ready, test data is available</li>
+                <li><strong>Pre-Execution Checks:</strong> Ensure application launches, basic functionality works</li>
+                <li><strong>Execute Step 1:</strong> Perform first test action, note actual result</li>
+                <li><strong>Compare with Expected:</strong> Does actual match expected result?</li>
+                <li><strong>Document Status:</strong> Mark as PASS, FAIL, or BLOCKED</li>
+                <li><strong>Continue Steps:</strong> Repeat for all remaining test steps</li>
+                <li><strong>Log Defects:</strong> If any step fails, create detailed bug report</li>
+                <li><strong>Update Test Case:</strong> Record actual results and test date/tester name</li>
+            </ol>
+
+            <h4>Best Practices During Execution</h4>
+            <div class="grid">
+                <div class="grid-item">
+                    <h5>🎯 Focus & Concentration</h5>
+                    <p>Pay close attention to details, every pixel matters in UI testing</p>
+                </div>
+                <div class="grid-item">
+                    <h5>📝 Document Everything</h5>
+                    <p>Take screenshots, note error messages, record exact steps to reproduce</p>
+                </div>
+                <div class="grid-item">
+                    <h5>🐢 Go Slow</h5>
+                    <p>Don't rush testing, follow each step exactly as written</p>
+                </div>
+                <div class="grid-item">
+                    <h5>🔄 Retesting</h5>
+                    <p>Always verify bug fixes by retesting the same test case</p>
+                </div>
+            </div>
+
+            <h4>Common Test Scenarios</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Scenario</th>
+                        <th>Status</th>
+                        <th>When to Use</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>PASS ✓</strong></td>
+                        <td>Test executed successfully</td>
+                        <td>Actual result matches expected result exactly</td>
+                    </tr>
+                    <tr>
+                        <td><strong>FAIL ✗</strong></td>
+                        <td>Test execution failed</td>
+                        <td>Actual result differs from expected, create bug report</td>
+                    </tr>
+                    <tr>
+                        <td><strong>BLOCKED 🚫</strong></td>
+                        <td>Cannot execute test</td>
+                        <td>Test environment down, prerequisite failed, missing data</td>
+                    </tr>
+                    <tr>
+                        <td><strong>SKIPPED ⏭️</strong></td>
+                        <td>Test not executed</td>
+                        <td>Feature not ready, bug in prerequisite, intentionally deferred</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4>Test Coverage Considerations</h4>
+            <div class="alert alert-info">
+                <strong>Coverage Goals:</strong>
+                <ul>
+                    <li><strong>Functional Coverage:</strong> All features have at least one test case</li>
+                    <li><strong>Risk Coverage:</strong> Critical features have maximum test cases</li>
+                    <li><strong>Data Coverage:</strong> All data types and ranges tested (valid, invalid, boundary)</li>
+                    <li><strong>Path Coverage:</strong> All user workflows and decision paths tested</li>
+                    <li><strong>Error Coverage:</strong> Error handling and edge cases covered</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- TAB 4: BUG REPORTING -->
+        <div id="bugreporting" class="tab-content">
+            <h3>🐛 Bug Reporting & Defect Lifecycle</h3>
+
+            <h4>Components of a Good Bug Report</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Component</th>
+                        <th>Description</th>
+                        <th>Example</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Bug ID</strong></td>
+                        <td>Unique identifier</td>
+                        <td>BUG_2025_001</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Title</strong></td>
+                        <td>Clear, concise bug description</td>
+                        <td>Login button remains enabled when no fields filled</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Severity</strong></td>
+                        <td>Impact on functionality (Critical, High, Medium, Low, Trivial)</td>
+                        <td>High</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Priority</strong></td>
+                        <td>When it should be fixed (P1-P5, Urgent, High, Medium, Low)</td>
+                        <td>P1 (Urgent)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Module</strong></td>
+                        <td>Which part of application affected</td>
+                        <td>Authentication / Login</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Environment</strong></td>
+                        <td>OS, browser, version where bug found</td>
+                        <td>Windows 10, Chrome 120, Build 5.2.1</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Reproduction Steps</strong></td>
+                        <td>Exact steps to reproduce the bug</td>
+                        <td>1. Navigate to login page 2. Leave fields empty 3. Click Login button</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Expected Result</strong></td>
+                        <td>What should happen</td>
+                        <td>Login button should be disabled until both fields are filled</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Actual Result</strong></td>
+                        <td>What actually happens</td>
+                        <td>Login button is enabled and clickable even with empty fields</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Attachments</strong></td>
+                        <td>Screenshots, logs, video recordings</td>
+                        <td>Screenshot showing enabled button, browser console log</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4>Detailed Example Bug Report</h4>
+            <div class="card">
+                <strong>BUG_2025_0147 - Submit Button Validation Not Working</strong>
+                <p><strong>Severity:</strong> High | <strong>Priority:</strong> P1 (Urgent)</p>
+                <p><strong>Reporter:</strong> John Doe | <strong>Date:</strong> Dec 05, 2025 | <strong>Status:</strong> Open</p>
+                <p><strong>Environment:</strong> Windows 10, Chrome 120.0, Build 5.2.1</p>
+                <p><strong>Module:</strong> Registration Form</p>
+                
+                <p><strong>Description:</strong> The submit button on the registration form does not validate empty required fields before submission.</p>
+                
+                <p><strong>Steps to Reproduce:</strong></p>
+                <ol>
+                    <li>Navigate to https://www.app.com/register</li>
+                    <li>Leave First Name field empty</li>
+                    <li>Leave Last Name field empty</li>
+                    <li>Fill Email field with "test@email.com"</li>
+                    <li>Click "Register" button</li>
+                </ol>
+                
+                <p><strong>Expected Result:</strong> Form should not submit. Error message should display: "First Name and Last Name are required fields"</p>
+                
+                <p><strong>Actual Result:</strong> Form submits successfully without showing any validation error. User is redirected to confirmation page even though required fields were empty.</p>
+                
+                <p><strong>Screenshots Attached:</strong> Before submission (empty fields), After submission (confirmation page)</p>
+            </div>
+
+            <h4>Severity vs Priority Matrix</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Severity</th>
+                        <th>Impact Description</th>
+                        <th>Priority</th>
+                        <th>Fix Timeline</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span style="color: #c62828; font-weight: bold;">Critical (1)</span></td>
+                        <td>System crash, data loss, complete feature failure</td>
+                        <td>P1 - Urgent</td>
+                        <td>Immediate (Same Day)</td>
+                    </tr>
+                    <tr>
+                        <td><span style="color: #f44336; font-weight: bold;">High (2)</span></td>
+                        <td>Major functionality broken, significant workaround needed</td>
+                        <td>P2 - High</td>
+                        <td>Within 2-3 days</td>
+                    </tr>
+                    <tr>
+                        <td><span style="color: #ff9800; font-weight: bold;">Medium (3)</span></td>
+                        <td>Feature partially working, minor workaround available</td>
+                        <td>P3 - Medium</td>
+                        <td>Within 1 week</td>
+                    </tr>
+                    <tr>
+                        <td><span style="color: #4CAF50; font-weight: bold;">Low (4)</span></td>
+                        <td>Minor UI issue, cosmetic problem, minimal user impact</td>
+                        <td>P4 - Low</td>
+                        <td>Next release</td>
+                    </tr>
+                    <tr>
+                        <td><span style="color: #2196F3; font-weight: bold;">Trivial (5)</span></td>
+                        <td>No functional impact, suggestion for improvement</td>
+                        <td>P5 - Trivial</td>
+                        <td>Future consideration</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4>Bug Reporting Best Practices</h4>
+            <div class="alert alert-success">
+                <strong>✓ DO:</strong>
+                <ul>
+                    <li>Be specific and concise in bug title</li>
+                    <li>Include exact reproduction steps with actual data</li>
+                    <li>Attach relevant screenshots or videos</li>
+                    <li>Include environment details (OS, browser, version, build)</li>
+                    <li>Test your reproduction steps before reporting</li>
+                </ul>
+            </div>
+
+            <div class="alert alert-danger">
+                <strong>✗ DON'T:</strong>
+                <ul>
+                    <li>Report vague bugs like "system is broken"</li>
+                    <li>Mix multiple bugs in one report</li>
+                    <li>Forget to mention when/how you found the bug</li>
+                    <li>Set wrong severity/priority (let developer decide)</li>
+                    <li>Assume developers know what you're talking about</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- TAB 5: TESTING TYPES - MAIN CONTENT -->
+        <div id="testingtypes" class="tab-content">
+            <h3>🎯 Complete Testing Types & Classification</h3>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-number">13+</span>
+                    <span class="stat-label">Functional Types</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">14+</span>
+                    <span class="stat-label">Non-Functional Types</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">$1 → $1000+</span>
+                    <span class="stat-label">Cost Multiplier</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">80%</span>
+                    <span class="stat-label">Test Execution Time</span>
+                </div>
+            </div>
+
+            <p><strong>Software testing is divided into two main categories that work together to ensure comprehensive quality assurance:</strong></p>
+
+            <h4>Functional vs Non-Functional Testing Overview</h4>
+            <div class="grid">
+                <div class="grid-item" style="border-top: 4px solid #2196F3;">
+                    <h5>🔍 Functional Testing</h5>
+                    <p>Tests WHAT the software does - verifies features work according to requirements</p>
+                    <ul>
+                        <li>✓ Requirement-focused</li>
+                        <li>✓ Business logic validation</li>
+                        <li>✓ Positive & negative testing</li>
+                        <li>✓ End-user scenarios</li>
+                    </ul>
+                </div>
+                <div class="grid-item" style="border-top: 4px solid #FF9800;">
+                    <h5>⚙️ Non-Functional Testing</h5>
+                    <p>Tests HOW the software works - verifies performance, security, reliability</p>
+                    <ul>
+                        <li>✓ Quality attributes</li>
+                        <li>✓ Performance metrics</li>
+                        <li>✓ System reliability</li>
+                        <li>✓ User experience</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h4>Functional Testing Types (13+)</h4>
+
+            <div class="card">
+                <h5>1. Unit Testing</h5>
+                <p><strong>Badge:</strong> Developers | White Box</p>
+                <p><strong>What:</strong> Individual module/component testing</p>
+                <p><strong>When:</strong> During development, before integration</p>
+                <p><strong>Who:</strong> Developers only</p>
+                <p><strong>Example:</strong> Test login() function with valid credentials, invalid credentials, empty fields, special characters</p>
+            </div>
+
+            <div class="card">
+                <h5>2. Integration Testing</h5>
+                <p><strong>Badge:</strong> Devs + QA | Gray Box</p>
+                <p><strong>What:</strong> Testing interaction between multiple modules</p>
+                <p><strong>When:</strong> After unit testing when modules combine</p>
+                <p><strong>Who:</strong> Developers + QA Team</p>
+                <p><strong>Approaches:</strong></p>
+                <ul>
+                    <li><strong>Top-Down:</strong> Test high-level modules first using stubs</li>
+                    <li><strong>Bottom-Up:</strong> Test low-level modules first using drivers</li>
+                    <li><strong>Big Bang:</strong> Combine all modules at once (not recommended)</li>
+                </ul>
+                <p><strong>Example:</strong> Amount Transfer: Verify debit from Account A flows correctly to credit in Account B</p>
+            </div>
+
+            <div class="card">
+                <h5>3. System Testing</h5>
+                <p><strong>Badge:</strong> QA Team | Black Box</p>
+                <p><strong>What:</strong> End-to-end testing of complete integrated system</p>
+                <p><strong>When:</strong> After integration testing passes</p>
+                <p><strong>Who:</strong> QA Team (no code visibility)</p>
+                <p><strong>Environment:</strong> Production-like test environment</p>
+                <p><strong>Example:</strong> Complete Banking Loan Process - Application → Approval → Disbursement including interest calculation, documents, workflow</p>
+            </div>
+
+            <div class="card">
+                <h5>4. User Acceptance Testing (UAT)</h5>
+                <p><strong>Badge:</strong> End Users | Black Box</p>
+                <p><strong>What:</strong> Final testing by end-users/business stakeholders</p>
+                <p><strong>When:</strong> After system testing passes</p>
+                <p><strong>Who:</strong> Business users, domain experts, customers</p>
+                <p><strong>Data:</strong> Real-time business scenarios</p>
+                <ul>
+                    <li><strong>Alpha Testing:</strong> At developer site by domain experts</li>
+                    <li><strong>Beta Testing:</strong> At customer site before live release</li>
+                </ul>
+                <p><strong>Example:</strong> Fed-Ex employees test payment processing with actual Fed-Ex workflows and real transaction scenarios</p>
+            </div>
+
+            <div class="card" style="background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%); border-left: 4px solid #FF9800;">
+                <h5>🔥 5. Smoke Testing (Build Verification Testing)</h5>
+                <p><strong>Badge:</strong> Quick Check | CRITICAL</p>
+                <p><strong>What:</strong> Quick sanity check of basic/critical features</p>
+                <p><strong>When:</strong> IMMEDIATELY when new build received</p>
+                <p><strong>Duration:</strong> 30 minutes to 2 hours</p>
+                <p><strong>Testing Type:</strong> POSITIVE TESTING ONLY (valid data)</p>
+                <p><strong>Critical Checks:</strong></p>
+                <ul>
+                    <li>✓ Application launches</li>
+                    <li>✓ Login works</li>
+                    <li>✓ Homepage loads</li>
+                    <li>✓ Navigation accessible</li>
+                    <li>✓ Key features responsive</li>
+                </ul>
+                <div class="alert alert-danger" style="margin-top: 1rem;">
+                    <strong>⚠️ Decision:</strong> If ANY check FAILS → REJECT BUILD immediately. Don't waste time on detailed testing!
+                </div>
+            </div>
+
+            <div class="card">
+                <h5>6. Sanity Testing</h5>
+                <p><strong>Badge:</strong> Deep Testing | Critical Features</p>
+                <p><strong>vs Smoke Testing:</strong> Narrow & Deep (vs Wide & Shallow)</p>
+                <p><strong>Approach:</strong> Manual, unscripted (experience-based)</p>
+                <p><strong>Focus:</strong> Very important/critical features only</p>
+                <p><strong>Example:</strong> Banking App - thoroughly test Login, Amount Transfer, Balance Check with multiple scenarios each</p>
+            </div>
+
+            <div class="card">
+                <h5>⭐ 7. Regression Testing</h5>
+                <p><strong>Badge:</strong> Critical | Repetitive</p>
+                <p><strong>Purpose:</strong> Ensure existing features still work after bug fixes or new features added</p>
+                <div class="alert alert-warning">
+                    <strong>⚡ Why Critical:</strong> One bug fix can break multiple other features!
+                </div>
+                <p><strong>Types:</strong></p>
+                <ul>
+                    <li><strong>Unit Regression:</strong> Test only changed code</li>
+                    <li><strong>Regional Regression:</strong> Changed code + impact areas (RECOMMENDED)</li>
+                    <li><strong>Full Regression:</strong> Entire application (time-consuming but thorough)</li>
+                </ul>
+                <div class="alert alert-success">
+                    <strong>💡 Solution:</strong> Automate regression testing with QTP/Selenium/Cypress for efficient re-execution
+                </div>
+            </div>
+
+            <div class="card">
+                <h5>8. Retesting vs Regression</h5>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Aspect</th>
+                            <th>Retesting</th>
+                            <th>Regression Testing</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Scope</strong></td>
+                            <td>Only specific bug fixed</td>
+                            <td>Entire application/modules</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Purpose</strong></td>
+                            <td>Verify specific bug is fixed</td>
+                            <td>Ensure fix doesn't break other features</td>
+                        </tr>
+                        <tr>
+                            <td><strong>When</strong></td>
+                            <td>After each developer fix</td>
+                            <td>Comprehensive plan</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Flow</strong></td>
+                            <td>Find bug → Fix → Retest ✓</td>
+                            <td>Fix → Regression check entire system</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="card">
+                <h5>9. End-to-End Testing</h5>
+                <p><strong>Badge:</strong> Complete Workflow</p>
+                <p><strong>What:</strong> Complete business workflow from start to finish including all systems</p>
+                <p><strong>E-Commerce Example Workflow:</strong> Login → Browse → Add Cart → Checkout → Payment → Confirmation</p>
+                <p><strong>Data Used:</strong> Real-like production data through entire workflow</p>
+            </div>
+
+            <div class="card">
+                <h5>10. Ad-Hoc Testing (Monkey Testing)</h5>
+                <p><strong>Badge:</strong> Random | Experience-Based</p>
+                <p><strong>What:</strong> Random testing without predefined procedures or test cases</p>
+                <p><strong>Why Important:</strong> End-users behave unpredictably, not systematically like testers</p>
+                <p><strong>Examples:</strong></p>
+                <ul>
+                    <li>🔴 Login → Immediately click Back (should NOT show inbox)</li>
+                    <li>🔴 Copy URL → Logout → Access URL again (should NOT work)</li>
+                    <li>🔴 Rapid clicks on submit button multiple times</li>
+                </ul>
+                <div class="alert alert-success">
+                    <strong>💡 Real Benefit:</strong> Ad-hoc often finds bugs that systematic testing misses because it mimics actual user behavior!
+                </div>
+            </div>
+
+            <div class="card">
+                <h5>11. Exploratory Testing</h5>
+                <p><strong>Badge:</strong> Unscripted | Learning</p>
+                <p><strong>What:</strong> Simultaneous test design and execution without pre-planned cases</p>
+                <p><strong>Who:</strong> Experienced testers with product knowledge</p>
+                <p><strong>When:</strong> Requirements unclear OR exploring application behavior</p>
+                <p><strong>Approach:</strong> Adapts to findings in real-time, learns as testing progresses</p>
+                <p><strong>📝 Note:</strong> Even though unscripted, always document findings for future reference</p>
+            </div>
+
+            <div class="card">
+                <h5>12. Mutation Testing</h5>
+                <p><strong>Badge:</strong> Quality Check | Developers</p>
+                <p><strong>Process:</strong></p>
+                <ol>
+                    <li>Developers intentionally inject defects</li>
+                    <li>Testers test the application</li>
+                    <li>If caught → Good test quality</li>
+                </ol>
+                <p><strong>Purpose:</strong> Verify tester quality and test case effectiveness</p>
+            </div>
+
+            <div class="card">
+                <h5>13. Exhaustive Testing</h5>
+                <p><strong>Badge:</strong> Comprehensive | Time-Intensive</p>
+                <p><strong>What:</strong> Testing ALL positive AND negative scenarios for a feature</p>
+                <div class="alert alert-danger">
+                    <strong>🔴 Reality Check:</strong> Often impossible due to combinatorial explosion
+                </div>
+                <p><strong>Example:</strong> 15 input fields × 5 values each = 30+ billion test combinations!</p>
+                <p><strong>Usage:</strong> Only for critical features where quality is absolutely paramount</p>
+            </div>
+
+            <h4>Non-Functional Testing Types (14+)</h4>
+
+            <div class="card">
+                <h5>1. Performance Testing ⚡</h5>
+                <p><strong>Badge:</strong> Speed | Efficiency</p>
+                <p><strong>What:</strong> Response time, throughput, resource usage under normal conditions</p>
+                <p><strong>Measures:</strong> Response time, CPU, Memory, Disk I/O, Network bandwidth</p>
+                <p><strong>Tools:</strong> JMeter, LoadRunner, Gatling</p>
+                <p><strong>Acceptance:</strong> Response time < 2 seconds</p>
+            </div>
+
+            <div class="card">
+                <h5>2. Load Testing 📊</h5>
+                <p><strong>Badge:</strong> Heavy Users | Capacity</p>
+                <p><strong>What:</strong> Application under heavy concurrent user load</p>
+                <p><strong>Example:</strong> Simulate 1000 concurrent users accessing banking portal simultaneously</p>
+                <p><strong>Goal:</strong> Find maximum number of users application can handle before degradation</p>
+            </div>
+
+            <div class="card">
+                <h5>3. Stress Testing 💥</h5>
+                <p><strong>Badge:</strong> Breaking Point | Extreme Load</p>
+                <p><strong>What:</strong> Application BEYOND maximum capacity to find breaking point</p>
+                <p><strong>Scenarios:</strong> Double expected load, Hardware failures, Network issues, Database locks</p>
+                <p><strong>Expected:</strong> System handles gracefully OR fails with appropriate error messages (NOT crash)</p>
+            </div>
+
+            <div class="card">
+                <h5>4. Usability Testing 😊</h5>
+                <p><strong>Badge:</strong> User Experience | UI/UX</p>
+                <p><strong>Questions Tested:</strong></p>
+                <ul>
+                    <li>Can users complete tasks easily?</li>
+                    <li>Is interface clear and intuitive?</li>
+                    <li>Are buttons positioned logically?</li>
+                    <li>Are colors and fonts professional?</li>
+                </ul>
+                <p><strong>Who:</strong> Non-technical users and end-users provide best feedback</p>
+            </div>
+
+            <div class="card">
+                <h5>5. Compatibility Testing 🖥️</h5>
+                <p><strong>Badge:</strong> Cross-Platform | Multiple Environments</p>
+                <p><strong>Operating Systems:</strong> Windows, Mac, Linux</p>
+                <p><strong>Browsers:</strong> Chrome, Firefox, Safari, IE, Edge</p>
+                <p><strong>Devices:</strong> Desktop, Mobile, Tablet, Smartwatch</p>
+                <p><strong>Screen Resolutions:</strong> 1024x768, 1920x1080, 2560x1440</p>
+                <p><strong>Strategy:</strong> Focus on most widely used platforms (ROI approach) not all combinations</p>
+            </div>
+
+            <div class="card">
+                <h5>6. Security Testing 🔐</h5>
+                <p><strong>Badge:</strong> Data Protection | Authorization</p>
+                <p><strong>Tests:</strong></p>
+                <ul>
+                    <li>SQL Injection attempts</li>
+                    <li>Cross-Site Scripting (XSS)</li>
+                    <li>Authentication bypass</li>
+                    <li>Authorization bypass</li>
+                    <li>Data encryption validation</li>
+                    <li>Vulnerability scanning</li>
+                </ul>
+                <p><strong>Tools:</strong> Burp Suite, OWASP ZAP, Nessus</p>
+            </div>
+
+            <div class="card">
+                <h5>7. Reliability Testing 📈</h5>
+                <p><strong>Badge:</strong> Continuous Operation | Stability</p>
+                <p><strong>What:</strong> Application functions correctly continuously for extended periods</p>
+                <p><strong>Duration:</strong> Can run for hours/days</p>
+                <p><strong>Method:</strong> Automated scripts run 100,000+ iterations</p>
+                <p><strong>Metric:</strong> Mean Time Between Failures (MTBF)</p>
+                <p><strong>Example:</strong> Mobile phone after 10 days continuous use may hang due to RAM buildup</p>
+            </div>
+
+            <div class="card">
+                <h5>8. Recovery Testing 🔄</h5>
+                <p><strong>Badge:</strong> Disaster Recovery | Crash Handling</p>
+                <p><strong>Scenarios:</strong></p>
+                <ul>
+                    <li>💥 Sudden power failure</li>
+                    <li>🌐 Network disconnection</li>
+                    <li>🔴 Database crash</li>
+                    <li>💾 Disk full error</li>
+                </ul>
+                <p><strong>Expected:</strong> Restore to previous state + log error messages</p>
+                <p><strong>Example:</strong> Mozilla Firefox after power loss shows message to restore previous session</p>
+            </div>
+
+            <div class="card">
+                <h5>9. Authorization & Authentication Testing 🔑</h5>
+                <p><strong>Badge:</strong> Access Control | User Identity</p>
+                <p><strong>Authorization:</strong> Users have proper access levels (who can do what)</p>
+                <p><strong>Authentication:</strong> System recognizes registered users, provides correct information</p>
+                <p><strong>Example:</strong> Admin → all features, Paid User → limited features, Free User → no features</p>
+            </div>
+
+            <div class="card">
+                <h5>10. GUI Testing 🎨</h5>
+                <p><strong>Badge:</strong> Visual Design | Layout</p>
+                <p><strong>Checks:</strong></p>
+                <ul>
+                    <li>Alignment of objects (buttons, fields, text)</li>
+                    <li>Font sizes, styles, and colors consistent</li>
+                    <li>No broken frames or scattered content</li>
+                    <li>No object overlapping issues</li>
+                    <li>Professional appearance</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h5>11. Accessibility Testing ♿</h5>
+                <p><strong>Badge:</strong> Inclusive Design | Disability Support</p>
+                <p><strong>For:</strong></p>
+                <ul>
+                    <li>👨‍🦯 Blind users (screen readers)</li>
+                    <li>👂 Deaf users (captions, subtitles)</li>
+                    <li>♿ Physically disabled (keyboard navigation)</li>
+                    <li>🔍 Color blind (color contrast)</li>
+                </ul>
+                <p><strong>Standards:</strong> WCAG (Web Content Accessibility Guidelines)</p>
+            </div>
+
+            <div class="card">
+                <h5>12. Globalization Testing 🌍</h5>
+                <p><strong>Badge:</strong> I18N & L10N | Multi-Language</p>
+                <p><strong>I18N (Internationalization):</strong></p>
+                <ul>
+                    <li>Content translation to different languages</li>
+                    <li>Use property files for each language</li>
+                </ul>
+                <p><strong>L10N (Localization):</strong></p>
+                <ul>
+                    <li>Date formats: US = MM/DD/YYYY, India = DD/MM/YYYY</li>
+                    <li>Currency: $ vs Rs vs €</li>
+                    <li>Number formats, timezones, cultural aspects</li>
+                </ul>
+                <p><strong>Example:</strong> Website for 10 countries needs 10+ property files, region-specific formats, cultural considerations</p>
+            </div>
+
+            <h4>When to Use Which Testing?</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Scenario</th>
+                        <th>Use This Testing</th>
+                        <th>Why?</th>
+                        <th>Timeline</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>New build received</td>
+                        <td><strong>Smoke Testing</strong></td>
+                        <td>Quick check - save time if broken</td>
+                        <td>0.5-2 hours</td>
+                    </tr>
+                    <tr>
+                        <td>Bug fix received</td>
+                        <td><strong>Retesting + Regression</strong></td>
+                        <td>Verify fix & ensure nothing broke</td>
+                        <td>1-2 days</td>
+                    </tr>
+                    <tr>
+                        <td>Web app for 10 countries</td>
+                        <td><strong>Globalization Testing</strong></td>
+                        <td>Verify all languages & formats</td>
+                        <td>Ongoing</td>
+                    </tr>
+                    <tr>
+                        <td>App for mobile users</td>
+                        <td><strong>Compatibility + Performance</strong></td>
+                        <td>Different devices & network speeds</td>
+                        <td>2-3 weeks</td>
+                    </tr>
+                    <tr>
+                        <td>Banking application</td>
+                        <td><strong>Security + Reliability</strong></td>
+                        <td>Critical for money transactions</td>
+                        <td>4-6 weeks</td>
+                    </tr>
+                    <tr>
+                        <td>Website slow?</td>
+                        <td><strong>Performance + Load Testing</strong></td>
+                        <td>Find bottlenecks & max capacity</td>
+                        <td>1-2 weeks</td>
+                    </tr>
+                    <tr>
+                        <td>Before go-live</td>
+                        <td><strong>All types comprehensive</strong></td>
+                        <td>Ensure production-ready quality</td>
+                        <td>6-8 weeks</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4>💰 Cost of Defects Across SDLC Phases</h4>
+            <div style="background: white; padding: 2rem; border-radius: 8px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+                    <div style="text-align: center; background: #e8f5e9; padding: 1.5rem; border-radius: 8px; flex: 1; min-width: 120px;">
+                        <div style="font-size: 1.5em; font-weight: bold; color: #2e7d32;">$1</div>
+                        <div style="color: #666; font-size: 0.9em;">Requirements</div>
+                    </div>
+                    <div style="font-weight: bold; color: var(--primary);">10x</div>
+                    <div style="text-align: center; background: #e3f2fd; padding: 1.5rem; border-radius: 8px; flex: 1; min-width: 120px;">
+                        <div style="font-size: 1.5em; font-weight: bold; color: #1565c0;">$10</div>
+                        <div style="color: #666; font-size: 0.9em;">Design</div>
+                    </div>
+                    <div style="font-weight: bold; color: var(--primary);">5x</div>
+                    <div style="text-align: center; background: #fff3e0; padding: 1.5rem; border-radius: 8px; flex: 1; min-width: 120px;">
+                        <div style="font-size: 1.5em; font-weight: bold; color: #e65100;">$50</div>
+                        <div style="color: #666; font-size: 0.9em;">Development</div>
+                    </div>
+                    <div style="font-weight: bold; color: var(--primary);">2x</div>
+                    <div style="text-align: center; background: #fce4ec; padding: 1.5rem; border-radius: 8px; flex: 1; min-width: 120px;">
+                        <div style="font-size: 1.5em; font-weight: bold; color: #c2185b;">$100</div>
+                        <div style="color: #666; font-size: 0.9em;">Testing</div>
+                    </div>
+                    <div style="font-weight: bold; color: var(--primary);">2x</div>
+                    <div style="text-align: center; background: #f3e5f5; padding: 1.5rem; border-radius: 8px; flex: 1; min-width: 120px;">
+                        <div style="font-size: 1.5em; font-weight: bold; color: #6a1b9a;">$200</div>
+                        <div style="color: #666; font-size: 0.9em;">UAT</div>
+                    </div>
+                    <div style="font-weight: bold; color: var(--primary);">5x</div>
+                    <div style="text-align: center; background: #ffcdd2; padding: 1.5rem; border-radius: 8px; flex: 1; min-width: 120px;">
+                        <div style="font-size: 1.5em; font-weight: bold; color: #c62828;">$1000+</div>
+                        <div style="color: #666; font-size: 0.9em;">Production 🔴</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="alert alert-success" style="margin-top: 1rem;">
+                <strong>💡 Key Takeaway:</strong> Testing is NOT a cost - it's an <strong>investment</strong> that saves 10-100x in production defect fixing!
+            </div>
+
+            <h4>Key Testing Statistics</h4>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-number">80%</span>
+                    <span class="stat-label">Time on Execution</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">20%</span>
+                    <span class="stat-label">Planning & Design</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">50%</span>
+                    <span class="stat-label">Cost Increase per Defect</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">10x</span>
+                    <span class="stat-label">Production vs Dev Cost</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">Zero</span>
+                    <span class="stat-label">Defect-Free Products</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Testing Importance</span>
+                </div>
+            </div>
+
+            <h4>Key Takeaways for Testers</h4>
+            <div style="background: #e8f5e9; border-left: 4px solid #4CAF50; padding: 2rem; border-radius: 8px; margin: 1.5rem 0;">
+                <ol>
+                    <li><strong>Master all testing types</strong> - Know when to use each based on context</li>
+                    <li><strong>Combine Functional + Non-Functional</strong> - Both needed for complete QA</li>
+                    <li><strong>Early testing saves money</strong> - Find defects in requirements phase = 10-100x cheaper</li>
+                    <li><strong>Regression testing is non-negotiable</strong> - Every change needs coverage</li>
+                    <li><strong>Prioritize based on risk</strong> - Focus testing on critical features first</li>
+                    <li><strong>Document everything</strong> - Test cases enable consistency & knowledge transfer</li>
+                    <li><strong>Automate repetition</strong> - Manual for new features, automate for regression</li>
+                    <li><strong>Test like an end-user</strong> - Ad-hoc and exploratory catch real-world bugs</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- TAB 6: TOOLS -->
+        <div id="tools" class="tab-content">
+            <h3>🛠️ Testing Tools & Utilities</h3>
+
+            <h4>Test Management Tools</h4>
+            <div class="grid">
+                <div class="grid-item">
+                    <h5>Jira</h5>
+                    <p><strong>Type:</strong> Issue/Defect Tracking</p>
+                    <p><strong>Features:</strong> Bug tracking, test management, workflow automation</p>
+                    <p><strong>Best For:</strong> Enterprise projects with complex workflows</p>
+                </div>
+                <div class="grid-item">
+                    <h5>TestRail</h5>
+                    <p><strong>Type:</strong> Test Case Management</p>
+                    <p><strong>Features:</strong> Test case management, test execution, reporting</p>
+                    <p><strong>Best For:</strong> Centralized test case repository</p>
+                </div>
+                <div class="grid-item">
+                    <h5>Zephyr</h5>
+                    <p><strong>Type:</strong> Test Management</p>
+                    <p><strong>Features:</strong> Jira integration, test planning, execution</p>
+                    <p><strong>Best For:</strong> Jira users wanting integrated testing</p>
+                </div>
+                <div class="grid-item">
+                    <h5>Azure DevOps</h5>
+                    <p><strong>Type:</strong> Complete DevOps Platform</p>
+                    <p><strong>Features:</strong> Test case management, automation, CI/CD</p>
+                    <p><strong>Best For:</strong> Microsoft ecosystem projects</p>
+                </div>
+            </div>
+
+            <h4>Bug Tracking & Reporting Tools</h4>
+            <div class="grid">
+                <div class="grid-item">
+                    <h5>JIRA</h5>
+                    <p>Most popular issue tracking system. Customizable workflows, powerful reporting</p>
+                </div>
+                <div class="grid-item">
+                    <h5>Bugzilla</h5>
+                    <p>Open-source bug tracking. Free, reliable, widely used in software development</p>
+                </div>
+                <div class="grid-item">
+                    <h5>GitHub Issues</h5>
+                    <p>Lightweight issue tracking integrated with GitHub repositories</p>
+                </div>
+                <div class="grid-item">
+                    <h5>Azure Boards</h5>
+                    <p>Microsoft's complete work item tracking and planning tool</p>
+                </div>
+            </div>
+
+            <h4>Supporting Tools for Testing</h4>
+            <div class="grid">
+                <div class="grid-item">
+                    <h5>📸 Screenshot Tools</h5>
+                    <p><strong>Snagit, ShareX, Lightshot</strong></p>
+                    <p>Capture screenshots and annotate for bug reports</p>
+                </div>
+                <div class="grid-item">
+                    <h5>🎥 Screen Recording</h5>
+                    <p><strong>Camtasia, OBS, ScreenFlow</strong></p>
+                    <p>Record video of bug reproduction for better documentation</p>
+                </div>
+                <div class="grid-item">
+                    <h5>🔍 Browser DevTools</h5>
+                    <p><strong>Chrome DevTools, Firefox Inspector</strong></p>
+                    <p>Inspect HTML, check console errors, network requests</p>
+                </div>
+                <div class="grid-item">
+                    <h5>📊 Performance Monitoring</h5>
+                    <p><strong>Chrome Lighthouse, WebPageTest</strong></p>
+                    <p>Analyze page performance and loading times</p>
+                </div>
+            </div>
+
+            <h4>Useful Browser Extensions for Testers</h4>
+            <div class="card">
+                <strong>Chrome Extensions:</strong>
+                <ul>
+                    <li><strong>SelectorsHub:</strong> XPath and CSS selector finder</li>
+                    <li><strong>ColorPick Eyedropper:</strong> Pick colors from webpage</li>
+                    <li><strong>Responsive Web Design Tester:</strong> Test responsive design</li>
+                    <li><strong>SEO extension:</strong> Check SEO metadata</li>
+                    <li><strong>JSON Viewer:</strong> Format and view JSON responses</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 QA Automation Academy | Manual Testing Complete Guide | Version 1.0</p>
+        <p>Last Updated: December 5, 2025</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Tab Navigation
+        function openTab(evt, tabName) {
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(tab => tab.classList.remove('active'));
+            
+            const tabButtons = document.querySelectorAll('.tab-button');
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            
+            document.getElementById(tabName).classList.add('active');
+            evt.currentTarget.classList.add('active');
+        }
+
+        // Dark Mode Toggle
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+            localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+        }
+
+        // Load saved theme
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+            }
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

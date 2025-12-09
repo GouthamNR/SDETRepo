@@ -1,0 +1,1985 @@
+
+<!-- REGRESSION TESTING MAIN SECTION -->
+<div id="regressionTesting" class="tab-content">
+    <!-- Header -->
+    <div class="section-header">
+        <h1>🔄 Complete Guide to Regression Testing</h1>
+        <p class="subtitle">Master regression testing strategies, types, and best practices</p>
+    </div>
+
+    <!-- Statistics Box -->
+    <div class="stats-container">
+        <div class="stat-box">
+            <div class="stat-number">50-70%</div>
+            <div class="stat-label">Effort Spent on Regression</div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-number">3 Types</div>
+            <div class="stat-label">Regression Testing Levels</div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-number">200-400%</div>
+            <div class="stat-label">Automation ROI</div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-number">10:1</div>
+            <div class="stat-label">Test Re-use Ratio</div>
+        </div>
+    </div>
+
+    <!-- Main Navigation Tabs -->
+    <div class="rt-nav-tabs">
+        <button class="rt-nav-tab active" data-target="rtOverview">🎯 Overview & Basics</button>
+        <button class="rt-nav-tab" data-target="rtWhy">❓ Why Regression Testing</button>
+        <button class="rt-nav-tab" data-target="rtTypes">📊 3 Types of Regression</button>
+        <button class="rt-nav-tab" data-target="rtStrategies">🎯 Regression Strategies</button>
+        <button class="rt-nav-tab" data-target="rtVsRetesting">🔀 Retesting vs Regression</button>
+        <button class="rt-nav-tab" data-target="rtAutomation">🤖 Automation in Regression</button>
+        <button class="rt-nav-tab" data-target="rtRealWorld">🌍 Real-World Examples</button>
+        <button class="rt-nav-tab" data-target="rtAdvanced">🎓 Advanced Topics & Future</button>
+    </div>
+
+    <!-- ==================== OVERVIEW & BASICS ==================== -->
+    <div id="rtOverview" class="rt-content active">
+        <div class="content-header">
+            <h2>🎯 Regression Testing Overview</h2>
+            <p>Understanding the fundamentals of regression testing</p>
+        </div>
+
+        <!-- Definition -->
+        <div class="info-card gradient-green">
+            <h3>🔍 What is Regression Testing?</h3>
+            <p><strong>Definition:</strong> Re-executing existing test cases on a modified application to ensure that changes (additions, modifications, or defect fixes) have not broken existing functionality.</p>
+            <p><strong>Key Concept:</strong> "Testing unchanged features to ensure they are not broken by changes"</p>
+            <p><strong>Core Purpose:</strong> Ensure application stability across releases and builds</p>
+        </div>
+
+        <!-- Key Definition Box -->
+        <div class="definition-box">
+            <h4>💡 Key Terms to Remember</h4>
+            <div class="term-grid">
+                <div class="term-card">
+                    <h5>🔧 Change</h5>
+                    <p>Addition, modification, deletion, or defect fixing in the application</p>
+                </div>
+                <div class="term-card">
+                    <h5>📋 Regression</h5>
+                    <p>Re-running existing tests to verify changes don't break existing features</p>
+                </div>
+                <div class="term-card">
+                    <h5>♻️ Re-execution</h5>
+                    <p>Running the same test cases again on modified builds</p>
+                </div>
+                <div class="term-card">
+                    <h5>🏗️ Build</h5>
+                    <p>Version of software with new features or bug fixes</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- The Problem -->
+        <div class="problem-section">
+            <h3>🚨 The Problem: Why Regression Testing Matters</h3>
+
+            <div class="problem-scenario">
+                <h4>📱 Real Example: Email Application</h4>
+                <p><strong>Scenario:</strong> Your email app has a "Send Mail" feature that works perfectly.</p>
+
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker">Step 1</div>
+                        <p><strong>Day 1:</strong> Feature "Send Mail" tested & works ✅</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">Step 2</div>
+                        <p><strong>Day 5:</strong> Developers add new feature "Attach Files"</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">Step 3</div>
+                        <p><strong>Day 10:</strong> You test only the new "Attach Files" feature</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">Step 4 ⚠️</div>
+                        <p><strong>Day 15:</strong> User reports: "Send Mail is broken!" 😱</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">Step 5 ✅</div>
+                        <p><strong>Solution:</strong> Regression testing would have caught this!</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="impact-chart">
+                <h4>💥 Impact of Not Doing Regression Testing</h4>
+                <ul class="impact-list">
+                    <li>❌ <strong>Defects Escape to Production:</strong> Users find bugs in old features</li>
+                    <li>❌ <strong>Loss of Trust:</strong> Users lose confidence in product stability</li>
+                    <li>❌ <strong>Emergency Fixes:</strong> Costly production hotfixes needed</li>
+                    <li>❌ <strong>Revenue Impact:</strong> Users switch to competitors</li>
+                    <li>❌ <strong>Brand Damage:</strong> Negative reputation, poor reviews</li>
+                    <li>❌ <strong>Support Costs:</strong> Overwhelmed support teams</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- When Regression Testing Occurs -->
+        <div class="when-section">
+            <h3>⏰ When Does Regression Testing Happen?</h3>
+
+            <div class="flow-diagram">
+                <div class="flow-box">
+                    <strong>Build B01</strong>
+                    <br>✅ All tests pass
+                    <br>→ Release to production
+                </div>
+                <div class="arrow">→</div>
+                <div class="flow-box">
+                    <strong>Customer Request</strong>
+                    <br>Add new features
+                    <br>OR Fix bugs
+                </div>
+                <div class="arrow">→</div>
+                <div class="flow-box">
+                    <strong>Build B02</strong>
+                    <br>New features + fixes
+                    <br>⚠️ Risk: Old features broken?
+                </div>
+                <div class="arrow">→</div>
+                <div class="flow-box">
+                    <strong>🔄 REGRESSION TESTING</strong>
+                    <br>Re-test old features
+                    <br>✅ Verify nothing broken
+                </div>
+            </div>
+        </div>
+
+        <!-- Regression Testing Characteristics -->
+        <div class="characteristics">
+            <h3>📌 Characteristics of Regression Testing</h3>
+
+            <table class="char-table">
+                <tr>
+                    <th>Characteristic</th>
+                    <th>Details</th>
+                    <th>Example</th>
+                </tr>
+                <tr>
+                    <td><strong>Repetitive</strong></td>
+                    <td>Same tests run multiple times across builds</td>
+                    <td>Run 1000 test cases in B01, B02, B03, B04...</td>
+                </tr>
+                <tr>
+                    <td><strong>Comprehensive</strong></td>
+                    <td>Tests entire application, not just changes</td>
+                    <td>Test all modules even if only 1 module changed</td>
+                </tr>
+                <tr>
+                    <td><strong>Time-Consuming</strong></td>
+                    <td>Majority of testing effort spent here</td>
+                    <td>50-70% of project time is regression testing</td>
+                </tr>
+                <tr>
+                    <td><strong>Risk-Based</strong></td>
+                    <td>Focus on high-risk, critical areas</td>
+                    <td>Prioritize payment features over help text</td>
+                </tr>
+                <tr>
+                    <td><strong>Ideal for Automation</strong></td>
+                    <td>Perfect use case for test automation</td>
+                    <td>60% of regression tests can be automated</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- ==================== WHY REGRESSION ==================== -->
+    <div id="rtWhy" class="rt-content">
+        <div class="content-header">
+            <h2>❓ Why Regression Testing?</h2>
+            <p>Business case and critical importance</p>
+        </div>
+
+        <!-- Business Impact -->
+        <div class="business-impact">
+            <h3>💰 Business Impact of Regression Testing</h3>
+
+            <div class="impact-card">
+                <h4>Case Study: Banking Application</h4>
+                <p><strong>Scenario:</strong> Global bank with 5 million customers</p>
+
+                <div class="impact-analysis">
+                    <h5>Without Regression Testing:</h5>
+                    <ul>
+                        <li>1% of users affected by regression bug = 50,000 customers</li>
+                        <li>Average account value: $10,000</li>
+                        <li>If bug causes transfers to fail:</li>
+                        <li>→ Potential loss: $500 Million+ in customer trust</li>
+                        <li>→ 10,000 complaints/hour to support</li>
+                        <li>→ Stock price drops 20%</li>
+                    </ul>
+                </div>
+
+                <div class="impact-analysis">
+                    <h5>With Regression Testing:</h5>
+                    <ul>
+                        <li>Bug caught before release = $0 loss</li>
+                        <li>Cost of regression testing = $100,000</li>
+                        <li>ROI = $500M / $100K = 5,000x return!</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Key Benefits -->
+        <div class="benefits-section">
+            <h3>✅ Key Benefits of Regression Testing</h3>
+
+            <div class="benefit-card">
+                <h4>🛡️ 1. Ensures Product Stability</h4>
+                <p>Verifies that new changes don't break existing functionality</p>
+                <div class="example">
+                    <strong>Example:</strong> New "Dark Mode" feature shouldn't break "Light Mode"
+                </div>
+            </div>
+
+            <div class="benefit-card">
+                <h4>🔗 2. Identifies Integration Issues</h4>
+                <p>Catches problems when modules interact after changes</p>
+                <div class="example">
+                    <strong>Example:</strong> New payment module shouldn't break invoice generation
+                </div>
+            </div>
+
+            <div class="benefit-card">
+                <h4>📊 3. Enables Faster Releases</h4>
+                <p>Automate regression = release new features weekly, not monthly</p>
+                <div class="example">
+                    <strong>Timeline:</strong> Manual: 3 weeks for testing, Automated: 3 days
+                </div>
+            </div>
+
+            <div class="benefit-card">
+                <h4>💵 4. Reduces Cost of Defects</h4>
+                <p>Catching bugs in testing >> Fixing bugs in production</p>
+                <div class="cost-comparison">
+                    <strong>Cost Comparison:</strong>
+                    <br>Testing: $100 to fix
+                    <br>Production: $10,000+ to fix + reputation damage
+                </div>
+            </div>
+
+            <div class="benefit-card">
+                <h4>👥 5. Increases Team Confidence</h4>
+                <p>Developers and testers confident in making changes</p>
+                <div class="example">
+                    <strong>Confidence:</strong> "We can refactor code safely because tests will catch issues"
+                </div>
+            </div>
+
+            <div class="benefit-card">
+                <h4>📈 6. Continuous Quality Assurance</h4>
+                <p>Every build is validated comprehensively</p>
+                <div class="example">
+                    <strong>Process:</strong> B01→Test✅ → B02→Test✅ → B03→Test✅ → B04→Test✅
+                </div>
+            </div>
+
+            <div class="benefit-card">
+                <h4>📱 7. Supports Agile Development</h4>
+                <p>Enables rapid iteration with frequent releases</p>
+                <div class="example">
+                    <strong>Release Cadence:</strong> Deploy every 2 weeks with confidence
+                </div>
+            </div>
+
+            <div class="benefit-card">
+                <h4>🌍 8. Ensures Multi-Platform Stability</h4>
+                <p>Validates changes across browsers, devices, OS</p>
+                <div class="example">
+                    <strong>Coverage:</strong> Test on Windows, Mac, Linux + Chrome, Firefox, Safari
+                </div>
+            </div>
+        </div>
+
+        <!-- Consequences of Skipping -->
+        <div class="consequences">
+            <h3>⚠️ Consequences of Skipping Regression Testing</h3>
+
+            <div class="consequence-card">
+                <h4>😱 Real-World Disaster: 2012 Knight Capital Group</h4>
+                <p>A code deployment issue (inadequate regression testing) caused:</p>
+                <ul>
+                    <li>💥 Algorithm executed wrong logic for 45 minutes</li>
+                    <li>💰 Lost $440 MILLION in 45 minutes</li>
+                    <li>📉 Stock crashed 75% in one day</li>
+                    <li>💼 Company nearly went bankrupt</li>
+                    <li>🪦 Company eventually acquired at loss</li>
+                </ul>
+                <p><strong>Lesson:</strong> Regression testing is not optional - it's critical!</p>
+            </div>
+
+            <div class="consequence-card">
+                <h4>📱 Mobile App Example: Version 3.0 Bug</h4>
+                <p>Popular photo app released v3.0 without regression testing:</p>
+                <ul>
+                    <li>❌ New feature broke existing "Share" functionality</li>
+                    <li>❌ 2 million users couldn't share photos</li>
+                    <li>📉 App rating dropped from 4.8★ to 2.1★ in 24 hours</li>
+                    <li>😤 100,000+ one-star reviews overnight</li>
+                    <li>🔄 Emergency hotfix released same day</li>
+                </ul>
+                <p><strong>Result:</strong> Months to recover app reputation</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== 3 TYPES OF REGRESSION ==================== -->
+    <div id="rtTypes" class="rt-content">
+        <div class="content-header">
+            <h2>📊 3 Types of Regression Testing</h2>
+            <p>Strategic approaches based on scope and risk</p>
+        </div>
+
+        <!-- The Pyramid -->
+        <div class="regression-pyramid">
+            <h3>🎯 Regression Testing Pyramid</h3>
+            <div class="pyramid-visual">
+                <div class="pyramid-level level-3">
+                    <strong>Full Regression Testing (FRT)</strong>
+                    <p>100% of test cases</p>
+                    <p>High risk changes</p>
+                </div>
+                <div class="pyramid-level level-2">
+                    <strong>Regional Regression Testing (RRT)</strong>
+                    <p>Impact areas only</p>
+                    <p>Most common approach</p>
+                </div>
+                <div class="pyramid-level level-1">
+                    <strong>Unit Regression Testing (URT)</strong>
+                    <p>Only changed features</p>
+                    <p>Quick & targeted</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Type 1: URT -->
+        <div class="regression-type">
+            <h3>1️⃣ Unit Regression Testing (URT)</h3>
+            <p><strong>Scope:</strong> Test ONLY the changed features</p>
+            <p><strong>Effort:</strong> Minimal (5-10% of all test cases)</p>
+            <p><strong>When to Use:</strong> Single feature modified or bug fixed</p>
+
+            <div class="type-example">
+                <h4>📋 Example: Email Application Bug Fix</h4>
+
+                <div class="scenario">
+                    <h5>Situation:</h5>
+                    <ul>
+                        <li>✅ Build B01: All features working</li>
+                        <li>🐛 Bug found: "Search" field not working</li>
+                        <li>🔧 Developer fixes "Search" in B02</li>
+                    </ul>
+                </div>
+
+                <div class="urt-approach">
+                    <h5>URT Approach:</h5>
+                    <p><strong>What to Test:</strong> Only the "Search" feature</p>
+                    <div class="test-focus">
+                        <strong>Test Cases:</strong>
+                        <br>✓ Search with 1-20 characters
+                        <br>✓ Search with special characters
+                        <br>✓ Search with numbers
+                        <br>✓ Search with empty query
+                        <br>✓ Search results accuracy
+                    </div>
+                    <p><strong>What NOT to Test:</strong> Inbox, Compose, Reply (unchanged)</p>
+                    <p><strong>Time:</strong> 2 hours (instead of 40 hours full testing)</p>
+                </div>
+            </div>
+
+            <div class="urt-pros-cons">
+                <h4>✅ URT Pros & Cons</h4>
+                <table>
+                    <tr>
+                        <th>Advantages</th>
+                        <th>Disadvantages</th>
+                    </tr>
+                    <tr>
+                        <td>✓ Very fast (1-2 hours)</td>
+                        <td>✗ May miss hidden impact</td>
+                    </tr>
+                    <tr>
+                        <td>✓ Low cost</td>
+                        <td>✗ Assumes fix is isolated</td>
+                    </tr>
+                    <tr>
+                        <td>✓ Focused and efficient</td>
+                        <td>✗ Doesn't catch ripple effects</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- Type 2: RRT -->
+        <div class="regression-type">
+            <h3>2️⃣ Regional Regression Testing (RRT) ⭐ RECOMMENDED</h3>
+            <p><strong>Scope:</strong> Test changed features + related impact areas</p>
+            <p><strong>Effort:</strong> Moderate (30-50% of all test cases)</p>
+            <p><strong>When to Use:</strong> Most common - balances risk and effort</p>
+            <p><strong>Industry Standard:</strong> 70% of projects use RRT</p>
+
+            <div class="type-example">
+                <h4>📋 Example: Payment Module Enhancement</h4>
+
+                <div class="scenario">
+                    <h5>Situation:</h5>
+                    <ul>
+                        <li>Build B01: Payment module works fine</li>
+                        <li>Enhancement: Add "Installment Payment" feature</li>
+                        <li>Related modules: Invoice, Billing, Reports</li>
+                    </ul>
+                </div>
+
+                <div class="rrt-approach">
+                    <h5>RRT Approach: Test Changes + Impact Areas</h5>
+
+                    <div class="impact-map">
+                        <h4>Impact Analysis:</h4>
+                        <ul>
+                            <li>🔴 <strong>Direct Change:</strong> Payment Module (100% test)</li>
+                            <li>🟡 <strong>Related Areas:</strong> Invoice (likely affected)</li>
+                            <li>🟡 <strong>Related Areas:</strong> Billing (likely affected)</li>
+                            <li>🟡 <strong>Related Areas:</strong> Reports (likely affected)</li>
+                            <li>🟢 <strong>Not Affected:</strong> Inventory, Users (skip)</li>
+                        </ul>
+                    </div>
+
+                    <div class="test-breakdown">
+                        <h4>Test Case Distribution:</h4>
+                        <ul>
+                            <li>Payment Module Tests: 200 test cases (must run all)</li>
+                            <li>Invoice Tests: 80 test cases (related - run all)</li>
+                            <li>Billing Tests: 60 test cases (related - run all)</li>
+                            <li>Reports Tests: 40 test cases (related - run all)</li>
+                            <li>Total: 380 test cases (out of 1200 total)</li>
+                            <li><strong>Effort Saved:</strong> 820 test cases skipped = 68% effort reduction</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rrt-process">
+                <h4>🔍 RRT Process: How to Identify Impact Areas</h4>
+
+                <div class="impact-analysis-steps">
+                    <div class="step">
+                        <strong>Step 1: Review Requirements</strong>
+                        <p>What features changed?</p>
+                        <p class="example">Example: Payment method added</p>
+                    </div>
+                    <div class="step">
+                        <strong>Step 2: Technical Analysis</strong>
+                        <p>Ask developers: Which modules will be affected?</p>
+                        <p class="example">Example: Invoice, Reports, Accounting</p>
+                    </div>
+                    <div class="step">
+                        <strong>Step 3: Business Impact</strong>
+                        <p>Ask business: What workflows will be impacted?</p>
+                        <p class="example">Example: Customer billing process</p>
+                    </div>
+                    <div class="step">
+                        <strong>Step 4: Testing Brainstorm</strong>
+                        <p>Testing team identifies possible side effects</p>
+                        <p class="example">Example: Database schema changes impact caching</p>
+                    </div>
+                    <div class="step">
+                        <strong>Step 5: Create Impact List</strong>
+                        <p>Document all impact areas and test accordingly</p>
+                        <p class="example">Example: 5 modules to test vs 15 total</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rrt-pros-cons">
+                <h4>✅ RRT Pros & Cons</h4>
+                <table>
+                    <tr>
+                        <th>Advantages</th>
+                        <th>Disadvantages</th>
+                    </tr>
+                    <tr>
+                        <td>✓ Balanced risk vs effort</td>
+                        <td>✗ May miss non-obvious impacts</td>
+                    </tr>
+                    <tr>
+                        <td>✓ Catches most bugs</td>
+                        <td>✗ Requires impact analysis</td>
+                    </tr>
+                    <tr>
+                        <td>✓ Reasonable time (1-2 days)</td>
+                        <td>✗ Not 100% comprehensive</td>
+                    </tr>
+                    <tr>
+                        <td>✓ Industry standard</td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- Type 3: FRT -->
+        <div class="regression-type">
+            <h3>3️⃣ Full Regression Testing (FRT)</h3>
+            <p><strong>Scope:</strong> Test ALL features in entire application</p>
+            <p><strong>Effort:</strong> Comprehensive (100% of test cases)</p>
+            <p><strong>When to Use:</strong> High-risk changes or root-level modifications</p>
+
+            <div class="type-example">
+                <h4>📋 Example: Architecture Change (Database Migration)</h4>
+
+                <div class="scenario">
+                    <h5>High-Risk Situation:</h5>
+                    <ul>
+                        <li>Migrating from MySQL to PostgreSQL</li>
+                        <li>Could potentially affect ALL features</li>
+                        <li>Database is "root" of application</li>
+                        <li>Risk: Everything could break</li>
+                    </ul>
+                </div>
+
+                <div class="frt-approach">
+                    <h5>FRT Approach:</h5>
+                    <p><strong>What to Test:</strong> EVERYTHING</p>
+                    <ul>
+                        <li>✓ All 1000 test cases must run</li>
+                        <li>✓ All modules verified</li>
+                        <li>✓ All integrations validated</li>
+                    </ul>
+                    <p><strong>Other Examples of FRT:</strong></p>
+                    <ul>
+                        <li>🔧 JVM upgrade (affects all Java apps)</li>
+                        <li>🔐 Security patch (affects authentication everywhere)</li>
+                        <li>🏗️ Framework upgrade (affects architecture)</li>
+                        <li>🌍 Globalization feature added (affects all languages)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="frt-pros-cons">
+                <h4>✅ FRT Pros & Cons</h4>
+                <table>
+                    <tr>
+                        <th>Advantages</th>
+                        <th>Disadvantages</th>
+                    </tr>
+                    <tr>
+                        <td>✓ 100% comprehensive</td>
+                        <td>✗ Very time consuming (3-5 days)</td>
+                    </tr>
+                    <tr>
+                        <td>✓ Catches all regressions</td>
+                        <td>✗ Very expensive</td>
+                    </tr>
+                    <tr>
+                        <td>✓ Maximum confidence</td>
+                        <td>✗ Not practical for every release</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- Strategy Comparison -->
+        <div class="strategy-comparison">
+            <h3>📊 Regression Types Comparison</h3>
+
+            <table class="comparison-table-full">
+                <tr>
+                    <th>Aspect</th>
+                    <th>Unit Regression (URT)</th>
+                    <th>Regional Regression (RRT)</th>
+                    <th>Full Regression (FRT)</th>
+                </tr>
+                <tr>
+                    <td><strong>Scope</strong></td>
+                    <td>Changed features only</td>
+                    <td>Changes + Impact areas</td>
+                    <td>Entire application</td>
+                </tr>
+                <tr>
+                    <td><strong>Test Cases</strong></td>
+                    <td>5-10%</td>
+                    <td>30-50%</td>
+                    <td>100%</td>
+                </tr>
+                <tr>
+                    <td><strong>Time</strong></td>
+                    <td>2-4 hours</td>
+                    <td>1-2 days</td>
+                    <td>3-5 days</td>
+                </tr>
+                <tr>
+                    <td><strong>Cost</strong></td>
+                    <td>Low ($500-1K)</td>
+                    <td>Medium ($5-10K)</td>
+                    <td>High ($20-50K)</td>
+                </tr>
+                <tr>
+                    <td><strong>Risk Coverage</strong></td>
+                    <td>40%</td>
+                    <td>85% ⭐</td>
+                    <td>100%</td>
+                </tr>
+                <tr>
+                    <td><strong>When to Use</strong></td>
+                    <td>Hotfixes, small changes</td>
+                    <td>Feature enhancements (RECOMMENDED)</td>
+                    <td>Root-level changes</td>
+                </tr>
+                <tr>
+                    <td><strong>Automation Suitable</strong></td>
+                    <td>Good</td>
+                    <td>Excellent ⭐</td>
+                    <td>Essential</td>
+                </tr>
+                <tr>
+                    <td><strong>Industry Usage</strong></td>
+                    <td>20%</td>
+                    <td>70% ⭐ MOST USED</td>
+                    <td>10%</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Decision Tree -->
+        <div class="decision-tree">
+            <h3>🌳 Which Type to Choose?</h3>
+
+            <div class="decision-flow">
+                <div class="decision-node">
+                    <strong>Q: What changed?</strong>
+                </div>
+
+                <div class="decision-branch">
+                    <strong>Single feature/bug fix?</strong>
+                    <div class="answer">→ <strong>URT</strong> (Quick & focused)</div>
+                </div>
+
+                <div class="decision-branch">
+                    <strong>Feature enhancement + related modules?</strong>
+                    <div class="answer">→ <strong>RRT ⭐</strong> (Balanced & recommended)</div>
+                </div>
+
+                <div class="decision-branch">
+                    <strong>Root-level architecture change?</strong>
+                    <div class="answer">→ <strong>FRT</strong> (Comprehensive)</div>
+                </div>
+            </div>
+
+            <h4>📊 Recommended Regression Pattern</h4>
+            <p>Many teams use a hybrid approach:</p>
+            <ul>
+                <li>Release 1-10: Do <strong>RRT</strong> for each build</li>
+                <li>Release 11: Do <strong>FRT</strong> for comprehensive validation</li>
+                <li>Release 12-20: Do <strong>RRT</strong> again</li>
+                <li>Release 21: Do <strong>FRT</strong> again</li>
+                <li>Pattern repeats: Every 10 releases, do 1 FRT</li>
+            </ul>
+            <p><strong>Benefit:</strong> Most bugs caught with reasonable effort!</p>
+        </div>
+    </div>
+
+    <!-- ==================== RETESTING VS REGRESSION ==================== -->
+    <div id="rtVsRetesting" class="rt-content">
+        <div class="content-header">
+            <h2>🔀 Retesting vs Regression Testing (IMPORTANT!)</h2>
+            <p>Critical distinction often confused in interviews</p>
+        </div>
+
+        <!-- Comparison -->
+        <div class="comparison-large">
+            <h3>🎯 Key Differences</h3>
+
+            <table class="retesting-regression-table">
+                <tr>
+                    <th>Aspect</th>
+                    <th>RETESTING</th>
+                    <th>REGRESSION TESTING</th>
+                </tr>
+                <tr>
+                    <td><strong>What to Test</strong></td>
+                    <td>Only the fixed bugs</td>
+                    <td>Old features (to verify not broken)</td>
+                </tr>
+                <tr>
+                    <td><strong>Purpose</strong></td>
+                    <td>Verify bug is fixed</td>
+                    <td>Verify fix didn't break others</td>
+                </tr>
+                <tr>
+                    <td><strong>Scope</strong></td>
+                    <td>Narrow & deep</td>
+                    <td>Broad & shallow/deep</td>
+                </tr>
+                <tr>
+                    <td><strong>When Done</strong></td>
+                    <td>Before Regression</td>
+                    <td>After Retesting</td>
+                </tr>
+                <tr>
+                    <td><strong>Typical Example</strong></td>
+                    <td>Login button broken → Dev fixes → Test login button works</td>
+                    <td>After login fix → Test if Inbox still works, Messages work, etc.</td>
+                </tr>
+                <tr>
+                    <td><strong>Interview Answer</strong></td>
+                    <td>"Validating the defect fix"</td>
+                    <td>"Ensuring fix didn't break existing functionality"</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Visual Flow -->
+        <div class="flow-section">
+            <h3>📊 Retesting & Regression Testing Flow</h3>
+
+            <div class="flow-diagram-vertical">
+                <div class="flow-item">
+                    <h4>🔴 Step 1: Bug Found</h4>
+                    <p>Login button not working (Bug #123)</p>
+                </div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-item">
+                    <h4>🟡 Step 2: Bug Reported</h4>
+                    <p>Test engineer creates defect report</p>
+                </div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-item">
+                    <h4>🟢 Step 3: Bug Fixed</h4>
+                    <p>Developer fixes the login button code</p>
+                </div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-item highlight-retesting">
+                    <h4>🔄 Step 4: RETESTING</h4>
+                    <p><strong>Test ONLY the login button</strong></p>
+                    <p>Does it work now? (Yes/No)</p>
+                </div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-item highlight-regression">
+                    <h4>🔄 Step 5: REGRESSION TESTING</h4>
+                    <p><strong>Test all other features</strong></p>
+                    <p>Did login fix break Inbox? Compose? Settings?</p>
+                </div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-item">
+                    <h4>✅ Step 6: Build Released</h4>
+                    <p>Both retesting & regression passed → Release approved</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Interview Example -->
+        <div class="interview-example">
+            <h3>🎤 Interview Question Example</h3>
+
+            <div class="q-and-a">
+                <p><strong>Q: What's the difference between Retesting and Regression Testing?</strong></p>
+
+                <div class="answer-box">
+                    <p><strong>Good Answer (RECOMMENDED):</strong></p>
+                    <ul>
+                        <li><strong>Retesting:</strong> After a bug is fixed, we retest ONLY the fixed issue to confirm it's resolved. Example: Login button was broken → Dev fixed it → We test the login button.</li>
+                        <li><strong>Regression Testing:</strong> After the fix, we test OTHER features to ensure the fix didn't break them. Example: Login fix completed → We test Inbox, Compose, Messages to ensure they still work.</li>
+                    </ul>
+                    <p><strong>Key Difference:</strong></p>
+                    <ul>
+                        <li>Retesting = Verify fix works</li>
+                        <li>Regression = Verify fix didn't break others</li>
+                    </ul>
+                </div>
+
+                <div class="example-scenario">
+                    <p><strong>Scenario:</strong> Payment button doesn't work</p>
+                    <ul>
+                        <li><strong>Retesting:</strong> Test the payment button to confirm it's fixed ✓</li>
+                        <li><strong>Regression:</strong> Test Cart, Checkout, Invoice to ensure payment fix didn't break them ✓</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Remember This -->
+        <div class="remember-box">
+            <h4>💡 Remember for Interviews & Job</h4>
+            <ul>
+                <li>🔴 Retesting = Defect fix validation (narrow focus)</li>
+                <li>🔴 Regression = Defect side-effect check (broad focus)</li>
+                <li>🔴 Sequential order: First Retesting → Then Regression</li>
+                <li>🔴 Must do both! Never skip regression after retesting.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ==================== AUTOMATION IN REGRESSION ==================== -->
+    <div id="rtAutomation" class="rt-content">
+        <div class="content-header">
+            <h2>🤖 Automation in Regression Testing</h2>
+            <p>Why automation is critical for regression</p>
+        </div>
+
+        <!-- Why Automate -->
+        <div class="automation-case">
+            <h3>🔥 Why Automate Regression Testing?</h3>
+
+            <div class="automation-fact">
+                <h4>📊 The Core Problem: Manual Regression is Tedious</h4>
+                <p><strong>Scenario:</strong> Email application with 1000 test cases</p>
+
+                <div class="manual-pain">
+                    <h5>If Manual:</h5>
+                    <ul>
+                        <li>1000 test cases × 5 min per case = 5000 minutes</li>
+                        <li>5000 min ÷ 60 = 83 hours/cycle</li>
+                        <li>For 5 builds/month = 415 hours/month</li>
+                        <li>❌ Monotonous, error-prone, team gets bored</li>
+                        <li>❌ Can't afford to test every build thoroughly</li>
+                    </ul>
+                </div>
+
+                <div class="automated-solution">
+                    <h5>If Automated:</h5>
+                    <ul>
+                        <li>Write automation scripts once (200 hours upfront)</li>
+                        <li>Run 1000 tests overnight (0 manual effort)</li>
+                        <li>Results ready next morning</li>
+                        <li>✅ Can run every build, even multiple times</li>
+                        <li>✅ No human boredom/errors</li>
+                    </ul>
+                </div>
+
+                <p><strong>Comparison:</strong></p>
+                <ul>
+                    <li>Manual: 415 hours/month → Cost: $20,750/month</li>
+                    <li>Automated: 10 hours/month → Cost: $500/month</li>
+                    <li>💰 Savings: 97% or $20,250/month!</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Best Candidates for Automation -->
+        <div class="automation-candidates">
+            <h3>✅ Regression Test Cases Best for Automation</h3>
+
+            <div class="candidate-card">
+                <h4>✓ AUTOMATE: Repetitive Test Cases</h4>
+                <p>Tests that run multiple times across builds</p>
+                <ul>
+                    <li>Login/Logout tests</li>
+                    <li>Search functionality</li>
+                    <li>Sorting & filtering</li>
+                    <li>Data validation</li>
+                </ul>
+            </div>
+
+            <div class="candidate-card">
+                <h4>✓ AUTOMATE: Stable Features</h4>
+                <p>Features that don't change frequently</p>
+                <ul>
+                    <li>User registration (stable for years)</li>
+                    <li>Authentication (rarely changes)</li>
+                    <li>Core business logic (fixed requirements)</li>
+                </ul>
+            </div>
+
+            <div class="candidate-card">
+                <h4>✓ AUTOMATE: High-Risk Areas</h4>
+                <p>Critical features that must not break</p>
+                <ul>
+                    <li>Payment processing</li>
+                    <li>Database transactions</li>
+                    <li>Security features</li>
+                    <li>Integration points</li>
+                </ul>
+            </div>
+
+            <div class="candidate-card">
+                <h4>✗ DON'T AUTOMATE: UI/UX Visual Tests</h4>
+                <p>Pixel-perfect layout checks (hard to automate)</p>
+                <ul>
+                    <li>Design aesthetics</li>
+                    <li>Color accuracy</li>
+                    <li>Layout alignment</li>
+                    <li>Font rendering (use visual testing tools)</li>
+                </ul>
+            </div>
+
+            <div class="candidate-card">
+                <h4>✗ DON'T AUTOMATE: Frequently Changing Features</h4>
+                <p>Tests will break with every change</p>
+                <ul>
+                    <li>New UI controls (unstable)</li>
+                    <li>Beta features (constantly evolving)</li>
+                    <li>Marketing pages (copy changes daily)</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Automation in Regression Cycles -->
+        <div class="automation-strategy">
+            <h3>🔄 Automation Strategy Across Releases</h3>
+
+            <div class="release-strategy">
+                <h4>Release 1: Write Manual Test Cases</h4>
+                <p>Build foundation, understand features</p>
+                <ul>
+                    <li>Write 500 manual test cases</li>
+                    <li>Don't automate yet (features still changing)</li>
+                    <li>Execute manually in Release 1</li>
+                </ul>
+
+                <h4>Release 2: Convert to Automation</h4>
+                <p>Automate first release's test cases</p>
+                <ul>
+                    <li>Automate 300 of 500 test cases (60%)</li>
+                    <li>Keep 200 manual (unstable features)</li>
+                    <li>For Release 2 features: write manual tests only</li>
+                    <li>Execution: Auto for R1 (300 cases) + Manual for R2 (200 cases)</li>
+                </ul>
+
+                <h4>Release 3: Expand Automation</h4>
+                <p>Automate previous release, write manual for new</p>
+                <ul>
+                    <li>Automate Release 2 test cases (100 more)</li>
+                    <li>Total automated: 400 test cases</li>
+                    <li>Remaining manual: 200 test cases</li>
+                    <li>Execution: Auto for R1+R2 (400) + Manual for R3 (new)</li>
+                </ul>
+
+                <h4>Release 4 onwards: Maintain & Expand</h4>
+                <p>Keep automating, building automated suite</p>
+                <ul>
+                    <li>Total automated: 500+ test cases</li>
+                    <li>New features written manually</li>
+                    <li>Manual →→ Automated in next release</li>
+                </ul>
+            </div>
+
+            <div class="automation-pyramid">
+                <h4>Test Pyramid Approach</h4>
+                <ul>
+                    <li>📊 Bottom tier: Automated Unit Tests (most)</li>
+                    <li>📊 Middle tier: Automated Integration Tests (more)</li>
+                    <li>📊 Top tier: Manual End-to-End Tests (few)</li>
+                    <li>Ratio: 60% automated, 40% manual for regression</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ROI of Automation -->
+        <div class="automation-roi">
+            <h3>💰 ROI of Automating Regression Testing</h3>
+
+            <div class="roi-example">
+                <h4>Real Example: Banking Application</h4>
+                <p><strong>Scenario:</strong> 1000 regression test cases, 10 cycles/year</p>
+
+                <h5>Manual Regression Cost:</h5>
+                <ul>
+                    <li>1000 cases × 5 min × 10 cycles = 50,000 minutes/year</li>
+                    <li>50,000 min ÷ 8 hours/day = 104 days/year</li>
+                    <li>104 days × $200/day salary = <strong>$20,800/year</strong></li>
+                </ul>
+
+                <h5>Automated Regression Cost:</h5>
+                <ul>
+                    <li>Automation tool license: $5,000/year</li>
+                    <li>Automation setup (600 of 1000 cases): 300 hours × $60/hr = $18,000</li>
+                    <li>Year 1 Total: $23,000</li>
+                    <li>Year 2+ Maintenance: $6,000/year</li>
+                </ul>
+
+                <h5>💰 ROI Calculation:</h5>
+                <table class="roi-table">
+                    <tr>
+                        <td><strong>Year 1:</strong></td>
+                        <td>Manual $20,800 vs Automated $23,000 = -$2,200 (no ROI yet)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Year 2:</strong></td>
+                        <td>Manual $20,800 vs Automated $6,000 = <strong>+$14,800 savings!</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Year 3:</strong></td>
+                        <td>Manual $20,800 vs Automated $6,000 = <strong>+$14,800 savings!</strong></td>
+                    </tr>
+                    <tr style="font-weight: bold; background: #e0ffe0;">
+                        <td><strong>3-Year Total Savings:</strong></td>
+                        <td>$27,400</td>
+                    </tr>
+                </table>
+
+                <p><strong>Key Metrics:</strong></p>
+                <ul>
+                    <li>⏱️ Time saved: 95 days/year (Year 2)</li>
+                    <li>💰 Cost reduction: 71% (Year 2)</li>
+                    <li>📈 Break-even point: 13 months</li>
+                    <li>🎯 3-year ROI: 119%</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== REAL WORLD EXAMPLES ==================== -->
+    <div id="rtRealWorld" class="rt-content">
+        <div class="content-header">
+            <h2>🌍 Real-World Regression Testing Examples</h2>
+            <p>Practical scenarios from industry projects</p>
+        </div>
+
+        <!-- Example 1 -->
+        <div class="real-example">
+            <h3>📱 Example 1: E-Commerce Mobile App</h3>
+
+            <div class="example-scenario">
+                <h4>Situation:</h4>
+                <p>Popular shopping app with 10 million users</p>
+                <ul>
+                    <li>Release 1: Basic shopping features working perfectly</li>
+                    <li>Release 2: Add "One-Click Checkout" feature</li>
+                </ul>
+
+                <h4>What Changed in Release 2:</h4>
+                <ul>
+                    <li>✓ New "One-Click Checkout" button</li>
+                    <li>✓ Modified Payment gateway integration</li>
+                    <li>✓ Updated Shopping cart logic</li>
+                </ul>
+
+                <h4>🎯 Regression Testing Approach:</h4>
+                <p><strong>Type:</strong> Regional Regression Testing (RRT)</p>
+                <p><strong>Changed Features:</strong> One-Click Checkout</p>
+                <p><strong>Impact Areas (must test):</strong></p>
+                <ul>
+                    <li>Shopping cart (affected by checkout changes)</li>
+                    <li>Payment processing (modified gateway)</li>
+                    <li>Order confirmation (integrated with checkout)</li>
+                    <li>User profile (stores payment info)</li>
+                </ul>
+
+                <p><strong>NO NEED TO TEST:</strong></p>
+                <ul>
+                    <li>Product search (unchanged)</li>
+                    <li>Reviews & ratings (unchanged)</li>
+                    <li>Wishlist (unchanged)</li>
+                    <li>Account settings (unchanged)</li>
+                </ul>
+
+                <h4>📊 Results:</h4>
+                <div class="results-box">
+                    <p><strong>Total Test Cases:</strong> 1000</p>
+                    <p><strong>RRT Scope:</strong> 350 cases (35%)</p>
+                    <p><strong>Tests Skipped:</strong> 650 cases</p>
+                    <p><strong>Testing Time:</strong> 1.5 days (vs 5 days if full)</p>
+                    <p><strong>Bugs Found:</strong> 12 bugs (mostly in payment flow)</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Example 2 -->
+        <div class="real-example">
+            <h3>🏦 Example 2: Banking Application - Critical Bug Fix</h3>
+
+            <div class="example-scenario">
+                <h4>Situation:</h4>
+                <p>Critical bug discovered: "Transfer Money" button not working</p>
+
+                <h4>What Happened:</h4>
+                <ul>
+                    <li>Monday 10 AM: Bug reported by customer support</li>
+                    <li>Monday 2 PM: Developer fixes the bug</li>
+                    <li>Monday 3 PM: Testing team receives new build</li>
+                </ul>
+
+                <h4>🎯 Regression Testing Approach:</h4>
+                <p><strong>Type:</strong> Hybrid approach (URT + RRT)</p>
+
+                <div class="hybrid-approach">
+                    <h5>Phase 1: UNIT REGRESSION (Quick - 30 min)</h5>
+                    <ul>
+                        <li>Test "Transfer Money" button works ✓</li>
+                        <li>Test various transfer amounts</li>
+                        <li>Test error messages</li>
+                    </ul>
+
+                    <h5>Phase 2: REGIONAL REGRESSION (Deeper - 2 hours)</h5>
+                    <ul>
+                        <li>Test "View Transaction History" (uses same DB)</li>
+                        <li>Test "Account Balance" display (might be cached)</li>
+                        <li>Test "Statement Generation" (includes transfers)</li>
+                    </ul>
+                </div>
+
+                <h4>📊 Results:</h4>
+                <p><strong>Monday 5 PM:</strong> All tests passed ✓</p>
+                <p><strong>Monday 6 PM:</strong> Bug fix released to production</p>
+                <p><strong>Impact:</strong> Customers could transfer money again</p>
+                <p><strong>Lesson:</strong> Quick RRT prevented further damage</p>
+            </div>
+        </div>
+
+        <!-- Example 3 -->
+        <div class="real-example">
+            <h3>🔧 Example 3: Infrastructure Change - Full Regression</h3>
+
+            <div class="example-scenario">
+                <h4>Situation:</h4>
+                <p>Company migrating from Apache Server to Nginx</p>
+                <p>This is a ROOT-LEVEL change affecting EVERYTHING</p>
+
+                <h4>🎯 Regression Testing Approach:</h4>
+                <p><strong>Type:</strong> FULL REGRESSION TESTING (FRT)</p>
+
+                <p><strong>Why FRT?</strong></p>
+                <ul>
+                    <li>⚠️ Web server is the "root" of the application</li>
+                    <li>⚠️ Could affect performance, caching, SSL, headers</li>
+                    <li>⚠️ Unpredictable ripple effects across system</li>
+                </ul>
+
+                <h4>📋 Test Plan:</h4>
+                <ul>
+                    <li>✓ ALL 2000 test cases must run</li>
+                    <li>✓ All modules tested</li>
+                    <li>✓ All integrations verified</li>
+                    <li>✓ Performance testing</li>
+                    <li>✓ Load testing</li>
+                    <li>✓ Compatibility across browsers</li>
+                </ul>
+
+                <h4>📊 Results:</h4>
+                <p><strong>Testing Time:</strong> 5 days (comprehensive)</p>
+                <p><strong>Bugs Found:</strong> 27 bugs related to Nginx configuration</p>
+                <p><strong>All Bugs Fixed:</strong> Before production release</p>
+                <p><strong>Result:</strong> Smooth migration with zero customer impact</p>
+                <p><strong>Lesson:</strong> FRT for infrastructure changes is essential!</p>
+            </div>
+        </div>
+
+        <!-- Example 4 -->
+        <div class="real-example">
+            <h3>📊 Example 4: Data-Driven Regression Test Case</h3>
+
+            <div class="example-scenario">
+                <h4>Test Case: Login Functionality Regression</h4>
+
+                <div class="test-template">
+                    <h5>Test Case: RegressionLogin_001</h5>
+                    <p><strong>Module:</strong> Authentication</p>
+                    <p><strong>Type:</strong> Regression</p>
+
+                    <h5>Test Data (Multiple Scenarios):</h5>
+                    <table class="test-data-table">
+                        <tr>
+                            <th>#</th>
+                            <th>Build</th>
+                            <th>Username</th>
+                            <th>Password</th>
+                            <th>Expected Result</th>
+                            <th>Actual Result</th>
+                            <th>Status</th>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>B01</td>
+                            <td>user@email.com</td>
+                            <td>Pass123!</td>
+                            <td>Login successful</td>
+                            <td>Login successful</td>
+                            <td>✅ Pass</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>B02 (new)</td>
+                            <td>user@email.com</td>
+                            <td>Pass123!</td>
+                            <td>Login successful</td>
+                            <td>Login successful</td>
+                            <td>✅ Pass</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>B02</td>
+                            <td>wronguser</td>
+                            <td>wrongpass</td>
+                            <td>Error: Invalid credentials</td>
+                            <td>Error: Invalid credentials</td>
+                            <td>✅ Pass</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>B02</td>
+                            <td>user@email.com</td>
+                            <td>(empty)</td>
+                            <td>Error: Password required</td>
+                            <td>Error: Password required</td>
+                            <td>✅ Pass</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <p><strong>Key Point:</strong> Same test case run on multiple builds (B01, B02) to detect regressions</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== ADVANCED TOPICS ==================== -->
+    <div id="rtAdvanced" class="rt-content">
+        <div class="content-header">
+            <h2>🎓 Advanced Regression Testing & Future Trends</h2>
+            <p>Professional strategies and emerging technologies</p>
+        </div>
+
+        <!-- Advanced Topic 1 -->
+        <div class="advanced-card">
+            <h3>🧬 AI-Powered Regression Testing</h3>
+
+            <p><strong>Emerging Technology:</strong> Machine Learning for regression prediction</p>
+
+            <div class="feature-list">
+                <h4>AI Capabilities:</h4>
+                <ul>
+                    <li>🤖 <strong>Predict Impact:</strong> AI analyzes code changes and predicts which tests to run</li>
+                    <li>🤖 <strong>Smart Selection:</strong> Only run tests most likely to catch bugs (not all 1000)</li>
+                    <li>🤖 <strong>Pattern Recognition:</strong> Learn from past bugs to find similar issues</li>
+                    <li>🤖 <strong>Self-Healing:</strong> Auto-fix broken test selectors due to UI changes</li>
+                </ul>
+            </div>
+
+            <p><strong>Benefit:</strong> Reduce 1000 test cases to 200 most-relevant tests = 80% time savings!</p>
+            <p><strong>Tools:</strong> Applause, Functionize, Testim, Sauce Labs</p>
+        </div>
+
+        <!-- Advanced Topic 2 -->
+        <div class="advanced-card">
+            <h3>☁️ Cloud-Based Regression Testing</h3>
+
+            <p><strong>Trend:</strong> Running regression tests on cloud infrastructure</p>
+
+            <div class="feature-list">
+                <h4>Benefits:</h4>
+                <ul>
+                    <li>🌐 <strong>Scalability:</strong> Run 1000 tests in parallel = 80% faster</li>
+                    <li>🌐 <strong>Real Devices:</strong> Test on real phones, tablets in cloud</li>
+                    <li>🌐 <strong>No Setup:</strong> No need to maintain test lab</li>
+                    <li>🌐 <strong>Cost Flexible:</strong> Pay per test, not infrastructure</li>
+                </ul>
+            </div>
+
+            <p><strong>Platforms:</strong> BrowserStack, Sauce Labs, AWS Device Farm</p>
+        </div>
+
+        <!-- Advanced Topic 3 -->
+        <div class="advanced-card">
+            <h3>🔌 Continuous Regression Testing (CRT)</h3>
+
+            <p><strong>Practice:</strong> Running regression tests automatically after every code commit</p>
+
+            <div class="feature-list">
+                <h4>How It Works:</h4>
+                <ul>
+                    <li>1️⃣ Developer commits code to repository</li>
+                    <li>2️⃣ CI/CD pipeline automatically triggers</li>
+                    <li>3️⃣ Automated regression tests run (15 min)</li>
+                    <li>4️⃣ Results posted to dashboard</li>
+                    <li>5️⃣ If tests fail, developer notified immediately</li>
+                </ul>
+            </div>
+
+            <p><strong>Benefit:</strong> Catch regressions in minutes instead of days!</p>
+            <p><strong>Tools:</strong> Jenkins, GitLab CI, GitHub Actions + Selenium/Cypress</p>
+        </div>
+
+        <!-- Advanced Topic 4 -->
+        <div class="advanced-card">
+            <h3>📱 Cross-Platform Regression Testing</h3>
+
+            <p><strong>Challenge:</strong> Test app across 1000s of devices, browsers, OS versions</p>
+
+            <div class="feature-list">
+                <h4>Modern Approach:</h4>
+                <ul>
+                    <li>📱 Test on Real Devices (not emulators)</li>
+                    <li>📱 Test across iOS & Android</li>
+                    <li>📱 Test multiple OS versions (Android 10, 11, 12)</li>
+                    <li>📱 Test different screen sizes (4" to 7" phones, tablets)</li>
+                </ul>
+            </div>
+
+            <p><strong>Solution:</strong> Cloud device farms like BrowserStack (2000+ device combos)</p>
+        </div>
+
+        <!-- Advanced Topic 5 -->
+        <div class="advanced-card">
+            <h3>🎬 Visual Regression Testing</h3>
+
+            <p><strong>Concept:</strong> Automatically detect visual changes in UI</p>
+
+            <div class="feature-list">
+                <h4>How It Works:</h4>
+                <ul>
+                    <li>📸 Take baseline screenshot of UI (Build B01)</li>
+                    <li>📸 Take new screenshot after changes (Build B02)</li>
+                    <li>📸 AI compares pixel-by-pixel differences</li>
+                    <li>📸 Alert if visual changes detected (intended or unintended)</li>
+                </ul>
+            </div>
+
+            <p><strong>Catches:</strong> UI alignment issues automation misses, CSS bugs, layout regressions</p>
+            <p><strong>Tools:</strong> Applitools, Percy, Chromatic, Visual Regression Suite</p>
+        </div>
+
+        <!-- Key Takeaways -->
+        <div class="takeaways-box">
+            <h3>🎯 Key Takeaways: Regression Testing Mastery</h3>
+            <ul>
+                <li>✅ <strong>Definition:</strong> Re-test unchanged features after changes to ensure they still work</li>
+                <li>✅ <strong>Why It Matters:</strong> Catch defects before production (saves $$$)</li>
+                <li>✅ <strong>3 Types:</strong> URT (5%), RRT (35%, RECOMMENDED), FRT (100%)</li>
+                <li>✅ <strong>Retesting vs Regression:</strong> Retesting validates fix, Regression checks side effects</li>
+                <li>✅ <strong>50-70% of effort:</strong> Majority of testing spent on regression</li>
+                <li>✅ <strong>Perfect for Automation:</strong> 60%+ of regression can be automated</li>
+                <li>✅ <strong>Automation ROI:</strong> Break-even in 12-18 months, then 70% cost savings</li>
+                <li>✅ <strong>Challenges:</strong> Manual regression is tedious, time-consuming, error-prone</li>
+                <li>✅ <strong>AI Trend:</strong> Smart test selection reduces 1000 tests to 200 most-relevant</li>
+                <li>✅ <strong>Continuous Regression:</strong> Run tests automatically after every code commit</li>
+                <li>✅ <strong>Visual Regression:</strong> Detect UI/layout issues automation can miss</li>
+                <li>✅ <strong>Best Practice:</strong> Mix manual + automated regression for optimal coverage</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Embedded CSS for Regression Testing -->
+<style>
+.rt-nav-tabs {
+    display: flex;
+    gap: 10px;
+    margin: 20px 0;
+    flex-wrap: wrap;
+}
+
+.rt-nav-tab {
+    padding: 10px 15px;
+    background: #f0f0f0;
+    border: 2px solid #ddd;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: 500;
+}
+
+.rt-nav-tab.active {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-color: #667eea;
+}
+
+.rt-nav-tab:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.rt-content {
+    display: none;
+    animation: fadeIn 0.5s;
+}
+
+.rt-content.active {
+    display: block;
+}
+
+.info-card.gradient-green {
+    background: linear-gradient(135deg, #e0ffe0 0%, #b3ffb3 100%);
+    border-left: 5px solid #51cf66;
+}
+
+.definition-box {
+    margin: 20px 0;
+    background: #f0f7ff;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.term-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin: 15px 0;
+}
+
+.term-card {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 4px solid #667eea;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.problem-section {
+    margin: 20px 0;
+}
+
+.problem-scenario {
+    background: #fff3cd;
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 5px solid #ff8c00;
+    margin: 15px 0;
+}
+
+.timeline {
+    margin: 15px 0;
+}
+
+.timeline-item {
+    display: flex;
+    gap: 15px;
+    margin: 10px 0;
+    padding: 10px;
+    background: white;
+    border-radius: 5px;
+    border-left: 4px solid #667eea;
+}
+
+.timeline-marker {
+    background: #667eea;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 12px;
+    min-width: 60px;
+    text-align: center;
+}
+
+.impact-chart {
+    background: #ffe0e0;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 15px 0;
+    border-left: 5px solid #ff6b6b;
+}
+
+.impact-list {
+    list-style: none;
+    padding: 0;
+}
+
+.impact-list li {
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255,0,0,0.1);
+}
+
+.flow-diagram {
+    display: flex;
+    gap: 10px;
+    margin: 20px 0;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.flow-box {
+    background: #667eea;
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    min-width: 150px;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.arrow {
+    font-size: 24px;
+    color: #667eea;
+}
+
+.char-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+}
+
+.char-table th, .char-table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+
+.char-table th {
+    background: #667eea;
+    color: white;
+}
+
+.char-table tr:nth-child(odd) {
+    background: #f0f0f0;
+}
+
+.benefit-card {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 15px 0;
+    border-left: 5px solid #51cf66;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.example {
+    background: #f0f7ff;
+    padding: 10px;
+    border-radius: 4px;
+    margin: 8px 0;
+    font-size: 13px;
+}
+
+.consequence-card {
+    background: #ffe0e0;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 15px 0;
+    border-left: 5px solid #ff6b6b;
+}
+
+.regression-pyramid {
+    margin: 20px 0;
+}
+
+.pyramid-visual {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 15px;
+    margin: 15px 0;
+}
+
+.pyramid-level {
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+}
+
+.level-1 {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    width: 100%;
+}
+
+.level-2 {
+    background: linear-gradient(135deg, #4c51bf 0%, #5a5fa3 100%);
+    width: 90%;
+    margin: 0 auto;
+}
+
+.level-3 {
+    background: linear-gradient(135deg, #3d3f8f 0%, #4a4a8a 100%);
+    width: 80%;
+    margin: 0 auto;
+}
+
+.regression-type {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 20px 0;
+    border: 2px solid #667eea;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.type-example {
+    background: #f0f7ff;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 15px 0;
+}
+
+.scenario {
+    background: white;
+    padding: 15px;
+    border-radius: 5px;
+    margin: 10px 0;
+}
+
+.test-focus {
+    background: #e0ffe0;
+    padding: 15px;
+    border-radius: 5px;
+    margin: 10px 0;
+    font-family: monospace;
+    font-size: 12px;
+}
+
+.impact-map {
+    background: #fff3cd;
+    padding: 15px;
+    border-radius: 5px;
+    margin: 10px 0;
+}
+
+.test-breakdown {
+    background: #f0f7ff;
+    padding: 15px;
+    border-radius: 5px;
+    margin: 10px 0;
+}
+
+.impact-analysis-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin: 15px 0;
+}
+
+.step {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 4px solid #667eea;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.comparison-table-full {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+    overflow-x: auto;
+}
+
+.comparison-table-full th, .comparison-table-full td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+
+.comparison-table-full th {
+    background: #667eea;
+    color: white;
+}
+
+.decision-flow {
+    margin: 20px 0;
+}
+
+.decision-node {
+    background: #667eea;
+    color: white;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.decision-branch {
+    background: #f0f7ff;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 10px 0;
+    border-left: 4px solid #667eea;
+}
+
+.answer {
+    background: #e0ffe0;
+    padding: 10px;
+    border-radius: 4px;
+    margin-top: 8px;
+    font-weight: bold;
+    color: #2d5016;
+}
+
+.comparison-large {
+    margin: 20px 0;
+}
+
+.retesting-regression-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+}
+
+.retesting-regression-table th, .retesting-regression-table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+
+.retesting-regression-table th {
+    background: #667eea;
+    color: white;
+}
+
+.flow-section {
+    margin: 20px 0;
+}
+
+.flow-diagram-vertical {
+    margin: 20px 0;
+}
+
+.flow-item {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 10px 0;
+    border-left: 5px solid #667eea;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.flow-item.highlight-retesting {
+    border-left-color: #ff8c00;
+    background: #fff9e6;
+}
+
+.flow-item.highlight-regression {
+    border-left-color: #51cf66;
+    background: #e0ffe0;
+}
+
+.interview-example {
+    background: #f0f7ff;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 20px 0;
+}
+
+.q-and-a {
+    margin: 15px 0;
+}
+
+.answer-box {
+    background: #e0ffe0;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 10px 0;
+}
+
+.example-scenario {
+    background: #fff3cd;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 10px 0;
+}
+
+.remember-box {
+    background: linear-gradient(135deg, #fff3cd 0%, #ffe0b2 100%);
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 5px solid #ff8c00;
+    margin: 20px 0;
+}
+
+.automation-case {
+    margin: 20px 0;
+}
+
+.automation-fact {
+    background: #f0f7ff;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 15px 0;
+    border-left: 5px solid #667eea;
+}
+
+.manual-pain {
+    background: #ffe0e0;
+    padding: 15px;
+    border-radius: 5px;
+    margin: 10px 0;
+}
+
+.automated-solution {
+    background: #e0ffe0;
+    padding: 15px;
+    border-radius: 5px;
+    margin: 10px 0;
+}
+
+.automation-candidates {
+    margin: 20px 0;
+}
+
+.candidate-card {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 15px 0;
+    border-left: 5px solid #667eea;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.automation-strategy {
+    margin: 20px 0;
+}
+
+.release-strategy {
+    background: #f0f7ff;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.release-strategy h4 {
+    margin-top: 15px;
+    color: #667eea;
+    border-bottom: 2px solid #667eea;
+    padding-bottom: 8px;
+}
+
+.automation-roi {
+    margin: 20px 0;
+}
+
+.roi-example {
+    background: #e0ffe0;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 15px 0;
+}
+
+.roi-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+}
+
+.roi-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+
+.roi-table tr:nth-child(odd) {
+    background: #f0f0f0;
+}
+
+.real-example {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 20px 0;
+    border: 2px solid #667eea;
+}
+
+.example-scenario {
+    background: #f0f7ff;
+    padding: 15px;
+    border-radius: 5px;
+    margin: 10px 0;
+}
+
+.results-box {
+    background: #e0ffe0;
+    padding: 15px;
+    border-radius: 5px;
+    margin: 10px 0;
+    border-left: 4px solid #51cf66;
+}
+
+.hybrid-approach {
+    background: #fff3cd;
+    padding: 15px;
+    border-radius: 5px;
+    margin: 10px 0;
+}
+
+.test-template {
+    background: #f0f7ff;
+    padding: 15px;
+    border-radius: 5px;
+    margin: 10px 0;
+}
+
+.test-data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0;
+    font-size: 12px;
+}
+
+.test-data-table th, .test-data-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+.test-data-table th {
+    background: #667eea;
+    color: white;
+}
+
+.advanced-card {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 15px 0;
+    border: 2px solid #667eea;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.feature-list {
+    margin: 15px 0;
+}
+
+.takeaways-box {
+    background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 5px solid #667eea;
+    margin: 20px 0;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .rt-nav-tabs {
+        flex-direction: column;
+    }
+
+    .flow-diagram {
+        flex-direction: column;
+    }
+
+    .arrow {
+        transform: rotate(90deg);
+    }
+}
+</style>
+
+<!-- JavaScript for Regression Testing interactions -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // RT Nav Tabs
+    const rtNavTabs = document.querySelectorAll('.rt-nav-tab');
+    rtNavTabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+            const target = this.getAttribute('data-target');
+            showRTContent(target);
+
+            rtNavTabs.forEach(t => t.classList.remove('active'));
+            this.classList.add('active');
+        });
+    });
+
+    function showRTContent(id) {
+        const contents = document.querySelectorAll('.rt-content');
+        contents.forEach(c => c.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+    }
+});
+</script>

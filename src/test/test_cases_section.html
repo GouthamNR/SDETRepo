@@ -1,0 +1,2316 @@
+
+<!-- TEST CASES MAIN SECTION -->
+<div id="testCases" class="tab-content">
+    <!-- Header -->
+    <div class="section-header">
+        <h1>📝 Complete Guide to Test Case Design & Execution</h1>
+        <p class="subtitle">Master test case creation, validation, and management strategies</p>
+    </div>
+
+    <!-- Statistics Box -->
+    <div class="stats-container">
+        <div class="stat-box">
+            <div class="stat-number">1050+</div>
+            <div class="stat-label">Test Cases/Project</div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-number">3-5</div>
+            <div class="stat-label">Cases/Day Written</div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-number">20-40</div>
+            <div class="stat-label">Avg. Steps/Case</div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-number">35-60</div>
+            <div class="stat-label">Cases/Day Executed</div>
+        </div>
+    </div>
+
+    <!-- Main Navigation Tabs -->
+    <div class="tc-nav-tabs">
+        <button class="tc-nav-tab active" data-target="tcOverview">📖 Overview & Basics</button>
+        <button class="tc-nav-tab" data-target="tcDesignTechniques">🎯 Design Techniques</button>
+        <button class="tc-nav-tab" data-target="tcStructure">🏗️ TC Structure & Template</button>
+        <button class="tc-nav-tab" data-target="tcWriting">✍️ Writing Best Practices</button>
+        <button class="tc-nav-tab" data-target="tcReview">🔍 Review Process</button>
+        <button class="tc-nav-tab" data-target="tcRepository">📦 Repository & Management</button>
+        <button class="tc-nav-tab" data-target="tcExecution">⚙️ Execution & Reporting</button>
+        <button class="tc-nav-tab" data-target="tcAdvanced">🎓 Advanced Strategies</button>
+    </div>
+
+    <!-- ==================== OVERVIEW & BASICS ==================== -->
+    <div id="tcOverview" class="tc-content active">
+        <div class="content-header">
+            <h2>📖 Test Case Overview & Fundamentals</h2>
+            <p>Understanding why and when to write test cases</p>
+        </div>
+
+        <!-- Definition Card -->
+        <div class="info-card gradient-blue">
+            <h3>🎯 What is a Test Case?</h3>
+            <p><strong>Definition:</strong> A test case is a set of input values, execution preconditions, expected results, and post-execution conditions designed to cover a particular test objective.</p>
+            <p><strong>Key Purpose:</strong> To ensure consistent, quality testing regardless of who executes the test</p>
+        </div>
+
+        <!-- Why Test Cases Matter -->
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <h4>✅ Better Coverage</h4>
+                <p>Document all possible scenarios systematically</p>
+            </div>
+            <div class="benefit-card">
+                <h4>✅ Consistency</h4>
+                <p>Testing doesn't depend on tester's mood or experience</p>
+            </div>
+            <div class="benefit-card">
+                <h4>✅ Knowledge Transfer</h4>
+                <p>New testers can quickly understand what to test</p>
+            </div>
+            <div class="benefit-card">
+                <h4>✅ Process-Based</h4>
+                <p>Depend on procedures, not on individual testers</p>
+            </div>
+            <div class="benefit-card">
+                <h4>✅ Traceability</h4>
+                <p>Link requirements to test cases to automation scripts</p>
+            </div>
+            <div class="benefit-card">
+                <h4>✅ Reusability</h4>
+                <p>Use same test cases across multiple releases</p>
+            </div>
+        </div>
+
+        <!-- Timeline: When to Write -->
+        <div class="timeline-section">
+            <h3>⏱️ Test Case Writing Timeline</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-marker">Month 1</div>
+                    <div class="timeline-content">
+                        <strong>Requirements Collection</strong>
+                        <p>Customer provides CRS/SRS</p>
+                    </div>
+                </div>
+                <div class="timeline-arrow">↓</div>
+                <div class="timeline-item">
+                    <div class="timeline-marker">Month 2</div>
+                    <div class="timeline-content">
+                        <strong>Development Starts</strong>
+                        <p>Dev team: 4 months | QA team: Start writing TCs</p>
+                    </div>
+                </div>
+                <div class="timeline-arrow">↓</div>
+                <div class="timeline-item">
+                    <div class="timeline-marker">Month 5</div>
+                    <div class="timeline-content">
+                        <strong>Build Ready</strong>
+                        <p>Development complete, Test cases finalized</p>
+                    </div>
+                </div>
+                <div class="timeline-arrow">↓</div>
+                <div class="timeline-item">
+                    <div class="timeline-marker">Month 5-6</div>
+                    <div class="timeline-content">
+                        <strong>Test Execution</strong>
+                        <p>Execute prepared test cases</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Real-World Example -->
+        <div class="example-section">
+            <h3>📚 Real Example: Email Amount Transfer</h3>
+            <div class="example-card">
+                <strong>Scenario:</strong> Testing Amount Transfer feature in banking app
+
+                <h4>Requirements (SRS):</h4>
+                <ul>
+                    <li>70.3 Amount Transfer</li>
+                    <li>70.3.1: Accept amount 100-5000</li>
+                    <li>70.3.2: Don't allow transfer > account balance</li>
+                </ul>
+
+                <h4>Without Test Cases:</h4>
+                <div class="problem-box">
+                    ❌ Tester A tests with: 100, 5000
+                    <br>❌ Tester B tests with: 500, 3000
+                    <br>❌ Inconsistent coverage, missed edge cases
+                </div>
+
+                <h4>With Test Cases:</h4>
+                <div class="solution-box">
+                    ✅ All testers test same scenarios: -100, 0, 100, 5000, 6000
+                    <br>✅ Consistent, repeatable, comprehensive
+                </div>
+            </div>
+        </div>
+
+        <!-- Metrics -->
+        <div class="metrics-section">
+            <h3>📊 Test Case Metrics & Ratios</h3>
+            <div class="metrics-grid">
+                <div class="metric-item">
+                    <strong>Screens:</strong> 70 screens
+                    <br>÷ Test Cases per screen: 10-15
+                    <br>= <strong>1050-1200 total test cases</strong>
+                </div>
+                <div class="metric-item">
+                    <strong>Team Size:</strong> 70 screens ÷ 5 screens/engineer
+                    <br>= <strong>14 test engineers</strong>
+                    <br>(+ 1 TM + 2-3 TLs)
+                </div>
+                <div class="metric-item">
+                    <strong>Effort Ratio (1 TC):</strong>
+                    <br>Write: 20 mins
+                    <br>Review: 7 mins (3x rate)
+                    <br>Execute: 4 mins (5x rate)
+                </div>
+                <div class="metric-item">
+                    <strong>Per Day:</strong>
+                    <br>Write: 3-5 test cases
+                    <br>Review: 24-30 cases
+                    <br>Execute: 35-60 cases
+                </div>
+            </div>
+        </div>
+
+        <!-- Test Case Types -->
+        <div class="types-section">
+            <h3>🏷️ Types of Test Cases by Level</h3>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Level</th>
+                        <th>Scope</th>
+                        <th>Test Cases</th>
+                        <th>Focus</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Functional (FT)</strong></td>
+                        <td>Individual features</td>
+                        <td>400-500 per project</td>
+                        <td>Feature behavior</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Integration (IT)</strong></td>
+                        <td>Module interactions</td>
+                        <td>200-300 per project</td>
+                        <td>Data flow, interfaces</td>
+                    </tr>
+                    <tr>
+                        <td><strong>System (ST)</strong></td>
+                        <td>End-to-end flows</td>
+                        <td>150-250 per project</td>
+                        <td>Complete workflows</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Regression</strong></td>
+                        <td>Unchanged features</td>
+                        <td>Re-execute FT cases</td>
+                        <td>No side effects</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- ==================== DESIGN TECHNIQUES ==================== -->
+    <div id="tcDesignTechniques" class="tc-content">
+        <div class="content-header">
+            <h2>🎯 Test Case Design Techniques</h2>
+            <p>Methods to systematically derive effective test cases</p>
+        </div>
+
+        <!-- Technique 1: Error Guessing -->
+        <div class="technique-card">
+            <div class="technique-header technique-1">
+                <h3>1️⃣ Error Guessing</h3>
+            </div>
+            <div class="technique-body">
+                <h4>🔍 Definition:</h4>
+                <p>Based on experience, guess what errors might exist and test for them</p>
+
+                <h4>📋 How It Works:</h4>
+                <p><strong>Rule:</strong> If field accepts only positive integers, test with:</p>
+                <ul>
+                    <li>❌ Decimal numbers: 100.50</li>
+                    <li>❌ Negative numbers: -100</li>
+                    <li>❌ Special characters: 100@$</li>
+                    <li>❌ Text: "hundred"</li>
+                    <li>❌ Blank/spaces</li>
+                    <li>✅ Valid positive integers: 100, 5000</li>
+                </ul>
+
+                <h4>⚡ Advantages:</h4>
+                <ul>
+                    <li>Quick and intuitive</li>
+                    <li>Catches obvious bugs</li>
+                    <li>No formal procedures needed</li>
+                </ul>
+
+                <h4>❌ Disadvantages:</h4>
+                <ul>
+                    <li>Depends on tester experience</li>
+                    <li>Miss boundary cases</li>
+                    <li>Inconsistent across team</li>
+                    <li>May have gaps in coverage</li>
+                </ul>
+
+                <h4>🎯 When to Use:</h4>
+                <p>Alongside other techniques, for exploratory testing, when requirements are unclear</p>
+            </div>
+        </div>
+
+        <!-- Technique 2: Equivalence Partitioning -->
+        <div class="technique-card">
+            <div class="technique-header technique-2">
+                <h3>2️⃣ Equivalence Partitioning (EP)</h3>
+            </div>
+            <div class="technique-body">
+                <h4>🔍 Definition:</h4>
+                <p>Divide input domain into equivalent groups and test one from each group</p>
+
+                <h4>📋 Pressman's Rule:</h4>
+                <div class="pressman-rule">
+                    <strong>For Range Input:</strong>
+                    <ul>
+                        <li>✅ 1 Valid value (inside range)</li>
+                        <li>❌ 2 Invalid values (below & above range)</li>
+                    </ul>
+                    <br>
+                    <strong>Example (Amount: 100-5000):</strong>
+                    <ul>
+                        <li>✅ Valid: 2000 (inside 100-5000)</li>
+                        <li>❌ Invalid: 50 (below 100)</li>
+                        <li>❌ Invalid: 6000 (above 5000)</li>
+                    </ul>
+                </div>
+
+                <h4>🎨 Visual Representation:</h4>
+                <div class="partition-visual">
+                    <div class="partition-section invalid">
+                        <strong>Invalid</strong>
+                        <br>&lt; 100
+                    </div>
+                    <div class="partition-section valid">
+                        <strong>Valid</strong>
+                        <br>100-5000
+                    </div>
+                    <div class="partition-section invalid">
+                        <strong>Invalid</strong>
+                        <br>&gt; 5000
+                    </div>
+                </div>
+
+                <h4>✅ Advantages:</h4>
+                <ul>
+                    <li>Systematic approach</li>
+                    <li>Good coverage with few test cases</li>
+                    <li>Reduces redundant test cases</li>
+                    <li>Easy to understand and implement</li>
+                </ul>
+
+                <h4>⏱️ Effort: 3 test cases for range field</h4>
+            </div>
+        </div>
+
+        <!-- Technique 3: Boundary Value Analysis -->
+        <div class="technique-card">
+            <div class="technique-header technique-3">
+                <h3>3️⃣ Boundary Value Analysis (BVA)</h3>
+            </div>
+            <div class="technique-body">
+                <h4>🔍 Definition:</h4>
+                <p>Test values at boundaries where behavior might change</p>
+
+                <h4>📋 BVA Rule (For Range A-B):</h4>
+                <p>Test: <strong>A-1, A, A+1, B-1, B, B+1</strong></p>
+
+                <h4>🎨 Example (Amount: 100-5000):</h4>
+                <div class="bva-values">
+                    <div class="bva-group">
+                        <strong>Lower Boundary:</strong>
+                        <ul>
+                            <li>99 (A-1)</li>
+                            <li>100 (A)</li>
+                            <li>101 (A+1)</li>
+                        </ul>
+                    </div>
+                    <div class="bva-group">
+                        <strong>Upper Boundary:</strong>
+                        <ul>
+                            <li>4999 (B-1)</li>
+                            <li>5000 (B)</li>
+                            <li>5001 (B+1)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h4>💡 Why BVA Works:</h4>
+                <p>Developers often make mistakes at boundaries (e.g., using &lt; instead of &lt;=)</p>
+                <div class="code-example">
+                    <strong>Common Bug Pattern:</strong>
+                    <br>If (amount &lt; 100) Error  // Should be: &lt;= 99
+                    <br>If (amount &gt; 5000) Error  // Should be: &gt;= 5001
+                </div>
+
+                <h4>🆚 BVA vs EP:</h4>
+                <div class="comparison-box">
+                    <strong>BVA:</strong> More test cases (6) but catches subtle boundary bugs
+                    <br><strong>EP:</strong> Fewer test cases (3) but may miss boundary issues
+                    <br><strong>Recommendation:</strong> Use BVA when boundary behavior matters
+                </div>
+
+                <h4>⏱️ Effort: 6 test cases for range field</h4>
+            </div>
+        </div>
+
+        <!-- Technique 4: Practice Method -->
+        <div class="technique-card">
+            <div class="technique-header technique-4">
+                <h3>4️⃣ Practice Method (Enhanced Equivalence)</h3>
+            </div>
+            <div class="technique-body">
+                <h4>🔍 When Used:</h4>
+                <p>When simple EP doesn't catch business logic variations</p>
+
+                <h4>📋 Example: Insurance Premium Policy</h4>
+                <p><strong>Business Rules:</strong></p>
+                <ul>
+                    <li>Age &lt; 10: Not eligible</li>
+                    <li>Age 10-25: 2% premium deduction</li>
+                    <li>Age 26-55: 3% premium deduction</li>
+                    <li>Age &gt; 55: 5% premium deduction</li>
+                </ul>
+
+                <h4>❌ Simple EP (3 cases insufficient):</h4>
+                <ul>
+                    <li>Valid: 20 (inside 0-100) → Misses different deductions!</li>
+                    <li>Invalid: -5, 150</li>
+                </ul>
+
+                <h4>✅ Practice Method (8 cases):</h4>
+                <div class="practice-table">
+                    <table class="mini-table">
+                        <tr>
+                            <th>Age Value</th>
+                            <th>Category</th>
+                            <th>Expected Behavior</th>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>&lt; 10</td>
+                            <td>Reject</td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td>10-25 (start)</td>
+                            <td>2% deduction</td>
+                        </tr>
+                        <tr>
+                            <td>17</td>
+                            <td>10-25 (middle)</td>
+                            <td>2% deduction</td>
+                        </tr>
+                        <tr>
+                            <td>25</td>
+                            <td>10-25 (end)</td>
+                            <td>2% deduction</td>
+                        </tr>
+                        <tr>
+                            <td>26</td>
+                            <td>26-55 (start)</td>
+                            <td>3% deduction</td>
+                        </tr>
+                        <tr>
+                            <td>40</td>
+                            <td>26-55 (middle)</td>
+                            <td>3% deduction</td>
+                        </tr>
+                        <tr>
+                            <td>55</td>
+                            <td>26-55 (end)</td>
+                            <td>3% deduction</td>
+                        </tr>
+                        <tr>
+                            <td>56</td>
+                            <td>&gt; 55</td>
+                            <td>5% deduction</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <h4>💡 Key Insight:</h4>
+                <p>Practice method finds boundary transitions where business logic changes</p>
+
+                <h4>🎯 When to Use:</h4>
+                <ul>
+                    <li>Complex business logic with multiple ranges</li>
+                    <li>Policy-based systems</li>
+                    <li>Insurance, banking, taxation calculations</li>
+                </ul>
+
+                <h4>⏱️ Effort: 8+ test cases per field</h4>
+            </div>
+        </div>
+
+        <!-- Technique Comparison -->
+        <div class="technique-comparison">
+            <h3>📊 Design Techniques Comparison</h3>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Technique</th>
+                        <th>Test Cases</th>
+                        <th>Effort</th>
+                        <th>Coverage</th>
+                        <th>Best For</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Error Guessing</strong></td>
+                        <td>5-10</td>
+                        <td>Low</td>
+                        <td>Medium</td>
+                        <td>Exploratory, obvious errors</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Equivalence Partitioning</strong></td>
+                        <td>3</td>
+                        <td>Very Low</td>
+                        <td>Good</td>
+                        <td>Quick testing, simple logic</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Boundary Value Analysis</strong></td>
+                        <td>6</td>
+                        <td>Low</td>
+                        <td>Very Good</td>
+                        <td>Range-based fields</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Practice Method</strong></td>
+                        <td>8+</td>
+                        <td>Medium</td>
+                        <td>Excellent</td>
+                        <td>Complex business logic</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Decision Flow -->
+        <div class="decision-flow">
+            <h3>🔀 Which Technique to Use?</h3>
+            <div class="flow-box">
+                <div class="flow-decision">
+                    <strong>Q: Is it a simple range?</strong>
+                    <div class="flow-yes">YES → Use BVA (6 cases)</div>
+                    <div class="flow-no">NO ↓</div>
+                </div>
+                <div class="flow-decision">
+                    <strong>Q: Has business logic variations?</strong>
+                    <div class="flow-yes">YES → Use Practice Method (8+ cases)</div>
+                    <div class="flow-no">NO ↓</div>
+                </div>
+                <div class="flow-decision">
+                    <strong>Q: Time constrained?</strong>
+                    <div class="flow-yes">YES → Use EP (3 cases)</div>
+                    <div class="flow-no">NO → Use BVA (6 cases)</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== STRUCTURE & TEMPLATE ==================== -->
+    <div id="tcStructure" class="tc-content">
+        <div class="content-header">
+            <h2>🏗️ Test Case Structure & Template</h2>
+            <p>Complete breakdown of test case components</p>
+        </div>
+
+        <!-- Overview -->
+        <div class="info-card gradient-purple">
+            <h3>📋 Test Case Template Structure (3 Parts)</h3>
+            <div class="structure-grid">
+                <div class="structure-item">
+                    <strong>HEADER</strong>
+                    <p>Metadata about the test case</p>
+                </div>
+                <div class="structure-item">
+                    <strong>BODY</strong>
+                    <p>Actual test execution steps</p>
+                </div>
+                <div class="structure-item">
+                    <strong>FOOTER</strong>
+                    <p>Approval and tracking info</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Detailed Template -->
+        <div class="template-sections">
+            <h3>📝 Detailed Test Case Template</h3>
+
+            <!-- HEADER Section -->
+            <div class="template-section">
+                <h4>🏷️ HEADER Section (8 Fields)</h4>
+
+                <div class="template-field">
+                    <strong>1. Test Case Name</strong>
+                    <p class="desc">Unique identifier describing test scenario</p>
+                    <div class="example">
+                        <strong>Format:</strong> [Application]-[Feature]-[Scenario]-[Increment]
+                        <br><strong>Example:</strong> CBO-AmountTransfer-MoreThanBalance-001
+                    </div>
+                </div>
+
+                <div class="template-field">
+                    <strong>2. Requirement Number</strong>
+                    <p class="desc">SRS requirement this test case covers</p>
+                    <div class="example">
+                        Example: 70.3 (Amount Transfer, From SRS document)
+                    </div>
+                </div>
+
+                <div class="template-field">
+                    <strong>3. Module Name</strong>
+                    <p class="desc">Which feature/module is being tested</p>
+                    <div class="example">
+                        Example: Amount Transfer Module
+                    </div>
+                </div>
+
+                <div class="template-field">
+                    <strong>4. Pre-condition</strong>
+                    <p class="desc">What must be set up BEFORE executing step 1</p>
+                    <div class="example">
+                        • User logged in successfully
+                        <br>• User account balance known (e.g., 10,000)
+                        <br>• Amount Transfer feature is accessible
+                    </div>
+                </div>
+
+                <div class="template-field">
+                    <strong>5. Test Data</strong>
+                    <p class="desc">Actual values to use in test steps</p>
+                    <div class="example">
+                        • Username: User_A
+                        <br>• Password: ****
+                        <br>• From Account: 10001
+                        <br>• To Account: 10002
+                        <br>• Transfer Amount: 12000
+                    </div>
+                </div>
+
+                <div class="template-field">
+                    <strong>6. Severity</strong>
+                    <p class="desc">Impact if this test fails (Critical/Major/Minor)</p>
+                    <div class="severity-box">
+                        <strong>Critical:</strong> System unusable, core feature broken
+                        <br><strong>Major:</strong> Feature partially broken, workaround exists
+                        <br><strong>Minor:</strong> Cosmetic issue, functionality intact
+                    </div>
+                    <div class="example">
+                        Example: Critical (Amount Transfer is core banking feature)
+                    </div>
+                </div>
+
+                <div class="template-field">
+                    <strong>7. Test Case Type</strong>
+                    <p class="desc">Level and classification</p>
+                    <div class="example">
+                        • Functional Testing
+                        <br>• Integration Testing
+                        <br>• Positive / Negative / Positive & Negative
+                    </div>
+                </div>
+
+                <div class="template-field">
+                    <strong>8. Brief Description</strong>
+                    <p class="desc">One-line summary of what is being tested</p>
+                    <div class="example">
+                        "Verify that amount transfer does not allow transfer amount exceeding account balance"
+                    </div>
+                </div>
+            </div>
+
+            <!-- BODY Section -->
+            <div class="template-section">
+                <h4>👣 BODY Section (Execution Steps)</h4>
+                <p>Detailed steps to reproduce the scenario</p>
+
+                <div class="body-structure">
+                    <table class="mini-table">
+                        <tr>
+                            <th>Step#</th>
+                            <th>Action</th>
+                            <th>Input</th>
+                            <th>Expected Result</th>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>Launch browser</td>
+                            <td>-</td>
+                            <td>Browser opens successfully</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Navigate to URL</td>
+                            <td>www.citibank.com</td>
+                            <td>Login page displays</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Enter username</td>
+                            <td>User_A (from test data)</td>
+                            <td>Username accepted in field</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>Enter password</td>
+                            <td>password123</td>
+                            <td>Password hidden (dots)</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>Click Login button</td>
+                            <td>-</td>
+                            <td>Dashboard displays, balance shows 10,000</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>Click Amount Transfer</td>
+                            <td>-</td>
+                            <td>Amount Transfer form displays</td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>Enter From Account</td>
+                            <td>10001</td>
+                            <td>Account number accepted</td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td>Enter To Account</td>
+                            <td>10002</td>
+                            <td>Account number accepted</td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td>Enter Amount</td>
+                            <td>12000 (more than balance)</td>
+                            <td>Amount accepted in field</td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td>Click Transfer button</td>
+                            <td>-</td>
+                            <td>❌ ERROR: "Cannot transfer more than balance" (Expected)</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <h4>💡 Step Writing Guidelines:</h4>
+                <ul>
+                    <li>✅ Be specific (not "Click Submit", but "Click the Submit button next to Amount field")</li>
+                    <li>✅ One action per step</li>
+                    <li>✅ Use actual values from test data</li>
+                    <li>✅ Include expected result for each step (helps in debugging)</li>
+                    <li>✅ Keep steps numbered sequentially</li>
+                </ul>
+            </div>
+
+            <!-- FOOTER Section -->
+            <div class="template-section">
+                <h4>📌 FOOTER Section (Approval)</h4>
+
+                <div class="footer-fields">
+                    <div class="footer-item">
+                        <strong>Author:</strong> Who wrote this test case (Tester name, date)
+                    </div>
+                    <div class="footer-item">
+                        <strong>Reviewed By:</strong> Peer who reviewed it (Sr. Tester, Test Lead)
+                    </div>
+                    <div class="footer-item">
+                        <strong>Approved By:</strong> Test Lead/Manager approval
+                    </div>
+                    <div class="footer-item">
+                        <strong>Approval Date:</strong> When test case was approved
+                    </div>
+                    <div class="footer-item">
+                        <strong>Version:</strong> Incremented when modified (1.0 → 1.1 → 2.0)
+                    </div>
+                </div>
+
+                <div class="example-footer">
+                    <strong>Example:</strong>
+                    <br>Author: Rajesh Kumar | Date: 01-Dec-2025
+                    <br>Reviewed By: Priya Singh | Status: Approved
+                    <br>Approved By: Test Lead | Approval Date: 02-Dec-2025
+                </div>
+            </div>
+        </div>
+
+        <!-- Real TC Example -->
+        <div class="real-example">
+            <h3>📄 Complete Real Test Case Example</h3>
+            <div class="real-tc-card">
+                <table class="real-tc-table">
+                    <tr>
+                        <td class="field-label">Test Case ID</td>
+                        <td>CBO-AT-001</td>
+                    </tr>
+                    <tr>
+                        <td class="field-label">Title</td>
+                        <td>Verify Amount Transfer - Balance Validation</td>
+                    </tr>
+                    <tr>
+                        <td class="field-label">Requirement</td>
+                        <td>70.3.2 (Should not accept more than balance)</td>
+                    </tr>
+                    <tr>
+                        <td class="field-label">Pre-condition</td>
+                        <td>1. User logged in with account balance = 10,000
+                            <br>2. Amount Transfer feature is accessible</td>
+                    </tr>
+                    <tr>
+                        <td class="field-label">Test Data</td>
+                        <td>From: 10001 | To: 10002 | Amount: 12000 (exceeds balance)</td>
+                    </tr>
+                    <tr>
+                        <td class="field-label">Steps</td>
+                        <td>1. Click Amount Transfer
+                            <br>2. Enter From: 10001
+                            <br>3. Enter To: 10002
+                            <br>4. Enter Amount: 12000
+                            <br>5. Click Transfer</td>
+                    </tr>
+                    <tr>
+                        <td class="field-label">Expected Result</td>
+                        <td>Error message: "Cannot transfer more than balance"</td>
+                    </tr>
+                    <tr>
+                        <td class="field-label">Severity</td>
+                        <td>Critical (Core banking function)</td>
+                    </tr>
+                    <tr>
+                        <td class="field-label">Status</td>
+                        <td>Approved | Version 1.0</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== WRITING BEST PRACTICES ==================== -->
+    <div id="tcWriting" class="tc-content">
+        <div class="content-header">
+            <h2>✍️ Test Case Writing Best Practices</h2>
+            <p>Professional approaches to high-quality test case creation</p>
+        </div>
+
+        <!-- Best Practices List -->
+        <div class="practices-grid">
+            <div class="practice-card">
+                <h4>✅ Be Specific & Clear</h4>
+                <p><strong>❌ Wrong:</strong> "Enter data and verify"</p>
+                <p><strong>✅ Right:</strong> "Enter amount '12000' in Amount field and verify error message 'Cannot exceed balance' displays"</p>
+            </div>
+
+            <div class="practice-card">
+                <h4>✅ Use Expected Result Format</h4>
+                <p><strong>Say "Should be" or "Must be"</strong> instead of hardcoding</p>
+                <p>❌ Wrong: "Error displayed"</p>
+                <p>✅ Right: "Error message 'Invalid input' must be displayed"</p>
+            </div>
+
+            <div class="practice-card">
+                <h4>✅ Focus on Critical Steps</h4>
+                <p>Don't elaborate on every single action. Focus on steps directly related to the test objective.</p>
+                <p>Example: Skip "Open browser, load page, login..." if not relevant to Amount Transfer validation</p>
+            </div>
+
+            <div class="practice-card">
+                <h4>✅ Highlight Object Names</h4>
+                <p>Make UI elements clear for better identification</p>
+                <p>✅ "Click the 'Submit' button (green button at bottom-right)"</p>
+            </div>
+
+            <div class="practice-card">
+                <h4>✅ Write Generic Test Cases</h4>
+                <p><strong>Don't hardcode values that change:</strong></p>
+                <p>❌ Wrong: "Enter hostname: 192.168.1.1"</p>
+                <p>✅ Right: "Enter hostname: [From Test Data - Environment Config]"</p>
+                <p>Reason: Hostname changes in different environments (Dev, QA, Prod)</p>
+            </div>
+
+            <div class="practice-card">
+                <h4>✅ Optimize for Execution Speed</h4>
+                <p>Organize steps so related actions are grouped together</p>
+                <p>This reduces navigation time during execution</p>
+            </div>
+
+            <div class="practice-card">
+                <h4>✅ Include Navigation Steps</h4>
+                <p>Always start with navigation steps for clarity</p>
+                <p>✅ "1. Navigate to CBO homepage
+                    <br>2. Click Login
+                    <br>3. Navigate to Amount Transfer
+                    <br>4. [Then specific test steps]"</p>
+            </div>
+
+            <div class="practice-card">
+                <h4>✅ Apply Design Techniques</h4>
+                <p>Use BVA, EP, or Practice Method to derive comprehensive test values</p>
+                <p>Don't guess - systematically derive test data</p>
+            </div>
+        </div>
+
+        <!-- Common Mistakes -->
+        <div class="mistakes-section">
+            <h3>⚠️ Common Test Case Writing Mistakes</h3>
+
+            <div class="mistake-card">
+                <h4>❌ Mistake 1: Writing Like Documentation</h4>
+                <p><strong>Wrong Approach:</strong></p>
+                <blockquote>"The user opens the application and navigates through the beautiful interface to find the amount transfer feature which is located on the left menu. He then carefully fills in all the required fields..."</blockquote>
+                <p><strong>Correct Approach:</strong></p>
+                <blockquote>"1. Navigate to Amount Transfer feature
+                    <br>2. Enter amount: 12000
+                    <br>3. Click Submit"</blockquote>
+            </div>
+
+            <div class="mistake-card">
+                <h4>❌ Mistake 2: No Expected Results</h4>
+                <p><strong>Wrong:</strong> Just steps, no "Expected Result" column</p>
+                <p><strong>Correct:</strong> Every step has explicit expected result for validation</p>
+            </div>
+
+            <div class="mistake-card">
+                <h4>❌ Mistake 3: Mixing FT, IT, ST in One Case</h4>
+                <p><strong>Wrong:</strong> "Test Login → Test Database Connection → Test Entire Workflow"</p>
+                <p><strong>Correct:</strong> Separate test cases for each level
+                    <br>• FT: Test Login feature alone
+                    <br>• IT: Test Login + Amount Transfer interaction
+                    <br>• ST: Test complete end-to-end workflow</p>
+            </div>
+
+            <div class="mistake-card">
+                <h4>❌ Mistake 4: Hardcoding Environment-Specific Data</h4>
+                <p><strong>Wrong:</strong> "URL: 192.168.1.1:8080/cbo"</p>
+                <p><strong>Correct:</strong> "[From Test Data] - See Environment Config file"</p>
+                <p>Reason: URL changes across environments (Dev/QA/Prod)</p>
+            </div>
+
+            <div class="mistake-card">
+                <h4>❌ Mistake 5: Too Many Steps</h4>
+                <p><strong>Wrong:</strong> 100 steps in single test case</p>
+                <p><strong>Correct:</strong> 15-20 steps maximum, break into separate cases if needed</p>
+                <p>Why: Easier to execute, identify failures, and troubleshoot</p>
+            </div>
+        </div>
+
+        <!-- Writing Process -->
+        <div class="process-section">
+            <h3>🔄 Test Case Writing Process</h3>
+            <div class="process-steps">
+                <div class="step">
+                    <div class="step-number">1️⃣</div>
+                    <div class="step-content">
+                        <strong>System Study</strong>
+                        <p>Understand application functionality from SRS/Requirements</p>
+                    </div>
+                </div>
+                <div class="arrow">↓</div>
+                <div class="step">
+                    <div class="step-number">2️⃣</div>
+                    <div class="step-content">
+                        <strong>Identify Scenarios</strong>
+                        <p>List all possible end-user interactions and business flows</p>
+                    </div>
+                </div>
+                <div class="arrow">↓</div>
+                <div class="step">
+                    <div class="step-number">3️⃣</div>
+                    <div class="step-content">
+                        <strong>Prioritize</strong>
+                        <p>Rank scenarios by business criticality (High → Low)</p>
+                    </div>
+                </div>
+                <div class="arrow">↓</div>
+                <div class="step">
+                    <div class="step-number">4️⃣</div>
+                    <div class="step-content">
+                        <strong>Design Test Cases</strong>
+                        <p>Apply design techniques (BVA, EP, Practice Method)</p>
+                    </div>
+                </div>
+                <div class="arrow">↓</div>
+                <div class="step">
+                    <div class="step-number">5️⃣</div>
+                    <div class="step-content">
+                        <strong>Write with Template</strong>
+                        <p>Follow standard template for consistency</p>
+                    </div>
+                </div>
+                <div class="arrow">↓</div>
+                <div class="step">
+                    <div class="step-number">6️⃣</div>
+                    <div class="step-content">
+                        <strong>Submit for Review</strong>
+                        <p>Send to peer reviewer and test lead</p>
+                    </div>
+                </div>
+                <div class="arrow">↓</div>
+                <div class="step">
+                    <div class="step-number">7️⃣</div>
+                    <div class="step-content">
+                        <strong>Get Approval</strong>
+                        <p>Incorporate feedback, get approval from test lead</p>
+                    </div>
+                </div>
+                <div class="arrow">↓</div>
+                <div class="step">
+                    <div class="step-number">8️⃣</div>
+                    <div class="step-content">
+                        <strong>Store in Repository</strong>
+                        <p>Archive in version control for future use</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Writing Metrics -->
+        <div class="metrics-section">
+            <h3>📊 Test Case Writing Metrics</h3>
+            <div class="metrics-info">
+                <div class="metric">
+                    <strong>Writing Productivity (Per Day):</strong>
+                    <ul>
+                        <li>Day 1-3: 1-2 test cases (learning curve)</li>
+                        <li>Day 4-5: 2-4 test cases</li>
+                        <li>Week 2+: 3-5 test cases (expertise gained)</li>
+                        <li>Month 3+: 7-8 test cases (mastery, reuse patterns)</li>
+                    </ul>
+                </div>
+
+                <div class="metric">
+                    <strong>Project Estimate:</strong>
+                    <ul>
+                        <li>1 test engineer = 5 screens/release</li>
+                        <li>10-15 test cases per screen</li>
+                        <li>3-5 test cases per day</li>
+                        <li>Total time: 20-40 days for 1050 test cases</li>
+                    </ul>
+                </div>
+
+                <div class="metric">
+                    <strong>Quality Indicators:</strong>
+                    <ul>
+                        <li>Each test case: 20-40 steps average</li>
+                        <li>Review rate: 24-30 cases/day</li>
+                        <li>Good coverage: 10-15 scenarios per feature</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== REVIEW PROCESS ==================== -->
+    <div id="tcReview" class="tc-content">
+        <div class="content-header">
+            <h2>🔍 Test Case Review Process</h2>
+            <p>Peer review and quality assurance for test cases</p>
+        </div>
+
+        <!-- Review Overview -->
+        <div class="review-overview">
+            <h3>📋 Review Process Flow</h3>
+            <div class="review-flow">
+                <div class="review-stage">
+                    <strong>1. Developer Writes</strong>
+                    <p>Test Engineer creates test cases</p>
+                </div>
+                <div class="arrow-right">→</div>
+                <div class="review-stage">
+                    <strong>2. Notify Lead</strong>
+                    <p>Sends mail: "Test cases ready for review"</p>
+                </div>
+                <div class="arrow-right">→</div>
+                <div class="review-stage">
+                    <strong>3. Peer Review</strong>
+                    <p>Another tester reviews the test cases</p>
+                </div>
+                <div class="arrow-right">→</div>
+                <div class="review-stage">
+                    <strong>4. Feedback</strong>
+                    <p>Reviewer provides comments and suggestions</p>
+                </div>
+                <div class="arrow-right">→</div>
+                <div class="review-stage">
+                    <strong>5. Author Fixes</strong>
+                    <p>Developer addresses feedback (fixed or justified)</p>
+                </div>
+                <div class="arrow-right">→</div>
+                <div class="review-stage">
+                    <strong>6. Lead Approves</strong>
+                    <p>Test Lead approves & signs off</p>
+                </div>
+                <div class="arrow-right">→</div>
+                <div class="review-stage">
+                    <strong>7. Ready for Exec</strong>
+                    <p>Test cases ready for execution</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- What Reviewer Checks -->
+        <div class="review-checklist">
+            <h3>✅ Review Checklist (What Reviewer Validates)</h3>
+
+            <div class="checklist-section">
+                <h4>1️⃣ Template Compliance</h4>
+                <ul>
+                    <li>✓ Standard template used (consistent with project)</li>
+                    <li>✓ All required fields filled</li>
+                    <li>✓ No extraneous information</li>
+                </ul>
+            </div>
+
+            <div class="checklist-section">
+                <h4>2️⃣ Header Validation</h4>
+                <ul>
+                    <li>✓ Test case name is descriptive and unique</li>
+                    <li>✓ Requirement number is mapped correctly</li>
+                    <li>✓ Pre-conditions are clear and necessary</li>
+                    <li>✓ Test data is complete and accurate</li>
+                    <li>✓ Severity is appropriate for the scenario</li>
+                </ul>
+            </div>
+
+            <div class="checklist-section">
+                <h4>3️⃣ Body Validation (Most Important)</h4>
+                <ul>
+                    <li>✓ All possible scenarios covered</li>
+                    <li>✓ Test case design techniques applied</li>
+                    <li>✓ Flow is logical and easy to follow</li>
+                    <li>✓ Steps are clear, specific, actionable</li>
+                    <li>✓ Expected results defined for each step</li>
+                    <li>✓ No redundant or unnecessary steps</li>
+                </ul>
+            </div>
+
+            <div class="checklist-section">
+                <h4>4️⃣ Coverage Analysis</h4>
+                <ul>
+                    <li>✓ Positive scenarios covered (happy path)</li>
+                    <li>✓ Negative scenarios covered (error paths)</li>
+                    <li>✓ Boundary values tested</li>
+                    <li>✓ Edge cases considered</li>
+                </ul>
+            </div>
+
+            <div class="checklist-section">
+                <h4>5️⃣ Efficiency Check</h4>
+                <ul>
+                    <li>✓ Steps organized to minimize execution time</li>
+                    <li>✓ No unnecessary navigation</li>
+                    <li>✓ Related operations grouped together</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Review Template -->
+        <div class="review-template-section">
+            <h3>📝 Test Case Review Template</h3>
+            <div class="review-form">
+                <table class="review-table">
+                    <tr>
+                        <th>Test Case Name</th>
+                        <th>Step No.</th>
+                        <th>Issue/Comment</th>
+                        <th>Severity</th>
+                        <th>Author Response</th>
+                    </tr>
+                    <tr>
+                        <td>CBO-AT-001</td>
+                        <td>Pre-condition</td>
+                        <td>Pre-condition incomplete. Missing: 'User account is active'</td>
+                        <td>Major</td>
+                        <td>FIXED - Added pre-condition</td>
+                    </tr>
+                    <tr>
+                        <td>CBO-AT-001</td>
+                        <td>8</td>
+                        <td>Step is missing: 'Back button should be present'. Test coverage insufficient</td>
+                        <td>Minor</td>
+                        <td>NOT FIXED - Back button not part of Amount Transfer flow</td>
+                    </tr>
+                    <tr>
+                        <td>CBO-AT-002</td>
+                        <td>5-7</td>
+                        <td>Insufficient boundary value testing. Apply BVA: Test -1, 0, 100, 5000, 5001</td>
+                        <td>Critical</td>
+                        <td>FIXED - Added BVA test cases</td>
+                    </tr>
+                </table>
+            </div>
+
+            <h4>💡 Key Points:</h4>
+            <ul>
+                <li>Use specific step numbers for clarity</li>
+                <li>Provide actionable feedback, not just criticism</li>
+                <li>Mark severity for prioritization</li>
+                <li>Author can argue if they believe feedback is wrong (with justification)</li>
+            </ul>
+        </div>
+
+        <!-- Interview Question -->
+        <div class="interview-tip">
+            <h3>💼 Interview Question: "How do you review a test case?"</h3>
+            <div class="answer-box">
+                <strong>Best Answer Structure (3 Parts):</strong>
+                <ul>
+                    <li>1️⃣ <strong>BODY first:</strong> Check if all scenarios covered, design techniques applied, flow logical</li>
+                    <li>2️⃣ <strong>HEADER second:</strong> Validate all metadata fields, requirements mapped correctly</li>
+                    <li>3️⃣ <strong>TEMPLATE last:</strong> Ensure project standards followed, formatting consistent</li>
+                </ul>
+                <p><strong>Why this order?</strong> Body contains the actual test logic (most important). Header provides context. Template is formatting (least important).</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== REPOSITORY MANAGEMENT ==================== -->
+    <div id="tcRepository" class="tc-content">
+        <div class="content-header">
+            <h2>📦 Test Case Repository & Management</h2>
+            <p>Storing, versioning, and organizing test cases</p>
+        </div>
+
+        <!-- Repository Structure -->
+        <div class="repository-section">
+            <h3>📂 Test Case Repository (TCR) Structure</h3>
+            <div class="repo-structure">
+                <div class="repo-level">
+                    <strong>TCR/</strong> (Main Repository)
+                    <div class="repo-level">
+                        <strong>├── QA_Build1/</strong>
+                        <div class="repo-level">
+                            <strong>│   ├── Login_TC.xls</strong>
+                            <br><strong>│   ├── AmountTransfer_TC.xls</strong>
+                            <br><strong>│   └── Dashboard_TC.xls</strong>
+                        </div>
+                    </div>
+                    <div class="repo-level">
+                        <strong>├── QA_Build2/</strong>
+                        <div class="repo-level">
+                            <strong>│   ├── Login_TC.xls</strong>
+                            <br><strong>│   ├── AmountTransfer_TC.xls</strong>
+                            <br><strong>│   └── Loans_TC.xls (NEW)</strong>
+                        </div>
+                    </div>
+                    <div class="repo-level">
+                        <strong>├── QA_Build3/</strong>
+                        <br><strong>├── Version_Control/ (Git/SVN)</strong>
+                        <br><strong>├── Backup/</strong>
+                        <br><strong>└── Archive/</strong>
+                    </div>
+                </div>
+            </div>
+
+            <h4>🔐 Security Measures:</h4>
+            <ul>
+                <li>Stored in Version Control System (Git, SVN)</li>
+                <li>Regular backups taken (daily/weekly)</li>
+                <li>Access control via role-based permissions</li>
+                <li>Audit trail of all changes</li>
+            </ul>
+        </div>
+
+        <!-- TCR Workflow -->
+        <div class="tcr-workflow">
+            <h3>🔄 TCR Check-In/Check-Out Workflow</h3>
+
+            <div class="workflow-stage">
+                <h4>📝 Writing Phase:</h4>
+                <p>Test Engineer checks OUT test cases from TCR</p>
+                <div class="action-box">
+                    "Get latest version of Login_TC.xls from TCR"
+                </div>
+            </div>
+
+            <div class="workflow-stage">
+                <h4>✏️ Editing Phase:</h4>
+                <p>Work on local copy, apply review feedback</p>
+                <div class="action-box">
+                    "Modify test cases locally with changes"
+                </div>
+            </div>
+
+            <div class="workflow-stage">
+                <h4>✅ Approval Phase:</h4>
+                <p>After approval, check IN test cases back to TCR</p>
+                <div class="action-box">
+                    "Upload updated Login_TC.xls v1.1 to TCR with version tracking"
+                </div>
+            </div>
+
+            <div class="workflow-stage">
+                <h4>⚙️ Execution Phase:</h4>
+                <p>During test execution, retrieve test cases for running</p>
+                <div class="action-box">
+                    "Get approved test cases → Execute → Create Test Execution Report → Check IN results"
+                </div>
+            </div>
+
+            <div class="workflow-stage">
+                <h4>🗑️ Cleanup Phase:</h4>
+                <p>Remove obsolete/superseded test cases</p>
+                <div class="action-box">
+                    "Old features removed? Drop corresponding test cases from TCR"
+                </div>
+            </div>
+        </div>
+
+        <!-- Test Management Tools -->
+        <div class="tools-section">
+            <h3>🛠️ Test Case Management Tools</h3>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Tool</th>
+                        <th>Features</th>
+                        <th>Usage</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>QC (Quality Center)</strong></td>
+                        <td>Enterprise TC management, Traceability, Reporting</td>
+                        <td>Large enterprises, complex projects</td>
+                    </tr>
+                    <tr>
+                        <td><strong>TestLink</strong></td>
+                        <td>Open source, Web-based, Requirement linking</td>
+                        <td>Mid-size projects, cost-conscious teams</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Xray (Jira)</strong></td>
+                        <td>Jira integration, Agile-friendly, Automation link</td>
+                        <td>Agile teams using Jira</td>
+                    </tr>
+                    <tr>
+                        <td><strong>TestRails</strong></td>
+                        <td>User-friendly, Reporting dashboards, CI/CD integration</td>
+                        <td>Modern testing teams, DevOps</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Excel/Word</strong></td>
+                        <td>Simple templates, Version control via Git</td>
+                        <td>Small teams, startups</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Best Practices -->
+        <div class="best-practices">
+            <h3>✅ TCR Best Practices</h3>
+            <ul>
+                <li>✓ Back up TCR daily/weekly</li>
+                <li>✓ Use version control (Git, SVN) for tracking changes</li>
+                <li>✓ Document test case naming conventions</li>
+                <li>✓ Maintain a traceability matrix (Requirement ↔ TC ↔ Script)</li>
+                <li>✓ Archive old/obsolete test cases (don't delete)</li>
+                <li>✓ Automate cleanup of duplicate test cases</li>
+                <li>✓ Implement access controls by role</li>
+                <li>✓ Regular repository audits for quality</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ==================== EXECUTION & REPORTING ==================== -->
+    <div id="tcExecution" class="tc-content">
+        <div class="content-header">
+            <h2>⚙️ Test Case Execution & Reporting</h2>
+            <p>Running test cases and documenting results</p>
+        </div>
+
+        <!-- Execution Process -->
+        <div class="execution-process">
+            <h3>🔄 Test Execution Process</h3>
+
+            <div class="exec-step">
+                <h4>1️⃣ Preparation (Before Execution)</h4>
+                <ul>
+                    <li>Retrieve approved test cases from repository</li>
+                    <li>Create fresh test data (clean environment)</li>
+                    <li>Set up test environment (db, servers, config)</li>
+                    <li>Verify build/application is deployed and ready</li>
+                </ul>
+            </div>
+
+            <div class="exec-step">
+                <h4>2️⃣ Execution (Running Tests)</h4>
+                <ul>
+                    <li>Execute test cases step-by-step following documented steps</li>
+                    <li>Document actual results for each step</li>
+                    <li>Compare Expected vs. Actual results</li>
+                    <li>If mismatch: FAIL → Log defect</li>
+                    <li>If match: PASS → Continue to next step</li>
+                </ul>
+            </div>
+
+            <div class="exec-step">
+                <h4>3️⃣ Defect Logging (On Failures)</h4>
+                <ul>
+                    <li>Create defect report with step number that failed</li>
+                    <li>Attach screenshots/logs as evidence</li>
+                    <li>Assign to developer for fixing</li>
+                </ul>
+            </div>
+
+            <div class="exec-step">
+                <h4>4️⃣ Reporting (After Execution Cycle)</h4>
+                <ul>
+                    <li>Create Test Execution Report (TER)</li>
+                    <li>Calculate metrics (Pass %, Fail %)</li>
+                    <li>Send to stakeholders</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Execution Status -->
+        <div class="status-section">
+            <h3>📊 Test Execution Status Values</h3>
+            <table class="status-table">
+                <tr>
+                    <td class="status-pass"><strong>PASS</strong></td>
+                    <td>Actual Result = Expected Result ✅</td>
+                </tr>
+                <tr>
+                    <td class="status-fail"><strong>FAIL</strong></td>
+                    <td>Actual Result ≠ Expected Result ❌</td>
+                </tr>
+                <tr>
+                    <td class="status-blocked"><strong>BLOCKED</strong></td>
+                    <td>Cannot execute (prerequisite failed, env issue)</td>
+                </tr>
+                <tr>
+                    <td class="status-skip"><strong>NOT EXECUTED</strong></td>
+                    <td>Skipped due to time/resource constraints</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Execution Report -->
+        <div class="report-section">
+            <h3>📋 Test Execution Report (TER)</h3>
+
+            <div class="ter-example">
+                <h4>Sample TER for Build 01</h4>
+                <table class="data-table">
+                    <tr>
+                        <th>Module</th>
+                        <th>Total TC</th>
+                        <th>Executed</th>
+                        <th>Pass</th>
+                        <th>Fail</th>
+                        <th>Blocked</th>
+                        <th>Pass %</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Login</strong></td>
+                        <td>50</td>
+                        <td>50</td>
+                        <td>48</td>
+                        <td>2</td>
+                        <td>0</td>
+                        <td>96%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Dashboard</strong></td>
+                        <td>75</td>
+                        <td>70</td>
+                        <td>65</td>
+                        <td>5</td>
+                        <td>0</td>
+                        <td>92%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Amount Transfer</strong></td>
+                        <td>150</td>
+                        <td>120</td>
+                        <td>100</td>
+                        <td>20</td>
+                        <td>0</td>
+                        <td>83%</td>
+                    </tr>
+                    <tr class="total-row">
+                        <td><strong>TOTAL</strong></td>
+                        <td><strong>275</strong></td>
+                        <td><strong>240</strong></td>
+                        <td><strong>213</strong></td>
+                        <td><strong>27</strong></td>
+                        <td><strong>0</strong></td>
+                        <td><strong>88.75%</strong></td>
+                    </tr>
+                </table>
+            </div>
+
+            <h4>📊 TER Sections:</h4>
+            <ul>
+                <li><strong>Executive Summary:</strong> High-level overview for management</li>
+                <li><strong>Detailed Metrics:</strong> Module-wise breakdown</li>
+                <li><strong>Defect Summary:</strong> Bugs by severity/priority</li>
+                <li><strong>Effort Tracking:</strong> Planned vs. Actual time</li>
+                <li><strong>Risk Assessment:</strong> Readiness to move to next phase</li>
+                <li><strong>Recommendations:</strong> Go/No-Go decision</li>
+            </ul>
+        </div>
+
+        <!-- Defect Mapping -->
+        <div class="defect-mapping-section">
+            <h3>🐛 Mapping Defects to Test Cases</h3>
+            <p>Linking test case failures to defect reports</p>
+            <div class="mapping-example">
+                <table class="mini-table">
+                    <tr>
+                        <th>Test Case</th>
+                        <th>Step#</th>
+                        <th>Expected</th>
+                        <th>Actual</th>
+                        <th>Defect ID</th>
+                        <th>Severity</th>
+                    </tr>
+                    <tr>
+                        <td>CBO-AT-001</td>
+                        <td>10</td>
+                        <td>"Cannot exceed balance"</td>
+                        <td>Transaction allowed</td>
+                        <td>BUG-1234</td>
+                        <td>Critical</td>
+                    </tr>
+                    <tr>
+                        <td>CBO-LOGIN-005</td>
+                        <td>6</td>
+                        <td>Dashboard displays</td>
+                        <td>Blank page</td>
+                        <td>BUG-1235</td>
+                        <td>Critical</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- Metrics & Graphs -->
+        <div class="metrics-graphs-section">
+            <h3>📈 Test Execution Metrics & Graphs</h3>
+            <ul>
+                <li><strong>Pass Rate:</strong> (Passed / Total Executed) × 100</li>
+                <li><strong>Fail Rate:</strong> (Failed / Total Executed) × 100</li>
+                <li><strong>Defect Density:</strong> Total Defects / Build size</li>
+                <li><strong>Test Coverage:</strong> Requirements covered / Total Requirements</li>
+                <li><strong>Effort Variance:</strong> Planned effort vs. Actual effort spent</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ==================== ADVANCED STRATEGIES ==================== -->
+    <div id="tcAdvanced" class="tc-content">
+        <div class="content-header">
+            <h2>🎓 Advanced Test Case Strategies</h2>
+            <p>Professional-level approaches and techniques</p>
+        </div>
+
+        <!-- Advanced Topic 1 -->
+        <div class="advanced-topic">
+            <h3>🔗 Traceability Matrix (Requirements to Automation)</h3>
+            <p><strong>Purpose:</strong> Ensure every requirement is tested and every test is automated</p>
+
+            <div class="traceability-example">
+                <table class="mini-table">
+                    <tr>
+                        <th>Req ID</th>
+                        <th>Requirement</th>
+                        <th>Test Case</th>
+                        <th>Automation Script</th>
+                        <th>Status</th>
+                    </tr>
+                    <tr>
+                        <td>70.3.1</td>
+                        <td>Accept 10-digit account number</td>
+                        <td>CBO-AT-001</td>
+                        <td>AT_ValidAccount.java</td>
+                        <td>✅ Automated</td>
+                    </tr>
+                    <tr>
+                        <td>70.3.2</td>
+                        <td>Reject transfer > balance</td>
+                        <td>CBO-AT-005</td>
+                        <td>AT_BalanceCheck.java</td>
+                        <td>✅ Automated</td>
+                    </tr>
+                    <tr>
+                        <td>70.3.3</td>
+                        <td>Show confirmation dialog</td>
+                        <td>CBO-AT-008</td>
+                        <td>Manual Only</td>
+                        <td>✅ Manual</td>
+                    </tr>
+                </table>
+            </div>
+
+            <h4>💡 Traceability Matrix Benefits:</h4>
+            <ul>
+                <li>Identifies orphan requirements (no test case)</li>
+                <li>Shows which features to automate</li>
+                <li>Quick impact analysis when requirements change</li>
+                <li>Audit trail for compliance (SOX, ISO)</li>
+            </ul>
+        </div>
+
+        <!-- Advanced Topic 2 -->
+        <div class="advanced-topic">
+            <h3>🔄 Scenario-Based Test Cases</h3>
+            <p><strong>Approach:</strong> Test real-world user workflows, not just individual features</p>
+
+            <h4>Example: Email Banking Complete Workflow</h4>
+            <div class="scenario-example">
+                <strong>Scenario:</strong> "User performs complete amount transfer from login to logout"
+                <br><strong>Steps:</strong>
+                <ol>
+                    <li>Login with credentials</li>
+                    <li>Navigate to Amount Transfer</li>
+                    <li>Enter transfer details</li>
+                    <li>Review confirmation</li>
+                    <li>Accept confirmation</li>
+                    <li>View transaction success message</li>
+                    <li>Logout</li>
+                </ol>
+                <p><strong>Validates:</strong> Integration between Login, Transfer, Confirmation, and Logout features</p>
+            </div>
+
+            <h4>✅ Advantages:</h4>
+            <ul>
+                <li>Tests complete end-to-end workflows</li>
+                <li>Catches integration issues</li>
+                <li>Reflects real user behavior</li>
+                <li>Better defect detection</li>
+            </ul>
+        </div>
+
+        <!-- Advanced Topic 3 -->
+        <div class="advanced-topic">
+            <h3>🎯 Risk-Based Test Case Prioritization</h3>
+            <p><strong>Concept:</strong> Prioritize test cases by business risk and impact</p>
+
+            <div class="risk-based-example">
+                <table class="mini-table">
+                    <tr>
+                        <th>Test Case</th>
+                        <th>Risk Level</th>
+                        <th>Priority</th>
+                        <th>Effort</th>
+                    </tr>
+                    <tr class="high-risk">
+                        <td>Amount Transfer - Balance Check</td>
+                        <td>🔴 High</td>
+                        <td>P1 (Execute First)</td>
+                        <td>3 hours</td>
+                    </tr>
+                    <tr class="high-risk">
+                        <td>Login - Authentication</td>
+                        <td>🔴 High</td>
+                        <td>P1</td>
+                        <td>4 hours</td>
+                    </tr>
+                    <tr class="medium-risk">
+                        <td>Dashboard - Display Formatting</td>
+                        <td>🟡 Medium</td>
+                        <td>P2</td>
+                        <td>2 hours</td>
+                    </tr>
+                    <tr class="low-risk">
+                        <td>Help Section - Text Typos</td>
+                        <td>🟢 Low</td>
+                        <td>P3 (If time)</td>
+                        <td>1 hour</td>
+                    </tr>
+                </table>
+            </div>
+
+            <h4>🎯 Risk Priority Matrix:</h4>
+            <p><strong>Execute in Order:</strong> High Impact + High Probability → High Impact + Low Probability → Low Impact + High Probability → Low Impact + Low Probability</p>
+        </div>
+
+        <!-- Advanced Topic 4 -->
+        <div class="advanced-topic">
+            <h3>🤖 Automation-Ready Test Cases</h3>
+            <p><strong>Requirement:</strong> Test cases must be written specifically for automation</p>
+
+            <h4>Automation-Friendly Characteristics:</h4>
+            <ul>
+                <li>✅ Steps use unique object identifiers (IDs, not just labels)</li>
+                <li>✅ Expected results are deterministic (not subjective)</li>
+                <li>✅ No manual steps like "look and feel validation"</li>
+                <li>✅ Test data parameterized (not hardcoded)</li>
+                <li>✅ Clear assertions that can be coded</li>
+            </ul>
+
+            <h4>Example: Automatable vs. Non-Automatable</h4>
+            <div class="automation-example">
+                <p><strong>❌ NOT Automatable:</strong></p>
+                <div class="bad-example">
+                    "Verify the login form looks professional and is user-friendly"
+                    <br>(Too subjective)
+                </div>
+
+                <p><strong>✅ Automatable:</strong></p>
+                <div class="good-example">
+                    "Verify login form has Username field (ID: username_input) and Password field (ID: password_input) and Login button (ID: login_btn) with green background color (#00AA00)"
+                    <br>(Specific, measurable, codeable)
+                </div>
+            </div>
+        </div>
+
+        <!-- Advanced Topic 5 -->
+        <div class="advanced-topic">
+            <h3>📊 Test Case Effectiveness Metrics</h3>
+            <p><strong>Measure:</strong> How effective are your test cases at catching bugs?</p>
+
+            <h4>Key Metrics:</h4>
+            <ul>
+                <li><strong>Bug Detection Rate (BDR):</strong> Bugs found by test case / Total bugs in feature</li>
+                <li><strong>Test Case Efficiency:</strong> Bugs found / Number of test cases</li>
+                <li><strong>Code Coverage:</strong> Lines of code covered by tests</li>
+                <li><strong>False Positive Rate:</strong> Defects reported as bugs but are actually features</li>
+            </ul>
+
+            <h4>Example:</h4>
+            <ul>
+                <li>Test case found 5 bugs from 8 total bugs → BDR = 62.5%</li>
+                <li>10 test cases found 5 bugs → Efficiency = 0.5 bugs/test case</li>
+                <li>Low metrics indicate test cases need improvement</li>
+            </ul>
+        </div>
+
+        <!-- Advanced Topic 6 -->
+        <div class="advanced-topic">
+            <h3>🔄 Regression Test Selection</h3>
+            <p><strong>Strategy:</strong> Which test cases to execute for regression testing?</p>
+
+            <h4>Regression Test Selection Methods:</h4>
+            <ul>
+                <li><strong>All Tests:</strong> Re-execute all test cases (expensive, thorough)</li>
+                <li><strong>Risk-Based:</strong> Select high-risk test cases only</li>
+                <li><strong>Change-Based:</strong> Select test cases affected by code changes</li>
+                <li><strong>Hybrid:</strong> Combine methods (10 cycles change-based + 1 cycle all tests)</li>
+            </ul>
+
+            <h4>💡 Recommended Approach:</h4>
+            <p>For each cycle during regression testing:
+                <br>Cycles 1-10: Test only changed areas (Unit Regression + Regional Regression)
+                <br>Cycle 11: Full Regression Testing (all features)
+                <br>Cycles 12-21: Back to Regional Regression
+                <br>This balances efficiency with comprehensive coverage</p>
+        </div>
+
+        <!-- Key Takeaways -->
+        <div class="takeaways-box">
+            <h3>🎯 Key Takeaways: Test Cases Mastery</h3>
+            <ul>
+                <li>✅ <strong>Why TCs:</strong> Consistency, coverage, knowledge transfer, process-based quality</li>
+                <li>✅ <strong>Design:</strong> Use BVA, EP, Practice Method - not just error guessing</li>
+                <li>✅ <strong>Structure:</strong> Header (metadata), Body (steps), Footer (approval)</li>
+                <li>✅ <strong>Quality:</strong> Be specific, generic, no hardcoding, apply design techniques</li>
+                <li>✅ <strong>Review:</strong> Check Body→Header→Template (most to least important)</li>
+                <li>✅ <strong>Repository:</strong> Version control, backups, traceability matrix</li>
+                <li>✅ <strong>Execution:</strong> Follow steps precisely, document results, create TER</li>
+                <li>✅ <strong>Metrics:</strong> 3-5 cases/day write, 24-30 cases/day review, 35-60 cases/day execute</li>
+                <li>✅ <strong>Advanced:</strong> Traceability, scenario-based, risk-based prioritization</li>
+                <li>✅ <strong>Success:</strong> Well-written TCs = 80% of testing effectiveness!</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Embedded CSS for Test Cases -->
+<style>
+.tc-nav-tabs {
+    display: flex;
+    gap: 10px;
+    margin: 20px 0;
+    flex-wrap: wrap;
+}
+
+.tc-nav-tab {
+    padding: 10px 15px;
+    background: #f0f0f0;
+    border: 2px solid #ddd;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: 500;
+}
+
+.tc-nav-tab.active {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-color: #667eea;
+}
+
+.tc-nav-tab:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.tc-content {
+    display: none;
+    animation: fadeIn 0.5s;
+}
+
+.tc-content.active {
+    display: block;
+}
+
+.benefit-card {
+    background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 4px solid #667eea;
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin: 15px 0;
+}
+
+.technique-card {
+    background: white;
+    border-radius: 8px;
+    margin: 15px 0;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.technique-header {
+    padding: 20px;
+    color: white;
+}
+
+.technique-1 {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.technique-2 {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+.technique-3 {
+    background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+}
+
+.technique-4 {
+    background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+}
+
+.technique-body {
+    padding: 20px;
+}
+
+.pressman-rule {
+    background: #f0f7ff;
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 4px solid #667eea;
+}
+
+.partition-visual {
+    display: flex;
+    gap: 10px;
+    margin: 15px 0;
+    justify-content: space-around;
+}
+
+.partition-section {
+    flex: 1;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: bold;
+    color: white;
+}
+
+.partition-section.invalid {
+    background: #ff6b6b;
+}
+
+.partition-section.valid {
+    background: #51cf66;
+}
+
+.bva-values {
+    display: flex;
+    gap: 20px;
+    margin: 15px 0;
+}
+
+.bva-group {
+    flex: 1;
+    background: #f0f7ff;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.comparison-box {
+    background: #fff3cd;
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 4px solid #ffc107;
+    margin: 15px 0;
+}
+
+.practice-table {
+    margin: 15px 0;
+}
+
+.template-sections {
+    margin: 20px 0;
+}
+
+.template-section {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 15px 0;
+    border-left: 5px solid #667eea;
+}
+
+.template-field {
+    background: white;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 5px;
+}
+
+.template-field .desc {
+    color: #666;
+    font-style: italic;
+    margin: 5px 0;
+}
+
+.example {
+    background: #e7f5ff;
+    padding: 10px;
+    border-radius: 4px;
+    margin-top: 8px;
+    border-left: 3px solid #339af0;
+}
+
+.code-example {
+    background: #1a1a2e;
+    color: #00ff00;
+    padding: 12px;
+    border-radius: 5px;
+    font-family: monospace;
+    font-size: 12px;
+    margin: 10px 0;
+}
+
+.severity-box {
+    background: #fff3cd;
+    padding: 10px;
+    border-radius: 4px;
+    margin: 8px 0;
+}
+
+.real-tc-card {
+    background: white;
+    border: 2px solid #667eea;
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 15px 0;
+}
+
+.real-tc-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.real-tc-table tr {
+    border-bottom: 1px solid #eee;
+}
+
+.real-tc-table td {
+    padding: 12px;
+}
+
+.field-label {
+    font-weight: bold;
+    background: #f0f0f0;
+    width: 150px;
+}
+
+.practices-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.practice-card {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 4px solid #667eea;
+}
+
+.mistakes-section {
+    margin: 20px 0;
+}
+
+.mistake-card {
+    background: #fff5f5;
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 8px;
+    border-left: 4px solid #f5576c;
+}
+
+.flow-box {
+    background: #f0f7ff;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.flow-decision {
+    margin: 15px 0;
+    padding: 10px;
+    background: white;
+    border-radius: 5px;
+    border-left: 4px solid #667eea;
+}
+
+.flow-yes {
+    color: #51cf66;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+.flow-no {
+    color: #ff6b6b;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+.timeline-section {
+    margin: 20px 0;
+}
+
+.timeline {
+    margin: 20px 0;
+}
+
+.timeline-item {
+    background: #f0f7ff;
+    padding: 20px;
+    margin: 10px 0;
+    border-radius: 8px;
+    border-left: 5px solid #667eea;
+}
+
+.timeline-marker {
+    background: #667eea;
+    color: white;
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.timeline-arrow {
+    text-align: center;
+    font-size: 24px;
+    color: #667eea;
+}
+
+.example-section {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 15px 0;
+}
+
+.example-card {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.problem-box {
+    background: #ffe0e0;
+    padding: 10px;
+    border-radius: 4px;
+    margin: 10px 0;
+}
+
+.solution-box {
+    background: #e0ffe0;
+    padding: 10px;
+    border-radius: 4px;
+    margin: 10px 0;
+}
+
+.review-flow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 20px 0;
+    justify-content: space-around;
+}
+
+.review-stage {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    min-width: 120px;
+}
+
+.arrow-right {
+    font-size: 28px;
+    color: #667eea;
+}
+
+.checklist-section {
+    background: #f0f7ff;
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 8px;
+    border-left: 4px solid #667eea;
+}
+
+.review-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+}
+
+.review-table tr {
+    border-bottom: 1px solid #eee;
+}
+
+.review-table th, .review-table td {
+    padding: 10px;
+    text-align: left;
+}
+
+.review-table th {
+    background: #667eea;
+    color: white;
+}
+
+.status-table {
+    margin: 15px 0;
+}
+
+.status-table tr {
+    margin: 10px 0;
+    display: flex;
+    gap: 20px;
+}
+
+.status-pass {
+    background: #e0ffe0;
+    padding: 10px;
+    border-radius: 4px;
+    color: #2d5016;
+}
+
+.status-fail {
+    background: #ffe0e0;
+    padding: 10px;
+    border-radius: 4px;
+    color: #5d1a1a;
+}
+
+.status-blocked {
+    background: #fff3cd;
+    padding: 10px;
+    border-radius: 4px;
+    color: #654d0f;
+}
+
+.status-skip {
+    background: #e0e0e0;
+    padding: 10px;
+    border-radius: 4px;
+    color: #333;
+}
+
+.ter-example {
+    margin: 15px 0;
+}
+
+.total-row {
+    background: #e0e0e0;
+    font-weight: bold;
+}
+
+.repo-structure {
+    background: #f0f0f0;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 15px 0;
+    font-family: monospace;
+}
+
+.repo-level {
+    margin-left: 20px;
+}
+
+.workflow-stage {
+    background: #f0f7ff;
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 8px;
+    border-left: 4px solid #667eea;
+}
+
+.action-box {
+    background: white;
+    padding: 10px;
+    border-radius: 4px;
+    margin-top: 8px;
+    border-left: 3px solid #667eea;
+    font-style: italic;
+}
+
+.advanced-topic {
+    background: white;
+    padding: 20px;
+    margin: 15px 0;
+    border-radius: 8px;
+    border: 2px solid #667eea;
+}
+
+.traceability-example {
+    margin: 15px 0;
+}
+
+.scenario-example {
+    background: #f0f7ff;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 15px 0;
+}
+
+.risk-based-example {
+    margin: 15px 0;
+}
+
+.high-risk {
+    background: #ffe0e0;
+}
+
+.medium-risk {
+    background: #fff3cd;
+}
+
+.low-risk {
+    background: #e0ffe0;
+}
+
+.automation-example {
+    margin: 15px 0;
+}
+
+.bad-example {
+    background: #ffe0e0;
+    padding: 10px;
+    border-radius: 4px;
+    margin: 8px 0;
+}
+
+.good-example {
+    background: #e0ffe0;
+    padding: 10px;
+    border-radius: 4px;
+    margin: 8px 0;
+}
+
+.takeaways-box {
+    background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 5px solid #667eea;
+    margin: 20px 0;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .tc-nav-tabs {
+        flex-direction: column;
+    }
+
+    .benefits-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .partition-visual {
+        flex-direction: column;
+    }
+
+    .bva-values {
+        flex-direction: column;
+    }
+
+    .review-flow {
+        flex-direction: column;
+    }
+}
+</style>
+
+<!-- JavaScript for Test Cases interactions -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // TC Nav Tabs
+    const tcNavTabs = document.querySelectorAll('.tc-nav-tab');
+    tcNavTabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+            const target = this.getAttribute('data-target');
+            showTCContent(target);
+
+            tcNavTabs.forEach(t => t.classList.remove('active'));
+            this.classList.add('active');
+        });
+    });
+
+    function showTCContent(id) {
+        const contents = document.querySelectorAll('.tc-content');
+        contents.forEach(c => c.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+    }
+});
+</script>
